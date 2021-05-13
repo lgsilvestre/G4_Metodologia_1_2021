@@ -13,6 +13,7 @@ public class Cuenta {
         this.nombre = nombre;
         this.email = email;
         this.contrasena = contrasena;
+        imagenPerfil = new Image("../imagendefecto.jpg");
     }
     
     public void setAdmin(boolean admin){
@@ -47,17 +48,22 @@ public class Cuenta {
         return imagenPerfil;
     }
     
-    public boolean validarContrasena(String contrasena){
+    /**
+     * Retorna si la contraseña ingresada es igual a la contraseña actual del usuario.
+     * @param contrasena la contraseña ingresada
+     * @return           si la contraseña ingresada es igual a la contraseña actual del usuario
+     */
+    public boolean esContrasenaActual(String contrasena){
         return contrasena.equals(this.contrasena);
-    }
+    }    
     
-    public boolean cambiarContrasena(String contrasenaActual, String contrasenaNueva){
-        if(validarContrasena(contrasenaActual)){
-            contrasena = contrasenaNueva;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
+//    public boolean cambiarContrasena(String contrasenaActual, String contrasenaNueva){
+//        if(validarContrasena(contrasenaActual)){
+//            contrasena = contrasenaNueva;
+//            return true;
+//        }
+//        else{
+//            return false;
+//        }
+//    }
 }
