@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package triviñoplay.Cuentas;
+import javafx.scene.image.Image;
 
-/**
- *
- * @author Sudaii
- */
 public class Cuenta {
-    
+    boolean admin;
+    String nombre;
+    String email;
+    String contrasena;
+    Image imagenperfil;
 }
