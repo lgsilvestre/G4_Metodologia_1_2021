@@ -6,42 +6,38 @@ import javafx.scene.image.Image;
  * @author Sudaii
  */
 public class Cuenta {
-    private boolean admin;
     private String nombre;
-    private String email;
     private String contrasena;
+    private String email;
+    private boolean admin;
     private Image imagenPerfil;
     
-    public Cuenta(boolean admin, String nombre, String email, String contrasena){
-        this.admin = admin;
+    public Cuenta(String nombre, String contrasena, String email, boolean admin){
         this.nombre = nombre;
-        this.email = email;
         this.contrasena = contrasena;
+        this.email = email;
+        this.admin = admin;
         imagenPerfil = new Image("../imagendefecto.jpg");
-    }
-    
-    public void setAdmin(boolean admin){
-        this.admin =  admin;
     }
     
     public void setNombre(String nombre){
         this.nombre = nombre;
     }
     
-    public void setEmail(String email){
-        this.email = email;
-    }
-    
     public void setContrasena(String contrasena){
         this.contrasena = contrasena;
     }
     
-    public void setImagenPerfil(Image imagen){
-        imagenPerfil = imagen;
+    public void setEmail(String email){
+        this.email = email;
     }
     
-    public boolean getAdmin(){
-        return admin;
+    public void setAdmin(boolean admin){
+        this.admin =  admin;
+    }
+    
+    public void setImagenPerfil(Image imagen){
+        imagenPerfil = imagen;
     }
     
     public String getNombre(){
@@ -50,6 +46,10 @@ public class Cuenta {
     
     public String getEmail(){
         return email;
+    }
+    
+    public boolean getAdmin(){
+        return admin;
     }
     
     public Image getImage(){
