@@ -1,6 +1,10 @@
 package triviñoplay.Cuentas;
 import javafx.scene.image.Image;
 
+/**
+ *
+ * @author Sudaii
+ */
 public class Cuenta {
     private boolean admin;
     private String nombre;
@@ -30,6 +34,10 @@ public class Cuenta {
     
     public void setContrasena(String contrasena){
         this.contrasena = contrasena;
+    }
+    
+    public void setImagenPerfil(Image imagen){
+        imagenPerfil = imagen;
     }
     
     public boolean getAdmin(){
