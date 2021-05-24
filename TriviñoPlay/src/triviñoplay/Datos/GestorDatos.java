@@ -3,8 +3,6 @@ import triviñoplay.Logica.Cuenta;
 import java.util.ArrayList;
 import java.util.*;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -12,12 +10,10 @@ import java.util.logging.Logger;
  */
 public class GestorDatos {
     private final ArrayList<Cuenta> cuentas;
-    private final String direccionImagenesPerfil;
     
     public GestorDatos(){
         cuentas = new ArrayList<>();
         //media = new ArrayList();
-        direccionImagenesPerfil = "Recursos/Imagenes/Perfil";
         leerCuentas();
         //leerMedia();
     }
@@ -86,7 +82,6 @@ public class GestorDatos {
                 }
             }
         } catch (IOException ex) {}
-
     }
 
 }
