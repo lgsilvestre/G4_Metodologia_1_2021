@@ -69,11 +69,11 @@ public class Cuenta {
     }
 
     public String datosEnString(){
-        String adminString = false;
+        String adminString = "false";
         if(admin){
-            adminString = true;
+            adminString = "true";
         }
-        String datos = nombre+","+contrasena+","+email+","+direccionImagenPerfil;
+        String datos = nombre+","+contrasena+","+email+","+adminString+","+direccionImagenPerfil;
         return datos;
     }
     

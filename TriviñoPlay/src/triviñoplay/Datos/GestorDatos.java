@@ -44,22 +44,23 @@ public class GestorDatos {
         File datosCuentas = new File("Datos/BaseDeDatos.txt");
         if(datosCuentas.exists()){
             try {
-                Scanner lector = new Scanner(datosCuentas);
-                while(lector.hasNextLine()){
-                    String datos = lector.nextLine();
-                    ArrayList<String> datosSeparados = new ArrayList<>(Arrays.asList(datos.split(",")));
-                    if(datosSeparados.size() == 5){
-                        String nombre = datosSeparados.get(0);
-                        String contrasena = datosSeparados.get(1);
-                        String email = datosSeparados.get(2);
-                        String adminString = datosSeparados.get(3);
-                        boolean admin = false;
-                        if(adminString.equals("true")){
-                            admin = true;
+                try (Scanner lector = new Scanner(datosCuentas)) {
+                    while(lector.hasNextLine()){
+                        String datos = lector.nextLine();
+                        ArrayList<String> datosSeparados = new ArrayList<>(Arrays.asList(datos.split(",")));
+                        if(datosSeparados.size() == 5){
+                            String nombre = datosSeparados.get(0);
+                            String contrasena = datosSeparados.get(1);
+                            String email = datosSeparados.get(2);
+                            String adminString = datosSeparados.get(3);
+                            boolean admin = false;
+                            if(adminString.equals("true")){
+                                admin = true;
+                            }
+                            String nombreImagen = datosSeparados.get(4);
+                            String direccionImagenPerfil  = direccionImagenesPerfil+"/"+nombreImagen;
+                            cuentas.add(new Cuenta(nombre, contrasena, email, admin, direccionImagenPerfil));
                         }
-                        String nombreImagen = datosSeparados.get(4);
-                        String direccionImagenPerfil  = direccionImagenesPerfil+"/"+nombreImagen;
-                        cuentas.add(new Cuenta(nombre, contrasena, email, admin, direccionImagenPerfil));
                     }
                 }
             } catch (FileNotFoundException ex) {}       
@@ -78,11 +79,12 @@ public class GestorDatos {
             datosCuentasNuevos.createNewFile();
         }catch(IOException IOException){}
         try {
-            FileWriter escritor = new FileWriter("Datos/BaseDeDatos.txt");
-            for(Cuenta cuenta: cuentas){
-                String datos = cuenta.datosEnString();
+            try (FileWriter escritor = new FileWriter("Datos/BaseDeDatos.txt")) {
+                for(Cuenta cuenta: cuentas){
+                    String datos = cuenta.datosEnString();
+                    escritor.write(datos+"\n");
+                }
             }
-            writer.close();
         } catch (IOException ex) {}
 
     }
