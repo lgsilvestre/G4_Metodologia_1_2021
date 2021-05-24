@@ -1,0 +1,2 @@
+ElíasOcque,test123,test@gmail.com,True,imagendefecto.jpg
+MatiasVergara,test231,test@gmail.com,False,imagendefecto.jpg

@@ -1,4 +1,4 @@
-package triviñoplay.Cuentas;
+package triviñoplay.Logica;
 import javafx.scene.image.Image;
 
 /**
@@ -10,14 +10,17 @@ public class Cuenta {
     private String contrasena;
     private String email;
     private boolean admin;
+    private String direccionImagenPerfil;
     private Image imagenPerfil;
     
-    public Cuenta(String nombre, String contrasena, String email, boolean admin){
+    
+    public Cuenta(String nombre, String contrasena, String email, boolean admin, String direccionImagenPerfil){
         this.nombre = nombre;
         this.contrasena = contrasena;
         this.email = email;
         this.admin = admin;
-        imagenPerfil = new Image("../imagendefecto.jpg");
+        this.direccionImagenPerfil = direccionImagenPerfil;
+        imagenPerfil = new Image(direccionImagenPerfil);
     }
     
     public void setNombre(String nombre){
@@ -63,7 +66,16 @@ public class Cuenta {
      */
     public boolean esContrasenaActual(String contrasena){
         return contrasena.equals(this.contrasena);
-    }    
+    }
+
+    public String datosEnString(){
+        String adminString = false;
+        if(admin){
+            adminString = true;
+        }
+        String datos = nombre+","+contrasena+","+email+","+direccionImagenPerfil;
+        return datos;
+    }
     
 //    public boolean cambiarContrasena(String contrasenaActual, String contrasenaNueva){
 //        if(validarContrasena(contrasenaActual)){
