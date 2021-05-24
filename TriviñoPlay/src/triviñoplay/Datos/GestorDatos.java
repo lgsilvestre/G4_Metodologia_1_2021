@@ -53,8 +53,7 @@ public class GestorDatos {
                             if(adminString.equals("true")){
                                 admin = true;
                             }
-                            String nombreImagen = datosSeparados.get(4);
-                            String direccionImagenPerfil  = direccionImagenesPerfil+"/"+nombreImagen;
+                            String direccionImagenPerfil = datosSeparados.get(4);
                             cuentas.add(new Cuenta(nombre, contrasena, email, admin, direccionImagenPerfil));
                         }
                     }
