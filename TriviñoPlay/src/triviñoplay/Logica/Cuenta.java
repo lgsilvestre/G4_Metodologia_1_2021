@@ -39,8 +39,9 @@ public class Cuenta {
         this.admin =  admin;
     }
     
-    public void setImagenPerfil(Image imagen){
-        imagenPerfil = imagen;
+    public void setImagenPerfil(String direccionImagenPerfil){
+        this.direccionImagenPerfil = direccionImagenPerfil;
+        imagenPerfil = new Image(direccionImagenPerfil);
     }
     
     public String getNombre(){
