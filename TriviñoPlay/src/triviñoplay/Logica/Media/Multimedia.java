@@ -22,22 +22,27 @@ import org.jaudiotagger.tag.*;
  * @author Sudaii
  */
 public class Multimedia {
-    File archivo;
-    AudioFile archivoMultimedia;
-    Tag metadata;
-    String titulo;
-    ArrayList<String> generos;
-    Calendar fechaLanzamiento;
-    Image portada;
-    int reproducciones, duracionSegundos;
+    private File archivo;
+    private AudioFile archivoMultimedia;
+    private Tag metadata;
+    private String titulo;
+    private ArrayList<String> generos;
+    private Calendar fechaLanzamiento;
+    private Image portada;
+    private int reproducciones, duracionSegundos;
     
     public Multimedia(String direccionArchivo, String direccionPortada){
         this.archivo =  new File(direccionArchivo);
         try {
             archivoMultimedia = AudioFileIO.read(archivo);
             metadata = archivoMultimedia.getTag();
-        } catch (CannotReadException | IOException | TagException | ReadOnlyFileException | InvalidAudioFrameException ex){}
+        } catch (CannotReadException | IOException | TagException | 
+                ReadOnlyFileException | InvalidAudioFrameException ex){}
         portada = new Image(direccionPortada);
+    }
+        
+    private void leerMetadata(){
+        
     }
     
     public void setTitulo(String titulo){
@@ -71,4 +76,9 @@ public class Multimedia {
     public int getDuracion(){
         return duracionSegundos;
     }
+    
+    public void reproducir(){
+        reproducciones++;
+    }
+
 }
