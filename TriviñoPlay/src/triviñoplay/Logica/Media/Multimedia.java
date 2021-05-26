@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import javafx.scene.image.Image;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import org.jaudiotagger.audio.*;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
@@ -21,48 +22,108 @@ import org.jaudiotagger.tag.*;
  *
  * @author Sudaii
  */
-public class Multimedia {
+public abstract class Multimedia {
     private File archivo;
     private AudioFile archivoMultimedia;
-    private Tag metadata;
-    private String titulo;
-    private ArrayList<String> generos;
+    private Tag metadataModificable;
+    private AudioHeader metadataNoModificable;
+    private String titulo, genero;
     private Calendar fechaLanzamiento;
     private Image portada;
     private int reproducciones, duracionSegundos;
     
-    public Multimedia(String direccionArchivo, String direccionPortada){
+    public Multimedia(String direccionArchivo, String titulo, String genero, String fechaString, String direccionPortada){
+        inicializarLector(direccionArchivo);
+        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
+    }
+    
+    public Multimedia(String direccionArchivo){
+        inicializarLector(direccionArchivo);
+        leerMetadata();
+    }
+    
+    private void inicializarLector(String direccionArchivo){
         this.archivo =  new File(direccionArchivo);
         try {
             archivoMultimedia = AudioFileIO.read(archivo);
-            metadata = archivoMultimedia.getTag();
+            metadataModificable = archivoMultimedia.getTag();
+            metadataNoModificable = archivoMultimedia.getAudioHeader();
         } catch (CannotReadException | IOException | TagException | 
                 ReadOnlyFileException | InvalidAudioFrameException ex){}
-        portada = new Image(direccionPortada);
+    }
+    
+    private void inicializarMetadata(String titulo, String genero, String fechaString, String direccionPortada){
+        setTitulo(titulo);
+        setGenero(genero);
+        setFechaLanzamiento(fechaString);
+        setPortada(direccionPortada);
+        reproducciones = 0;
+        String reproduccionesString = String.valueOf(reproducciones);
+        try {
+            metadataModificable.setField(FieldKey.CUSTOM3, reproduccionesString);
+        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
     }
         
     private void leerMetadata(){
-        
+        titulo = metadataModificable.getFirst(FieldKey.TITLE);
+        genero = metadataModificable.getFirst(FieldKey.GENRE);
+        String fechaString = metadataModificable.getFirst(FieldKey.CUSTOM1);
+        stringACalendario(fechaString);
+        portada = new Image(metadataModificable.getFirst(FieldKey.CUSTOM2));
+        reproducciones = Integer.valueOf(metadataModificable.getFirst(FieldKey.CUSTOM3));
+        duracionSegundos = metadataNoModificable.getTrackLength();
+    }
+    
+    private void stringACalendario(String fechaString){
+        ArrayList<String> datosSeparados = new ArrayList<>(Arrays.asList(fechaString.split("-")));
+        int año = Integer.valueOf(datosSeparados.get(0));
+        int mes = Integer.valueOf(datosSeparados.get(1));
+        int dia = Integer.valueOf(datosSeparados.get(2));
+        fechaLanzamiento.set(año, mes, dia, 0, 0, 0);
     }
     
     public void setTitulo(String titulo){
         this.titulo = titulo;
+        try {
+            metadataModificable.setField(FieldKey.TITLE, titulo);
+        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
     }
     
-    public void setGeneros(ArrayList<String> generos){
-        this.generos = generos;
+    public void setGenero(String genero){
+        this.genero = genero;
+        try {
+            metadataModificable.setField(FieldKey.GENRE, genero);
+        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
+    }
+    
+    private void setFechaLanzamiento(String fechaString){
+        stringACalendario(fechaString);
+        try {
+            metadataModificable.setField(FieldKey.CUSTOM1, fechaString);
+        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
     }
     
     public void setPortada(String direccionPortada){
-       portada = new Image(direccionPortada); 
+       portada = new Image(direccionPortada);
+       try {
+            metadataModificable.setField(FieldKey.CUSTOM2, direccionPortada);
+        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
     }
     
     public String getTitulo(){
         return titulo;
     }
     
-    public ArrayList<String> getGeneros(){
-        return generos;
+    public String getGenero(){
+        return genero;
+    }
+    
+    public Calendar getFechaLanzamiento(){
+        return fechaLanzamiento;
+    }
+    
+    public String getFechaLanzamientoString(){
+        return fechaLanzamiento.toString();
     }
     
     public Image getPortada(){
@@ -77,8 +138,14 @@ public class Multimedia {
         return duracionSegundos;
     }
     
-    public void reproducir(){
+    private void incrementarReproducciones(){
         reproducciones++;
+                String reproduccionesString = String.valueOf(reproducciones);
+        try {
+            metadataModificable.setField(FieldKey.CUSTOM3, reproduccionesString);
+        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
     }
+    
+    public abstract void reproducir();
 
 }
