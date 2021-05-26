@@ -27,14 +27,14 @@ public class GestorDatos {
         cuentas.add(cuenta);
     }
     
-    public boolean eliminarCuenta(String email){
-        for(Cuenta cuenta: cuentas){
-            if(cuenta.getEmail().equals(email)){
-                cuentas.remove(cuenta);
-                return true;
+    public void eliminarCuenta(String email){
+        boolean cuentaEliminada = false;
+        for(int index = 0; index < cuentas.size() && !cuentaEliminada; index++){
+            if(email.equals(cuentas.get(index).getEmail())){
+                cuentas.remove(index);
+                cuentaEliminada = true;
             }
         }
-        return false;
     }
     
     private void leerCuentas(){

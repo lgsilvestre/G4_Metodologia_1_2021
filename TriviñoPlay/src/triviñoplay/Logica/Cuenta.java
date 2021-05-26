@@ -27,6 +27,10 @@ public class Cuenta {
         this.nombre = nombre;
     }
     
+    public void setContraseña(String contraseña){
+        this.contraseña = contraseña;
+    }
+    
     public void setEmail(String email){
         this.email = email;
     }

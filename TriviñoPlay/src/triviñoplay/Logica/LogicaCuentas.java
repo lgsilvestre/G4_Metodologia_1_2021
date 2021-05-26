@@ -28,7 +28,33 @@ public class LogicaCuentas {
         }
     }
     
-    private boolean existeCuenta(String email){
+    public boolean modificarCuenta(String emailActual, String nuevoNombre, String nuevaContraseña, 
+            String nuevoEmail, boolean nuevoAdmin, String nuevaDireccionImagenPerfil){
+        if (datosValidos(nuevaContraseña) && !existeCuenta(emailActual)){
+            Cuenta cuentaModificada = buscarCuenta(emailActual);
+            cuentaModificada.setNombre(nuevoNombre);
+            cuentaModificada.setContraseña(nuevaContraseña);
+            cuentaModificada.setEmail(nuevoEmail);
+            cuentaModificada.setAdmin(nuevoAdmin);
+            cuentaModificada.setImagenPerfil(nuevaDireccionImagenPerfil);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public boolean eliminarCuenta(String email){
+        if(!existeCuenta(email)){
+            gestorDatos.eliminarCuenta(email);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public boolean existeCuenta(String email){
         boolean emailExiste = false;
         for(int index = 0; index < gestorDatos.getCuentas().size() && !emailExiste; index++){
             if(email.equals(gestorDatos.getCuentas().get(index).getEmail())){
@@ -36,6 +62,17 @@ public class LogicaCuentas {
             }
         }
         return emailExiste;
+    }
+    
+    public Cuenta buscarCuenta(String email){
+        boolean cuentaEncontrada = false;
+        int index;
+        for(index = 0; index < gestorDatos.getCuentas().size() && !cuentaEncontrada; index++){
+            if(email.equals(gestorDatos.getCuentas().get(index).getEmail())){
+                cuentaEncontrada = true;
+            }
+        }
+        return gestorDatos.getCuentas().get(index);
     }
     
     private boolean datosValidos(String contraseña){

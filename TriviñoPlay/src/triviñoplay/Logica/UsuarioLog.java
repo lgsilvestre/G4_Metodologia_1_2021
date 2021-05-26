@@ -1,7 +1,6 @@
 package triviñoplay.Logica;
 
 import triviñoplay.Datos.GestorDatos;
-import java.util.ArrayList;
 
 /**
  *
@@ -27,9 +26,15 @@ public class UsuarioLog {
         }
     }
     
+    public boolean getIngresado(){
+        return ingresado;
+    }
+    
     public boolean ingresarCuenta(String email, String contraseña){
-        for(int index = 0; index < gestorDatos.getCuentas().size() && !ingresado; index++){
+        boolean emailExiste = false;
+        for(int index = 0; index < gestorDatos.getCuentas().size() && !emailExiste && !ingresado; index++){
             if(email.equals(gestorDatos.getCuentas().get(index).getEmail())){
+                emailExiste = true;
                 if(gestorDatos.getCuentas().get(index).esContraseñaActual(contraseña)){
                     cuentaActiva = gestorDatos.getCuentas().get(index);
                     ingresado = true;
