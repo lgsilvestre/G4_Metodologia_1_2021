@@ -56,6 +56,14 @@ public class Pelicula extends Multimedia{
         } catch (KeyNotFoundException | FieldDataInvalidException ex){}        
     }
     
+    public String getDirector(){
+        return director;
+    }
+    
+    public String getDescripcion(){
+        return descripcion;
+    }
+    
     @Override
     public void reproducir() {
         incrementarReproducciones();

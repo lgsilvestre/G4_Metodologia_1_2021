@@ -5,10 +5,14 @@
  */
 package triviñoplay.Logica.Media;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Sudaii
  */
 public class Serie {
+    ArrayList<Episodio> episodios;
+    
     
 }
