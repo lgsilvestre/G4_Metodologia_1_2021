@@ -24,25 +24,25 @@ import org.jaudiotagger.tag.*;
  */
 public abstract class Multimedia {
     private File archivo;
-    private AudioFile archivoMultimedia;
-    private Tag metadataModificable;
-    private AudioHeader metadataNoModificable;
-    private String titulo, genero;
+    protected AudioFile archivoMultimedia;
+    protected Tag metadataModificable;
+    protected AudioHeader metadataNoModificable;
+    private String titulo, genero, tipo;
     private Calendar fechaLanzamiento;
     private Image portada;
     private int reproducciones, duracionSegundos;
     
-    public Multimedia(String direccionArchivo, String titulo, String genero, String fechaString, String direccionPortada){
-        inicializarLector(direccionArchivo);
-        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
-    }
+//    public Multimedia(String direccionArchivo, String titulo, String genero, String fechaString, String direccionPortada){
+//        inicializarLector(direccionArchivo);
+//        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
+//    }
+//    
+//    public Multimedia(String direccionArchivo){
+//        inicializarLector(direccionArchivo);
+//        leerMetadata();
+//    }
     
-    public Multimedia(String direccionArchivo){
-        inicializarLector(direccionArchivo);
-        leerMetadata();
-    }
-    
-    private void inicializarLector(String direccionArchivo){
+    protected Multimedia(String direccionArchivo){
         this.archivo =  new File(direccionArchivo);
         try {
             archivoMultimedia = AudioFileIO.read(archivo);
@@ -52,7 +52,8 @@ public abstract class Multimedia {
                 ReadOnlyFileException | InvalidAudioFrameException ex){}
     }
     
-    private void inicializarMetadata(String titulo, String genero, String fechaString, String direccionPortada){
+    protected void inicializarMetadata(String titulo, String genero, 
+            String fechaString, String direccionPortada){
         setTitulo(titulo);
         setGenero(genero);
         setFechaLanzamiento(fechaString);
@@ -62,9 +63,12 @@ public abstract class Multimedia {
         try {
             metadataModificable.setField(FieldKey.CUSTOM3, reproduccionesString);
         } catch (KeyNotFoundException | FieldDataInvalidException ex){}
+        try {
+            metadataModificable.setField(FieldKey.CUSTOM5, "Inicializado");
+        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
     }
         
-    private void leerMetadata(){
+    protected void leerMetadata(){
         titulo = metadataModificable.getFirst(FieldKey.TITLE);
         genero = metadataModificable.getFirst(FieldKey.GENRE);
         String fechaString = metadataModificable.getFirst(FieldKey.CUSTOM1);
@@ -93,6 +97,13 @@ public abstract class Multimedia {
         this.genero = genero;
         try {
             metadataModificable.setField(FieldKey.GENRE, genero);
+        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
+    }
+    
+    protected void setTipo(String tipo){
+        this.tipo = tipo;
+        try {
+            metadataModificable.setField(FieldKey.CUSTOM4, tipo);
         } catch (KeyNotFoundException | FieldDataInvalidException ex){}
     }
     
@@ -138,7 +149,7 @@ public abstract class Multimedia {
         return duracionSegundos;
     }
     
-    private void incrementarReproducciones(){
+    protected void incrementarReproducciones(){
         reproducciones++;
                 String reproduccionesString = String.valueOf(reproducciones);
         try {
