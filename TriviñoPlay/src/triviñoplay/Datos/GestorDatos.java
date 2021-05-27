@@ -11,6 +11,7 @@ import java.io.*;
  */
 public class GestorDatos {
     private final ArrayList<Cuenta> cuentas;
+    private final String direccionDatosCuentas = "Datos/DatosCuentas.txt";
     
     public GestorDatos(){
         cuentas = new ArrayList<>();
@@ -38,7 +39,7 @@ public class GestorDatos {
     }
     
     private void leerCuentas(){
-        File datosCuentas = new File("Datos/BaseDeDatos.txt");
+        File datosCuentas = new File(direccionDatosCuentas);
         if(datosCuentas.exists()){
             try {
                 try (Scanner lector = new Scanner(datosCuentas)) {
@@ -68,14 +69,14 @@ public class GestorDatos {
     }
     
     public void almacenarCuentas(){
-        File datosCuentasViejos = new File("Datos/BaseDeDatos.txt");
+        File datosCuentasViejos = new File(direccionDatosCuentas);
         datosCuentasViejos.delete();
-        File datosCuentasNuevos = new File("Datos/BaseDeDatos.txt");
+        File datosCuentasNuevos = new File(direccionDatosCuentas);
         try{
             datosCuentasNuevos.createNewFile();
         }catch(IOException IOException){}
         try {
-            try (FileWriter escritor = new FileWriter("Datos/BaseDeDatos.txt")) {
+            try (FileWriter escritor = new FileWriter(direccionDatosCuentas)) {
                 for(Cuenta cuenta: cuentas){
                     String datos = cuenta.datosEnString();
                     escritor.write(datos+"\n");
