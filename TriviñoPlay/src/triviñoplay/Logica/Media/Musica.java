@@ -41,6 +41,14 @@ public class Musica extends Multimedia{
         artista = metadataModificable.getFirst(FieldKey.ARTIST);        
     }
     
+    public String getAlbum(){
+        return album;
+    }
+    
+    public String getArtista(){
+        return artista;
+    }
+    
     public void setAlbum(String album){
         this.album = album;
         try {

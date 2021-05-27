@@ -14,46 +14,57 @@ import org.jaudiotagger.tag.KeyNotFoundException;
  * @author Sudaii
  */
 public class Episodio extends Multimedia{
-    String series, descripcion;
+    String idSerie;
+    int numEpisodio;
     
-    public Pelicula(String direccionArchivo, String titulo, String genero, 
-            String fechaString, String direccionPortada, String series, String descripcion){
+    public Episodio(String direccionArchivo, String titulo, String genero, 
+            String fechaString, String direccionPortada, String idSerie, int numEpisodio){
         super(direccionArchivo);
-        inicializarMetadataPelicula(titulo, genero, fechaString, 
-                direccionPortada, series, descripcion);
+        inicializarMetadataEpisodio(titulo, genero, fechaString, 
+                direccionPortada, idSerie, numEpisodio);
     }
     
-    public Pelicula(String direccionArchivo){
+    public Episodio(String direccionArchivo){
         super(direccionArchivo);
-        leerMetadataPelicula();
+        leerMetadataEpisodio();
     }
     
-    private void inicializarMetadataPelicula(String titulo, String genero, 
-            String fechaString, String direccionPortada, String series, String descripcion){
+    private void inicializarMetadataEpisodio(String titulo, String genero, 
+            String fechaString, String direccionPortada, String idSerie, int numEpisodio){
         inicializarMetadata(titulo, genero, fechaString, direccionPortada);
-        setTipo("Pelicula");
-        setDirector(series);
-        setDescripcion(descripcion);
+        setTipo("Episodio");
+        setIdSerie(idSerie);
+        setNumEpisodio(numEpisodio);
     }
     
-    private void leerMetadataPelicula(){
+    private void leerMetadataEpisodio(){
         leerMetadata();
-        series = metadataModificable.getFirst(FieldKey.CONDUCTOR);
-        descripcion = metadataModificable.getFirst(FieldKey.COMMENT); 
+        idSerie = metadataModificable.getFirst(FieldKey.SUBTITLE);
+        String numString = metadataModificable.getFirst(FieldKey.KEY); 
+        numEpisodio = Integer.valueOf(numString);
     }
     
-    public void setDirector(String series){
-        this.series = series;
+    private void setIdSerie(String idSerie){
+        this.idSerie = idSerie;
         try {
-            metadataModificable.setField(FieldKey.CONDUCTOR, series);
+            metadataModificable.setField(FieldKey.SUBTITLE, idSerie);
         } catch (KeyNotFoundException | FieldDataInvalidException ex){}
     }
     
-    public void setDescripcion(String descripcion){
-        this.descripcion = descripcion;
+    private void setNumEpisodio(int numEpisodio){
+        this.numEpisodio = numEpisodio;
+        String numString = String.valueOf(numEpisodio);
         try {
-            metadataModificable.setField(FieldKey.COMMENT, descripcion);
+            metadataModificable.setField(FieldKey.KEY, numString);
         } catch (KeyNotFoundException | FieldDataInvalidException ex){}        
+    }
+    
+    public String getIdSerie(){
+        return idSerie;
+    }
+    
+    public int getNumEpisodio(){
+        return numEpisodio;
     }
     
     @Override
