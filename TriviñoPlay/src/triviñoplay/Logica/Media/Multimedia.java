@@ -32,16 +32,6 @@ public abstract class Multimedia {
     private Image portada;
     private int reproducciones, duracionSegundos;
     
-//    public Multimedia(String direccionArchivo, String titulo, String genero, String fechaString, String direccionPortada){
-//        inicializarLector(direccionArchivo);
-//        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
-//    }
-//    
-//    public Multimedia(String direccionArchivo){
-//        inicializarLector(direccionArchivo);
-//        leerMetadata();
-//    }
-    
     protected Multimedia(String direccionArchivo){
         this.archivo =  new File(direccionArchivo);
         try {
@@ -50,40 +40,6 @@ public abstract class Multimedia {
             metadataNoModificable = archivoMultimedia.getAudioHeader();
         } catch (CannotReadException | IOException | TagException | 
                 ReadOnlyFileException | InvalidAudioFrameException ex){}
-    }
-    
-    protected void inicializarMetadata(String titulo, String genero, 
-            String fechaString, String direccionPortada){
-        setTitulo(titulo);
-        setGenero(genero);
-        setFechaLanzamiento(fechaString);
-        setPortada(direccionPortada);
-        reproducciones = 0;
-        String reproduccionesString = String.valueOf(reproducciones);
-        try {
-            metadataModificable.setField(FieldKey.CUSTOM3, reproduccionesString);
-        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
-        try {
-            metadataModificable.setField(FieldKey.CUSTOM5, "Inicializado");
-        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
-    }
-        
-    protected void leerMetadata(){
-        titulo = metadataModificable.getFirst(FieldKey.TITLE);
-        genero = metadataModificable.getFirst(FieldKey.GENRE);
-        String fechaString = metadataModificable.getFirst(FieldKey.CUSTOM1);
-        stringACalendario(fechaString);
-        portada = new Image(metadataModificable.getFirst(FieldKey.CUSTOM2));
-        reproducciones = Integer.valueOf(metadataModificable.getFirst(FieldKey.CUSTOM3));
-        duracionSegundos = metadataNoModificable.getTrackLength();
-    }
-    
-    private void stringACalendario(String fechaString){
-        ArrayList<String> datosSeparados = new ArrayList<>(Arrays.asList(fechaString.split("-")));
-        int año = Integer.valueOf(datosSeparados.get(0));
-        int mes = Integer.valueOf(datosSeparados.get(1));
-        int dia = Integer.valueOf(datosSeparados.get(2));
-        fechaLanzamiento.set(año, mes, dia, 0, 0, 0);
     }
     
     public void setTitulo(String titulo){
@@ -147,6 +103,40 @@ public abstract class Multimedia {
     
     public int getDuracion(){
         return duracionSegundos;
+    }
+    
+    protected void inicializarMetadata(String titulo, String genero, 
+            String fechaString, String direccionPortada){
+        setTitulo(titulo);
+        setGenero(genero);
+        setFechaLanzamiento(fechaString);
+        setPortada(direccionPortada);
+        reproducciones = 0;
+        String reproduccionesString = String.valueOf(reproducciones);
+        try {
+            metadataModificable.setField(FieldKey.CUSTOM3, reproduccionesString);
+        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
+        try {
+            metadataModificable.setField(FieldKey.CUSTOM5, "Inicializado");
+        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
+    }
+        
+    protected void leerMetadata(){
+        titulo = metadataModificable.getFirst(FieldKey.TITLE);
+        genero = metadataModificable.getFirst(FieldKey.GENRE);
+        String fechaString = metadataModificable.getFirst(FieldKey.CUSTOM1);
+        stringACalendario(fechaString);
+        portada = new Image(metadataModificable.getFirst(FieldKey.CUSTOM2));
+        reproducciones = Integer.valueOf(metadataModificable.getFirst(FieldKey.CUSTOM3));
+        duracionSegundos = metadataNoModificable.getTrackLength();
+    }
+    
+    private void stringACalendario(String fechaString){
+        ArrayList<String> datosSeparados = new ArrayList<>(Arrays.asList(fechaString.split("-")));
+        int año = Integer.valueOf(datosSeparados.get(0));
+        int mes = Integer.valueOf(datosSeparados.get(1));
+        int dia = Integer.valueOf(datosSeparados.get(2));
+        fechaLanzamiento.set(año, mes, dia, 0, 0, 0);
     }
     
     protected void incrementarReproducciones(){

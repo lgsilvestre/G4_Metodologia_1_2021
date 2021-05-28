@@ -14,14 +14,14 @@ import org.jaudiotagger.tag.KeyNotFoundException;
  * @author Sudaii
  */
 public class Episodio extends Multimedia{
-    String idSerie;
+    String serie;
     int numEpisodio;
     
     public Episodio(String direccionArchivo, String titulo, String genero, 
-            String fechaString, String direccionPortada, String idSerie, int numEpisodio){
+            String fechaString, String direccionPortada, String serie, int numEpisodio){
         super(direccionArchivo);
         inicializarMetadataEpisodio(titulo, genero, fechaString, 
-                direccionPortada, idSerie, numEpisodio);
+                direccionPortada, serie, numEpisodio);
     }
     
     public Episodio(String direccionArchivo){
@@ -29,25 +29,10 @@ public class Episodio extends Multimedia{
         leerMetadataEpisodio();
     }
     
-    private void inicializarMetadataEpisodio(String titulo, String genero, 
-            String fechaString, String direccionPortada, String idSerie, int numEpisodio){
-        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
-        setTipo("Episodio");
-        setIdSerie(idSerie);
-        setNumEpisodio(numEpisodio);
-    }
-    
-    private void leerMetadataEpisodio(){
-        leerMetadata();
-        idSerie = metadataModificable.getFirst(FieldKey.SUBTITLE);
-        String numString = metadataModificable.getFirst(FieldKey.KEY); 
-        numEpisodio = Integer.valueOf(numString);
-    }
-    
-    private void setIdSerie(String idSerie){
-        this.idSerie = idSerie;
+    public void setSerie(String serie){
+        this.serie = serie;
         try {
-            metadataModificable.setField(FieldKey.SUBTITLE, idSerie);
+            metadataModificable.setField(FieldKey.SUBTITLE, serie);
         } catch (KeyNotFoundException | FieldDataInvalidException ex){}
     }
     
@@ -59,12 +44,27 @@ public class Episodio extends Multimedia{
         } catch (KeyNotFoundException | FieldDataInvalidException ex){}        
     }
     
-    public String getIdSerie(){
-        return idSerie;
+    public String getSerie(){
+        return serie;
     }
     
     public int getNumEpisodio(){
         return numEpisodio;
+    }
+    
+    private void inicializarMetadataEpisodio(String titulo, String genero, 
+            String fechaString, String direccionPortada, String serie, int numEpisodio){
+        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
+        setTipo("Episodio");
+        setSerie(serie);
+        setNumEpisodio(numEpisodio);
+    }
+    
+    private void leerMetadataEpisodio(){
+        leerMetadata();
+        serie = metadataModificable.getFirst(FieldKey.SUBTITLE);
+        String numString = metadataModificable.getFirst(FieldKey.KEY); 
+        numEpisodio = Integer.valueOf(numString);
     }
     
     @Override

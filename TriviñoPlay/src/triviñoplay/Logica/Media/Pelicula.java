@@ -28,20 +28,6 @@ public class Pelicula extends Multimedia{
         leerMetadataPelicula();
     }
     
-    private void inicializarMetadataPelicula(String titulo, String genero, 
-            String fechaString, String direccionPortada, String director, String descripcion){
-        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
-        setTipo("Pelicula");
-        setDirector(director);
-        setDescripcion(descripcion);
-    }
-    
-    private void leerMetadataPelicula(){
-        leerMetadata();
-        director = metadataModificable.getFirst(FieldKey.CONDUCTOR);
-        descripcion = metadataModificable.getFirst(FieldKey.COMMENT); 
-    }
-    
     public void setDirector(String director){
         this.director = director;
         try {
@@ -62,6 +48,20 @@ public class Pelicula extends Multimedia{
     
     public String getDescripcion(){
         return descripcion;
+    }
+    
+    private void inicializarMetadataPelicula(String titulo, String genero, 
+            String fechaString, String direccionPortada, String director, String descripcion){
+        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
+        setTipo("Pelicula");
+        setDirector(director);
+        setDescripcion(descripcion);
+    }
+    
+    private void leerMetadataPelicula(){
+        leerMetadata();
+        director = metadataModificable.getFirst(FieldKey.CONDUCTOR);
+        descripcion = metadataModificable.getFirst(FieldKey.COMMENT); 
     }
     
     @Override

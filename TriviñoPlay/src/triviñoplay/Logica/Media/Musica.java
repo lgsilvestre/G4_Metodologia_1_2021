@@ -27,20 +27,6 @@ public class Musica extends Multimedia{
         leerMetadataMusica();
     }
     
-    private void inicializarMetadataMusica(String titulo, String genero, 
-            String fechaString, String direccionPortada, String album, String artista){
-        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
-        setTipo("Musica");
-        setAlbum(album);
-        setArtista(artista);
-    }
-    
-    private void leerMetadataMusica(){
-        leerMetadata();
-        album = metadataModificable.getFirst(FieldKey.ALBUM);
-        artista = metadataModificable.getFirst(FieldKey.ARTIST);        
-    }
-    
     public String getAlbum(){
         return album;
     }
@@ -61,6 +47,20 @@ public class Musica extends Multimedia{
         try {
             metadataModificable.setField(FieldKey.ARTIST, artista);
         } catch (KeyNotFoundException | FieldDataInvalidException ex){}
+    }
+    
+    private void inicializarMetadataMusica(String titulo, String genero, 
+            String fechaString, String direccionPortada, String album, String artista){
+        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
+        setTipo("Musica");
+        setAlbum(album);
+        setArtista(artista);
+    }
+    
+    private void leerMetadataMusica(){
+        leerMetadata();
+        album = metadataModificable.getFirst(FieldKey.ALBUM);
+        artista = metadataModificable.getFirst(FieldKey.ARTIST);        
     }
     
     @Override
