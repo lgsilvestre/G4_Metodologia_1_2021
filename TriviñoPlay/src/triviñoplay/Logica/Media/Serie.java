@@ -15,7 +15,7 @@ import javafx.scene.image.Image;
  */
 public class Serie {
     private ArrayList<Episodio> episodios;
-    private String titulo, generoSerie, descripcion;
+    private String titulo, generoSerie, descripcion, direccionPortada;
     private Calendar primerLanzamiento, ultimoLanzamiento;
     private int reproducciones;
     private Image portada;
@@ -24,6 +24,7 @@ public class Serie {
         this.titulo = titulo;
         this.generoSerie = generoSerie;
         this.descripcion = descripcion;
+        this.direccionPortada = direccionPortada;
         portada = new Image(direccionPortada);
         primerLanzamiento.set(0, 0, 0, 0, 0, 0);
         ultimoLanzamiento.set(0, 0, 0, 0, 0, 0);
@@ -46,6 +47,7 @@ public class Serie {
     }
     
     public void setPortada(String direccionPortada){
+        this.direccionPortada = direccionPortada;
         portada = new Image(direccionPortada);
     }
     
@@ -128,5 +130,10 @@ public class Serie {
                 ultimoLanzamiento = episodio.getFechaLanzamiento();
             }
         }
+    }
+    
+    public String datosEnString(){
+        String datos = titulo+","+generoSerie+","+descripcion+","+direccionPortada;
+        return datos;
     }
 }

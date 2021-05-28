@@ -39,7 +39,13 @@ public class Episodio extends Multimedia{
     @Override
     public void reproducir() {
         incrementarReproducciones();
-        //TODO: el decidir como se rePRoducira
+        //TODO: el decidir como se reproducira
+    }
+    
+    @Override
+    public String datosEnString(){
+        String datos = "Episodio"+datosComunesEnString()+","+serie+","+String.valueOf(numEpisodio);
+        return datos;
     }
     
 }

@@ -51,4 +51,11 @@ public class Pelicula extends Multimedia{
         //TODO: el decidir como se rePRoducira
     }
     
+    @Override
+    public String datosEnString(){
+        String datos = "Pelicula"+datosComunesEnString()+","+director+","
+                +descripcion+","+generoPelicula;
+        return datos;
+    }
+    
 }

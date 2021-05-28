@@ -51,4 +51,9 @@ public class Musica extends Multimedia{
         //TODO: el decidir como se reproducira
     }
     
+    @Override
+    public String datosEnString(){
+        String datos = "Musica"+datosComunesEnString()+album+","+artista+","+generoMusica;
+        return datos;
+    }
 }

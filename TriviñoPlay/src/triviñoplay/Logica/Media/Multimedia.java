@@ -83,6 +83,14 @@ public abstract class Multimedia {
         reproducciones++;
     }
     
+    protected String datosComunesEnString(){
+        String datos = titulo+","+getFechaLanzamientoString()+","
+                +String.valueOf(getReproducciones())+","+direccionArchivo
+                +","+direccionPortada;
+        return datos;
+    }
+    
     public abstract void reproducir();
-
+    
+    public abstract String datosEnString();
 }
