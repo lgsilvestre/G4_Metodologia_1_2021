@@ -5,26 +5,32 @@
  */
 package triviñoplay.Logica.Media;
 
-import org.jaudiotagger.tag.FieldDataInvalidException;
-import org.jaudiotagger.tag.FieldKey;
-import org.jaudiotagger.tag.KeyNotFoundException;
-
 /**
  *
  * @author Sudaii
  */
 public class Musica extends Multimedia{
-    String album, artista;
+    String album, artista, generoMusica;
     
-    public Musica(String direccionArchivo, String titulo, String genero, 
-            String fechaString, String direccionPortada, String album, String artista){
-        super(direccionArchivo);
-        inicializarMetadataMusica(titulo, genero, fechaString, direccionPortada, album, artista);
+    public Musica(String direccionArchivo, String titulo, 
+            String fechaString, String direccionPortada, int reproducciones, 
+            String album, String artista, String generoMusica){
+        super(direccionArchivo, titulo, fechaString, direccionPortada, reproducciones);
+        this.album = album;
+        this.artista = artista;
+        this.generoMusica = generoMusica;
     }
     
-    public Musica(String direccionArchivo){
-        super(direccionArchivo);
-        leerMetadataMusica();
+    public void setAlbum(String album){
+        this.album = album;
+    }
+    
+    public void setArtista(String artista){
+        this.artista = artista;
+    }
+    
+    public void setGeneroMusica(String generoMusica){
+        this.generoMusica = generoMusica;
     }
     
     public String getAlbum(){
@@ -35,32 +41,8 @@ public class Musica extends Multimedia{
         return artista;
     }
     
-    public void setAlbum(String album){
-        this.album = album;
-        try {
-            metadataModificable.setField(FieldKey.ALBUM, album);
-        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
-    }
-    
-    public void setArtista(String artista){
-        this.artista = artista;
-        try {
-            metadataModificable.setField(FieldKey.ARTIST, artista);
-        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
-    }
-    
-    private void inicializarMetadataMusica(String titulo, String genero, 
-            String fechaString, String direccionPortada, String album, String artista){
-        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
-        setTipo("Musica");
-        setAlbum(album);
-        setArtista(artista);
-    }
-    
-    private void leerMetadataMusica(){
-        leerMetadata();
-        album = metadataModificable.getFirst(FieldKey.ALBUM);
-        artista = metadataModificable.getFirst(FieldKey.ARTIST);        
+    public String generoMusica(){
+        return generoMusica;
     }
     
     @Override
@@ -69,4 +51,9 @@ public class Musica extends Multimedia{
         //TODO: el decidir como se reproducira
     }
     
+    @Override
+    public String datosEnString(){
+        String datos = "Musica"+datosComunesEnString()+album+","+artista+","+generoMusica;
+        return datos;
+    }
 }

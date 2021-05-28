@@ -15,14 +15,16 @@ import javafx.scene.image.Image;
  */
 public class Serie {
     private ArrayList<Episodio> episodios;
-    private String titulo, genero;
+    private String titulo, generoSerie, descripcion, direccionPortada;
     private Calendar primerLanzamiento, ultimoLanzamiento;
     private int reproducciones;
     private Image portada;
     
-    public Serie(String titulo, String genero, String direccionPortada){
+    public Serie(String titulo, String generoSerie, String descripcion, String direccionPortada){
         this.titulo = titulo;
-        this.genero = genero;
+        this.generoSerie = generoSerie;
+        this.descripcion = descripcion;
+        this.direccionPortada = direccionPortada;
         portada = new Image(direccionPortada);
         primerLanzamiento.set(0, 0, 0, 0, 0, 0);
         ultimoLanzamiento.set(0, 0, 0, 0, 0, 0);
@@ -36,14 +38,16 @@ public class Serie {
         });
     }
     
-    public void setGenero(String genero){
-        this.genero = genero;
-        episodios.forEach((episodio) -> {
-            episodio.setGenero(genero);
-        });
+    public void setGeneroSerie(String generoSerie){
+        this.generoSerie = generoSerie;
+    }
+    
+    public void setDescripcion(String descripcion){
+        this.descripcion = descripcion;
     }
     
     public void setPortada(String direccionPortada){
+        this.direccionPortada = direccionPortada;
         portada = new Image(direccionPortada);
     }
     
@@ -55,8 +59,12 @@ public class Serie {
         return titulo;
     }
     
-    public String getGenero(){
-        return genero;
+    public String getGeneroSerie(){
+        return generoSerie;
+    }
+    
+    public String getDescripcion(){
+        return descripcion;
     }
     
     public int getReproducciones(){
@@ -122,5 +130,10 @@ public class Serie {
                 ultimoLanzamiento = episodio.getFechaLanzamiento();
             }
         }
+    }
+    
+    public String datosEnString(){
+        String datos = titulo+","+generoSerie+","+descripcion+","+direccionPortada;
+        return datos;
     }
 }

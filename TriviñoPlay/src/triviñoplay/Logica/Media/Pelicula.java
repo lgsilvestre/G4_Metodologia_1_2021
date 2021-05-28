@@ -5,41 +5,32 @@
  */
 package triviñoplay.Logica.Media;
 
-import org.jaudiotagger.tag.FieldDataInvalidException;
-import org.jaudiotagger.tag.FieldKey;
-import org.jaudiotagger.tag.KeyNotFoundException;
-
 /**
  *
  * @author Sudaii
  */
 public class Pelicula extends Multimedia{
-    String director, descripcion;
+    String director, descripcion, generoPelicula;
     
-    public Pelicula(String direccionArchivo, String titulo, String genero, 
-            String fechaString, String direccionPortada, String director, String descripcion){
-        super(direccionArchivo);
-        inicializarMetadataPelicula(titulo, genero, fechaString, 
-                direccionPortada, director, descripcion);
-    }
-    
-    public Pelicula(String direccionArchivo){
-        super(direccionArchivo);
-        leerMetadataPelicula();
+    public Pelicula(String direccionArchivo, String titulo, 
+            String fechaString, String direccionPortada, int reproducciones, 
+            String director, String descripcion, String generoPelicula){
+        super(direccionArchivo, titulo, fechaString, direccionPortada, reproducciones);
+        this.director = director;
+        this.descripcion = descripcion;
+        this.generoPelicula = generoPelicula;
     }
     
     public void setDirector(String director){
         this.director = director;
-        try {
-            metadataModificable.setField(FieldKey.CONDUCTOR, director);
-        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
     }
     
     public void setDescripcion(String descripcion){
-        this.descripcion = descripcion;
-        try {
-            metadataModificable.setField(FieldKey.COMMENT, descripcion);
-        } catch (KeyNotFoundException | FieldDataInvalidException ex){}        
+        this.descripcion = descripcion;      
+    }
+    
+    public void setGeneroPelicula(String generoPelicula){
+        this.generoPelicula = generoPelicula;
     }
     
     public String getDirector(){
@@ -50,24 +41,21 @@ public class Pelicula extends Multimedia{
         return descripcion;
     }
     
-    private void inicializarMetadataPelicula(String titulo, String genero, 
-            String fechaString, String direccionPortada, String director, String descripcion){
-        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
-        setTipo("Pelicula");
-        setDirector(director);
-        setDescripcion(descripcion);
-    }
-    
-    private void leerMetadataPelicula(){
-        leerMetadata();
-        director = metadataModificable.getFirst(FieldKey.CONDUCTOR);
-        descripcion = metadataModificable.getFirst(FieldKey.COMMENT); 
+    public String getGeneroPelicula(){
+        return generoPelicula;
     }
     
     @Override
     public void reproducir() {
         incrementarReproducciones();
         //TODO: el decidir como se rePRoducira
+    }
+    
+    @Override
+    public String datosEnString(){
+        String datos = "Pelicula"+datosComunesEnString()+","+director+","
+                +descripcion+","+generoPelicula;
+        return datos;
     }
     
 }
