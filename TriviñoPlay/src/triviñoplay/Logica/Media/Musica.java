@@ -10,13 +10,27 @@ package triviñoplay.Logica.Media;
  * @author Sudaii
  */
 public class Musica extends Multimedia{
-    String album, artista;
+    String album, artista, generoMusica;
     
-    public Musica(String direccionArchivo, String titulo, String genero, 
-            String fechaString, String direccionPortada, int reproducciones, String album, String artista){
-        super(direccionArchivo, titulo, genero, fechaString, direccionPortada, reproducciones);
+    public Musica(String direccionArchivo, String titulo, 
+            String fechaString, String direccionPortada, int reproducciones, 
+            String album, String artista, String generoMusica){
+        super(direccionArchivo, titulo, fechaString, direccionPortada, reproducciones);
         this.album = album;
         this.artista = artista;
+        this.generoMusica = generoMusica;
+    }
+    
+    public void setAlbum(String album){
+        this.album = album;
+    }
+    
+    public void setArtista(String artista){
+        this.artista = artista;
+    }
+    
+    public void setGeneroMusica(String generoMusica){
+        this.generoMusica = generoMusica;
     }
     
     public String getAlbum(){
@@ -27,12 +41,8 @@ public class Musica extends Multimedia{
         return artista;
     }
     
-    public void setAlbum(String album){
-        this.album = album;
-    }
-    
-    public void setArtista(String artista){
-        this.artista = artista;
+    public String generoMusica(){
+        return generoMusica;
     }
     
     @Override

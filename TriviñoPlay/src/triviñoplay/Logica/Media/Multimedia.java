@@ -15,18 +15,16 @@ import java.util.Calendar;
  * @author Sudaii
  */
 public abstract class Multimedia {
-    private String direccionArchivo, direccionPortada, titulo, genero;
+    private String direccionArchivo, direccionPortada, titulo;
     private Calendar fechaLanzamiento;
     private Image portada;
     private int reproducciones;
     
     protected Multimedia(String direccionArchivo, String titulo, 
-            String genero, String fechaLanzamientoString, 
-            String direccionPortada, int reproducciones){
+            String fechaLanzamientoString, String direccionPortada, int reproducciones){
         this.direccionArchivo =  direccionArchivo;
         this.direccionPortada = direccionPortada;
         this.titulo = titulo;
-        this.genero = genero;
         setFechaLanzamiento(fechaLanzamientoString);
         portada = new Image(direccionPortada);
         reproducciones = this.reproducciones;
@@ -38,10 +36,6 @@ public abstract class Multimedia {
     
     public void setTitulo(String titulo){
         this.titulo = titulo;
-    }
-    
-    public void setGenero(String genero){
-        this.genero = genero;
     }
     
     private void setFechaLanzamiento(String fechaString){
@@ -59,10 +53,6 @@ public abstract class Multimedia {
     
     public String getTitulo(){
         return titulo;
-    }
-    
-    public String getGenero(){
-        return genero;
     }
     
     public Calendar getFechaLanzamiento(){

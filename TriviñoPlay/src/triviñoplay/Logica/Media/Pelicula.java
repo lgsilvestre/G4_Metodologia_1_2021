@@ -10,14 +10,15 @@ package triviñoplay.Logica.Media;
  * @author Sudaii
  */
 public class Pelicula extends Multimedia{
-    String director, descripcion;
+    String director, descripcion, generoPelicula;
     
-    public Pelicula(String direccionArchivo, String titulo, String genero, 
+    public Pelicula(String direccionArchivo, String titulo, 
             String fechaString, String direccionPortada, int reproducciones, 
-            String director, String descripcion){
-        super(direccionArchivo, titulo, genero, fechaString, direccionPortada, reproducciones);
+            String director, String descripcion, String generoPelicula){
+        super(direccionArchivo, titulo, fechaString, direccionPortada, reproducciones);
         this.director = director;
         this.descripcion = descripcion;
+        this.generoPelicula = generoPelicula;
     }
     
     public void setDirector(String director){
@@ -28,12 +29,20 @@ public class Pelicula extends Multimedia{
         this.descripcion = descripcion;      
     }
     
+    public void setGeneroPelicula(String generoPelicula){
+        this.generoPelicula = generoPelicula;
+    }
+    
     public String getDirector(){
         return director;
     }
     
     public String getDescripcion(){
         return descripcion;
+    }
+    
+    public String getGeneroPelicula(){
+        return generoPelicula;
     }
     
     @Override

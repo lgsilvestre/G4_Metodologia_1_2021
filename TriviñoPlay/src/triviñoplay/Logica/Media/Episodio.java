@@ -13,9 +13,9 @@ public class Episodio extends Multimedia{
     String serie;
     int numEpisodio;
     
-    public Episodio(String direccionArchivo, String titulo, String genero, 
+    public Episodio(String direccionArchivo, String titulo, 
             String fechaString, String direccionPortada, int reproducciones, String serie, int numEpisodio){
-        super(direccionArchivo, titulo, genero, fechaString, direccionPortada, reproducciones);
+        super(direccionArchivo, titulo, fechaString, direccionPortada, reproducciones);
         this.serie = serie;
         this.numEpisodio = numEpisodio;
     }
