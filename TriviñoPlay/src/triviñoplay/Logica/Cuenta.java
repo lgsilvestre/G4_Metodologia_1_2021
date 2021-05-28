@@ -13,7 +13,6 @@ public class Cuenta {
     private String direccionImagenPerfil;
     private Image imagenPerfil;
     
-    
     public Cuenta(String nombre, String contraseña, String email, boolean admin, String direccionImagenPerfil){
         this.nombre = nombre;
         this.contraseña = contraseña;

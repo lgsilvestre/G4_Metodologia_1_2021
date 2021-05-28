@@ -5,10 +5,6 @@
  */
 package triviñoplay.Logica.Media;
 
-import org.jaudiotagger.tag.FieldDataInvalidException;
-import org.jaudiotagger.tag.FieldKey;
-import org.jaudiotagger.tag.KeyNotFoundException;
-
 /**
  *
  * @author Sudaii
@@ -18,30 +14,18 @@ public class Episodio extends Multimedia{
     int numEpisodio;
     
     public Episodio(String direccionArchivo, String titulo, String genero, 
-            String fechaString, String direccionPortada, String serie, int numEpisodio){
-        super(direccionArchivo);
-        inicializarMetadataEpisodio(titulo, genero, fechaString, 
-                direccionPortada, serie, numEpisodio);
-    }
-    
-    public Episodio(String direccionArchivo){
-        super(direccionArchivo);
-        leerMetadataEpisodio();
+            String fechaString, String direccionPortada, int reproducciones, String serie, int numEpisodio){
+        super(direccionArchivo, titulo, genero, fechaString, direccionPortada, reproducciones);
+        this.serie = serie;
+        this.numEpisodio = numEpisodio;
     }
     
     public void setSerie(String serie){
         this.serie = serie;
-        try {
-            metadataModificable.setField(FieldKey.SUBTITLE, serie);
-        } catch (KeyNotFoundException | FieldDataInvalidException ex){}
     }
     
     private void setNumEpisodio(int numEpisodio){
         this.numEpisodio = numEpisodio;
-        String numString = String.valueOf(numEpisodio);
-        try {
-            metadataModificable.setField(FieldKey.KEY, numString);
-        } catch (KeyNotFoundException | FieldDataInvalidException ex){}        
     }
     
     public String getSerie(){
@@ -50,21 +34,6 @@ public class Episodio extends Multimedia{
     
     public int getNumEpisodio(){
         return numEpisodio;
-    }
-    
-    private void inicializarMetadataEpisodio(String titulo, String genero, 
-            String fechaString, String direccionPortada, String serie, int numEpisodio){
-        inicializarMetadata(titulo, genero, fechaString, direccionPortada);
-        setTipo("Episodio");
-        setSerie(serie);
-        setNumEpisodio(numEpisodio);
-    }
-    
-    private void leerMetadataEpisodio(){
-        leerMetadata();
-        serie = metadataModificable.getFirst(FieldKey.SUBTITLE);
-        String numString = metadataModificable.getFirst(FieldKey.KEY); 
-        numEpisodio = Integer.valueOf(numString);
     }
     
     @Override

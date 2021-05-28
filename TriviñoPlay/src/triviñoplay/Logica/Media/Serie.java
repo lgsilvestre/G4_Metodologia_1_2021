@@ -15,14 +15,15 @@ import javafx.scene.image.Image;
  */
 public class Serie {
     private ArrayList<Episodio> episodios;
-    private String titulo, genero;
+    private String titulo, genero, descripcion;
     private Calendar primerLanzamiento, ultimoLanzamiento;
     private int reproducciones;
     private Image portada;
     
-    public Serie(String titulo, String genero, String direccionPortada){
+    public Serie(String titulo, String genero, String descripcion, String direccionPortada){
         this.titulo = titulo;
-        this.genero = genero;
+        setGenero(genero);
+        this.descripcion = descripcion;
         portada = new Image(direccionPortada);
         primerLanzamiento.set(0, 0, 0, 0, 0, 0);
         ultimoLanzamiento.set(0, 0, 0, 0, 0, 0);
@@ -59,6 +60,10 @@ public class Serie {
         return genero;
     }
     
+    public String getDescripcion(){
+        return descripcion;
+    }
+    
     public int getReproducciones(){
         return reproducciones;
     }
@@ -68,6 +73,7 @@ public class Serie {
     }
     
     public void agregarEpisodio(Episodio episodio){
+        episodio.setGenero(genero);
         if(existeEpisodio(episodio.getNumEpisodio())){
             episodios.remove(episodio.getNumEpisodio());
             episodios.add(episodio.getNumEpisodio(), episodio);
