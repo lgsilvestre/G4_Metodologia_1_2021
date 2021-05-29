@@ -16,6 +16,7 @@ public class Musica extends Multimedia{
             String fechaString, String direccionPortada, int reproducciones, 
             String album, String artista, String generoMusica){
         super(direccionArchivo, titulo, fechaString, direccionPortada, reproducciones);
+        tipo = "Musica";
         this.album = album;
         this.artista = artista;
         this.generoMusica = generoMusica;
@@ -53,7 +54,7 @@ public class Musica extends Multimedia{
     
     @Override
     public String datosEnString(){
-        String datos = "Musica"+datosComunesEnString()+album+","+artista+","+generoMusica;
+        String datos = tipo+","+datosComunesEnString()+album+","+artista+","+generoMusica;
         return datos;
     }
 }

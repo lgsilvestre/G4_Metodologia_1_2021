@@ -67,7 +67,7 @@ public class GestorDatos {
             }
         }
     }
-    
+        
     private void leerCuentas(){
         File datosCuentas = new File(direccionDatosCuentas);
         if(datosCuentas.exists()){
@@ -103,39 +103,42 @@ public class GestorDatos {
                     while(lector.hasNextLine()){
                         String datos = lector.nextLine();
                         ArrayList<String> datosSeparados = new ArrayList<>(Arrays.asList(datos.split(",")));
-                        String tipo = datosSeparados.get(0);
-                        String titulo = datosSeparados.get(1);
-                        String fechaString = datosSeparados.get(2);
-                        int reproducciones = Integer.valueOf(datosSeparados.get(3));
-                        String direccionArchivo = datosSeparados.get(4);
-                        String direccionPortada = datosSeparados.get(5);
-                        switch (tipo) {
-                            case "Episodio":
-                                String serie = datosSeparados.get(6);
-                                int numEpisodio = Integer.valueOf(datosSeparados.get(7));
-                                agregarEpisodio(new Episodio(direccionArchivo, 
-                                        titulo, fechaString, direccionPortada, 
-                                        reproducciones,serie, numEpisodio));
-                                break;
-                            case "Pelicula":
-                                String director = datosSeparados.get(6);
-                                String descripcion = datosSeparados.get(7);
-                                String generoPelicula = datosSeparados.get(8);
-                                peliculas.add(new Pelicula(direccionArchivo, 
-                                        titulo, fechaString, direccionPortada, reproducciones,
-                                        director, descripcion, generoPelicula));
-                                break;
-                            case "Musica":
-                                String album = datosSeparados.get(6);
-                                String artista = datosSeparados.get(7);
-                                String generoMusica = datosSeparados.get(8);  
-                                musica.add(new Musica(direccionArchivo, titulo, 
-                                        fechaString, direccionPortada, reproducciones,
-                                        album, artista, generoMusica));
-                                break;
-                            default:
-                                break;
+                        if(datosSeparados.size() > 6){
+                            String tipo = datosSeparados.get(0);
+                            String titulo = datosSeparados.get(1);
+                            String fechaString = datosSeparados.get(2);
+                            int reproducciones = Integer.valueOf(datosSeparados.get(3));
+                            String direccionArchivo = datosSeparados.get(4);
+                            String direccionPortada = datosSeparados.get(5);
+                            switch (tipo) {
+                                case "Episodio":
+                                    String serie = datosSeparados.get(6);
+                                    int numEpisodio = Integer.valueOf(datosSeparados.get(7));
+                                    agregarEpisodio(new Episodio(direccionArchivo, 
+                                            titulo, fechaString, direccionPortada, 
+                                            reproducciones,serie, numEpisodio));
+                                    break;
+                                case "Pelicula":
+                                    String director = datosSeparados.get(6);
+                                    String descripcion = datosSeparados.get(7);
+                                    String generoPelicula = datosSeparados.get(8);
+                                    peliculas.add(new Pelicula(direccionArchivo, 
+                                            titulo, fechaString, direccionPortada, reproducciones,
+                                            director, descripcion, generoPelicula));
+                                    break;
+                                case "Musica":
+                                    String album = datosSeparados.get(6);
+                                    String artista = datosSeparados.get(7);
+                                    String generoMusica = datosSeparados.get(8);  
+                                    musica.add(new Musica(direccionArchivo, titulo, 
+                                            fechaString, direccionPortada, reproducciones,
+                                            album, artista, generoMusica));
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
+                        
                     }
                 }
             } catch (FileNotFoundException ex) {}       
@@ -150,11 +153,13 @@ public class GestorDatos {
                     while(lector.hasNextLine()){
                         String datos = lector.nextLine();
                         ArrayList<String> datosSeparados = new ArrayList<>(Arrays.asList(datos.split(",")));
-                        String titulo = datosSeparados.get(0);
-                        String generoSerie = datosSeparados.get(1);
-                        String descripcion = datosSeparados.get(2);
-                        String direccionPortada = datosSeparados.get(3);
-                        series.add(new Serie(titulo, generoSerie, descripcion, direccionPortada));
+                        if(datosSeparados.size() == 4){
+                            String titulo = datosSeparados.get(0);
+                            String generoSerie = datosSeparados.get(1);
+                            String descripcion = datosSeparados.get(2);
+                            String direccionPortada = datosSeparados.get(3);
+                            series.add(new Serie(titulo, generoSerie, descripcion, direccionPortada));
+                        }
                     }
                 }
             } catch (FileNotFoundException ex) {}       

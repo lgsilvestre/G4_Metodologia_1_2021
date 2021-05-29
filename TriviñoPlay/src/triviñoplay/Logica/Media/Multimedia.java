@@ -16,6 +16,7 @@ import java.util.Calendar;
  */
 public abstract class Multimedia {
     private String direccionArchivo, direccionPortada, titulo;
+    protected String tipo;
     private Calendar fechaLanzamiento;
     private Image portada;
     private int reproducciones;
@@ -49,6 +50,10 @@ public abstract class Multimedia {
     
     public String getDireccionArchivo(){
         return direccionArchivo;
+    }
+    
+    public String getTipo(){
+        return tipo;
     }
     
     public String getTitulo(){

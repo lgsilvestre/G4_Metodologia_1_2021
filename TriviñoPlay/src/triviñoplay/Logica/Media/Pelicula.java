@@ -16,6 +16,7 @@ public class Pelicula extends Multimedia{
             String fechaString, String direccionPortada, int reproducciones, 
             String director, String descripcion, String generoPelicula){
         super(direccionArchivo, titulo, fechaString, direccionPortada, reproducciones);
+        tipo = "Pelicula";
         this.director = director;
         this.descripcion = descripcion;
         this.generoPelicula = generoPelicula;
@@ -53,7 +54,7 @@ public class Pelicula extends Multimedia{
     
     @Override
     public String datosEnString(){
-        String datos = "Pelicula"+datosComunesEnString()+","+director+","
+        String datos = tipo+","+datosComunesEnString()+","+director+","
                 +descripcion+","+generoPelicula;
         return datos;
     }
