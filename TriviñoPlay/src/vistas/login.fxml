@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logica.LoginController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="150.0" prefWidth="400.0" style="-fx-background-color: #000000;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0">
+               <image>
+                  <Image url="@../recursos/Imagenes/Iconos/LogoGrupoTriviño.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <VBox layoutX="20.0" layoutY="162.0" prefHeight="425.0" prefWidth="360.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="319.0">
+               <children>
+                  <Label text="Log In">
+                     <font>
+                        <Font name="Calibri Bold" size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="17.0" prefWidth="372.0">
+               <children>
+                  <Line endX="180.0" startX="-172.0" stroke="#ff9100" strokeWidth="2.0" />
+               </children>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="186.0" prefWidth="177.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="186.0" prefWidth="334.0">
+                     <children>
+                        <Label text="Nombre de Usuario:">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri Bold" size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="campoUsuario" prefHeight="26.0" prefWidth="48.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </TextField>
+                        <Label text="Contraseña:">
+                           <font>
+                              <Font name="Calibri Bold" size="20.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                        <PasswordField fx:id="campoPassword">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </PasswordField>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="botonLogin" mnemonicParsing="false" onAction="#entrar" style="-fx-background-color: #ff9100;" text="Entrar" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font name="Calibri Bold" size="22.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="30.0" top="30.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" top="30.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="17.0" prefWidth="372.0">
+               <children>
+                  <Line endX="180.0" startX="-172.0" stroke="#ff9100" strokeWidth="2.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

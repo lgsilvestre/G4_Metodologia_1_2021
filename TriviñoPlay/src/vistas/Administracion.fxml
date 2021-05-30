@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logica.VistaAdministracionController">
+   <top>
+      <BorderPane prefHeight="110.0" prefWidth="800.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+         <left>
+            <ImageView fitHeight="90.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../recursos/Imagenes/Iconos/LogoGrupoTriviño.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </left>
+         <right>
+            <HBox alignment="CENTER_RIGHT" prefHeight="110.0" prefWidth="266.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="labelNombreUsuario" text="nombreUsuario" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imagenPerfil" fitHeight="58.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </right>
+      </BorderPane>
+   </top>
+   <left>
+      <VBox prefHeight="490.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="botonRetroceso" mnemonicParsing="false" onAction="#retroceder" style="-fx-background-color: #ffffff;">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0">
+                     <image>
+                        <Image url="@../recursos/Imagenes/Iconos/back-arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="490.0" prefWidth="628.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <Button fx:id="botonGestorCuentas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gestionarCuentas" style="-fx-background-color: #ff9100; -fx-border-color: #000000;" text="Gestor de Cuentas" textAlignment="CENTER" textFill="WHITE">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="botonGestorMultimedia" mnemonicParsing="false" onAction="#gestionarMultimedia" style="-fx-background-color: #ff9100; -fx-border-color: #000000;" text="Gestor multimedia" textAlignment="CENTER" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <font>
+                  <Font name="Calibri Bold" size="24.0" />
+               </font>
+            </Button>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <VBox prefHeight="490.0" prefWidth="66.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
