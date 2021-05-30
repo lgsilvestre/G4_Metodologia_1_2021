@@ -6,15 +6,22 @@
 package controladores;
 
 import datos.GestorDatos;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import logica.UsuarioLog;
 
 /**
@@ -37,6 +44,8 @@ public class VistaAdministracionController implements Initializable {
     
     private GestorDatos gestorDatos;
     private UsuarioLog logDatos;
+    
+    FXMLLoader loaderGestion;
 
    
     @Override
@@ -52,10 +61,34 @@ public class VistaAdministracionController implements Initializable {
 
     @FXML
     private void retroceder(ActionEvent event) {
+        Stage stageAdministracion = (Stage)this.botonRetroceso.getScene().getWindow();
+        stageAdministracion.close();
     }
 
     @FXML
     private void gestionarCuentas(ActionEvent event) {
+        loaderGestion = new FXMLLoader(getClass().getResource("/vistas/GestionCuentas.fxml"));
+        
+        try {
+            Parent raiz = loaderGestion.load();            
+            GestionCuentasController controlador = loaderGestion.getController();
+            controlador.iniciarAtributos(gestorDatos, logDatos);
+            
+            Scene escenaGestionCuentas = new Scene(raiz);
+            Stage stage = new Stage();
+            
+            Stage ventanaAdministracion = (Stage)this.botonGestorCuentas.getScene().getWindow();
+            ventanaAdministracion.hide();
+            
+            stage.setScene(escenaGestionCuentas);
+            stage.show();
+            //ventanaAdministracion.show();
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(VistaAdministracionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @FXML
@@ -64,7 +97,6 @@ public class VistaAdministracionController implements Initializable {
     }
     
     private void setImagenUsuario() {
-        System.out.println(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
         Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
         imagenPerfil.setImage(imagen);
         labelNombreUsuario.setText(this.logDatos.getCuentaActiva().getNombre());

@@ -76,15 +76,16 @@ public class LoginController implements Initializable {
                     
                     stage.setResizable(true);                    
                     stage.setScene(escenaAdministracion);           
+                    stage.initModality(Modality.APPLICATION_MODAL);
                     
                     Stage loginVentana = (Stage) this.botonLogin.getScene().getWindow();                    
                     
                     loginVentana.hide();                    
                     
-                    stage.showAndWait();
-                    logDatos.salirCuenta();
+                    stage.show();
+                    /*logDatos.salirCuenta();
                     
-                    loginVentana.show();
+                    loginVentana.show();*/
                     
                 } catch (IOException ex) {
                 }                
@@ -92,6 +93,7 @@ public class LoginController implements Initializable {
             else{
                 System.out.println("Usuario comun");
                 /*Por implementar, exploracion y reproduccion del contenido*/
+                logDatos.salirCuenta();
             }
         }else{
             this.labelError.setText("Usuario y/o contraseña invalido");

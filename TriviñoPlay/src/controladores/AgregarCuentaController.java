@@ -86,7 +86,7 @@ public class AgregarCuentaController implements Initializable {
 
     @FXML
     private void seleccionarImagen(ActionEvent event) {
-        loaderSeleccionImagen = new FXMLLoader(getClass().getResource("../vistas/seleccionFotoPerfil.fxml"));
+        loaderSeleccionImagen = new FXMLLoader(getClass().getResource("/vistas/seleccionFotoPerfil.fxml"));
         
         try {
             Parent raiz = loaderSeleccionImagen.load();

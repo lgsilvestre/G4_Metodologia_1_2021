@@ -4,6 +4,7 @@ package controladores;
 import datos.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -68,14 +70,16 @@ public class GestionCuentasController implements Initializable {
     
     private GestorDatos gestorDatos;
     private UsuarioLog logDatos;
+    
+    private ArrayList<Cuenta> arrayList;
 
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cuentas = FXCollections.observableArrayList();
+        cuentas = FXCollections.observableArrayList();        
         this.tablaCuentas.setItems(cuentas);
                 
-        this.colContrasena.setCellValueFactory(new PropertyValueFactory("contrasena"));
+        this.colContrasena.setCellValueFactory(new PropertyValueFactory("contraseña"));
         this.colNombreUsuario.setCellValueFactory(new PropertyValueFactory("nombre"));
         this.colEmail.setCellValueFactory(new PropertyValueFactory("email"));
         
@@ -88,6 +92,15 @@ public class GestionCuentasController implements Initializable {
     public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos){
         this.gestorDatos=gestorDatos;
         this.logDatos=logDatos;
+        setImagenUsuario();
+        castArrayAObservable();
+        tablaCuentas.refresh();
+    }
+    
+    private void setImagenUsuario() {
+        Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
+        imagenPerfil.setImage(imagen);
+        labelNombreUsuario.setText(this.logDatos.getCuentaActiva().getNombre());
     }
 
     @FXML
@@ -118,16 +131,12 @@ public class GestionCuentasController implements Initializable {
     @FXML
     private void agregarCuenta(ActionEvent event) {
         try{
-            loaderEmergente = new FXMLLoader(getClass().getResource("../vistas/AgregarCuenta.fxml"));
+            loaderEmergente = new FXMLLoader(getClass().getResource("/vistas/AgregarCuenta.fxml"));
 
             Parent raiz = loaderEmergente.load();
 
             AgregarCuentaController controlador = loaderEmergente.getController();
-            controlador.iniciarAtributos(cuentas);
-            
-            
-            //Stage stageContenedor = (Stage) this.botonAgregarCuenta.getScene().getWindow();
-            
+            controlador.iniciarAtributos(cuentas);            
             
             Scene escena = new Scene(raiz);
             Stage stage = new Stage();
@@ -135,18 +144,14 @@ public class GestionCuentasController implements Initializable {
             stage.setResizable(true);
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(escena);
-            
-            //stageContenedor.hide();
-            
-            stage.showAndWait();           
-            
-            //stageContenedor.show();
-            
+                        
+            stage.showAndWait();              
             
             Cuenta cuentaAgregada = controlador.getCuentaAgregada();
             if (cuentaAgregada!=null){
                 this.cuentas.add(cuentaAgregada);
                 this.tablaCuentas.refresh();
+                castObservableAArray();
                 
             }
             
@@ -167,6 +172,16 @@ public class GestionCuentasController implements Initializable {
 
     @FXML
     private void editarCuenta(ActionEvent event) {
+        this.cuentaSeleccionada=this.tablaCuentas.getSelectionModel().getSelectedItem();
+        
+        if (cuentaSeleccionada == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error!");
+            alert.setContentText("Debe seleccionar un elemento a editar");
+            alert.showAndWait();
+        }
+        
     }
 
     @FXML
@@ -181,10 +196,44 @@ public class GestionCuentasController implements Initializable {
 
     @FXML
     private void eliminarCuenta(ActionEvent event) {
+        this.cuentaSeleccionada=this.tablaCuentas.getSelectionModel().getSelectedItem();
+        
+        if (cuentaSeleccionada == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error!");
+            alert.setContentText("Debe seleccionar un elemento a editar");
+            alert.showAndWait();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Información");
+            alert.setContentText("Se eliminará el elemento seleccionado");
+            alert.showAndWait();
+            
+            this.cuentas.remove(this.cuentaSeleccionada);
+            this.tablaCuentas.refresh();
+        }
     }
 
     @FXML
     private void seleccion(MouseEvent event) {
+        this.cuentaSeleccionada = this.tablaCuentas.getSelectionModel().getSelectedItem();        
     }
+
+    private void castArrayAObservable() {
+        for(int i=0;i<this.gestorDatos.getCuentas().size();i++){           
+            this.cuentas.add(this.gestorDatos.getCuentas().get(i));
+        }
+    }
+    
+    private void castObservableAArray() {
+        arrayList = new ArrayList<>();
+        for(int i=0;i<this.cuentas.size();i++){
+            arrayList.add(this.cuentas.get(i));
+        }
+        
+    }
+    
     
 }
