@@ -1,2 +1,3 @@
-Elías Ocque,test123,test@gmail.com,True,Recursos/Imagenes/Perfil/imagendefecto.jpg
-Matias Vergara,test231,test@gmail.com,False,Recursos/Imagenes/Perfil/imagendefecto.jpg
+Elías Ocque,test123,test@gmail.com,True,file:src/recursos/Imagenes/Perfil/imagendefecto.jpg
+Matias Vergara,test231,test1@gmail.com,False,file:src/recursos/Imagenes/Perfil/imagendefecto.jpg
+Juanin Juan Harry,jjh,j,True,file:src/recursos/Imagenes/Perfil/Juanin.png

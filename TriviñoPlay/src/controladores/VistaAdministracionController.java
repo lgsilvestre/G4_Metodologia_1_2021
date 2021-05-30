@@ -5,6 +5,7 @@
  */
 package controladores;
 
+import datos.GestorDatos;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import logica.UsuarioLog;
 
 /**
  * FXML Controller class
@@ -32,14 +34,21 @@ public class VistaAdministracionController implements Initializable {
     private Button botonGestorCuentas;
     @FXML
     private Button botonGestorMultimedia;
+    
+    private GestorDatos gestorDatos;
+    private UsuarioLog logDatos;
 
-    /**
-     * Initializes the controller class.
-     */
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    
+    public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos){
+        this.gestorDatos=gestorDatos;
+        this.logDatos=logDatos;
+        setImagenUsuario();
+    }
 
     @FXML
     private void retroceder(ActionEvent event) {
@@ -51,11 +60,13 @@ public class VistaAdministracionController implements Initializable {
 
     @FXML
     private void gestionarMultimedia(ActionEvent event) {
+        System.out.println("Gestion Multimedia");
     }
     
-    public void setImagenUsuario() {
-        Image imagen = new Image("file:src/recursos/imagendefecto.jpg");
+    private void setImagenUsuario() {
+        System.out.println(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
+        Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
         imagenPerfil.setImage(imagen);
-        labelNombreUsuario.setText("Matias el autoreferente");
+        labelNombreUsuario.setText(this.logDatos.getCuentaActiva().getNombre());
     }
 }

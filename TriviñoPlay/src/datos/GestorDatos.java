@@ -15,9 +15,9 @@ public class GestorDatos {
     private final ArrayList<Serie> series;
     private final ArrayList<Pelicula> peliculas;
     private final ArrayList<Musica> musica;
-    private final String direccionDatosCuentas = "Datos/DatosCuentas.txt";
-    private final String direccionDatosSeries = "Datos/DatosSeries.txt";
-    private final String direccionDatosMultimedia = "Datos/DatosMultimedia.txt";
+    private final String direccionDatosCuentas = "src/datos/DatosCuentas.txt";
+    private final String direccionDatosSeries = "src/datos/DatosSeries.txt";
+    private final String direccionDatosMultimedia = "src/datos/DatosMultimedia.txt";
     
     public GestorDatos(){
         cuentas = new ArrayList<>();
@@ -86,7 +86,7 @@ public class GestorDatos {
                             String email = datosSeparados.get(2);
                             String adminString = datosSeparados.get(3);
                             boolean admin = false;
-                            if(adminString.equals("true")){
+                            if(adminString.equalsIgnoreCase("true")){
                                 admin = true;
                             }
                             String direccionImagenPerfil = datosSeparados.get(4);

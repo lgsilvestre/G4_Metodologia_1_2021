@@ -1,6 +1,7 @@
 
 package controladores;
 
+import datos.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,6 +25,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logica.Cuenta;
+import logica.UsuarioLog;
 
 /**
  * FXML Controller class
@@ -63,6 +65,9 @@ public class GestionCuentasController implements Initializable {
     
     private Cuenta cuentaSeleccionada;
     FXMLLoader loaderEmergente;
+    
+    private GestorDatos gestorDatos;
+    private UsuarioLog logDatos;
 
    
     @Override
@@ -78,7 +83,12 @@ public class GestionCuentasController implements Initializable {
         this.colImagen.setCellValueFactory(new PropertyValueFactory("direccionImagenPerfil"));
         
         tablaCuentas.refresh();
-    }    
+    }   
+    
+    public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos){
+        this.gestorDatos=gestorDatos;
+        this.logDatos=logDatos;
+    }
 
     @FXML
     private void fueraBotonRetroceso(MouseEvent event) {
