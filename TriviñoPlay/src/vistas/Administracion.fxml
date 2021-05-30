@@ -44,9 +44,9 @@
    <left>
       <VBox prefHeight="490.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="botonRetroceso" mnemonicParsing="false" onAction="#retroceder" style="-fx-background-color: #ffffff;">
+            <Button fx:id="botonRetroceso" mnemonicParsing="false" onAction="#retroceder" onMouseEntered="#sobreRetroceso" onMouseExited="#fueraRetroceso" style="-fx-background-color: #ffffff;">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0">
+                  <ImageView fx:id="imagenRetroceso" fitHeight="50.0" fitWidth="50.0">
                      <image>
                         <Image url="@../recursos/Imagenes/Iconos/back-arrow.png" />
                      </image>
@@ -60,7 +60,7 @@
       <VBox alignment="CENTER" prefHeight="490.0" prefWidth="628.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" />
-            <Button fx:id="botonGestorCuentas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gestionarCuentas" style="-fx-background-color: #ff9100; -fx-border-color: #000000;" text="Gestor de Cuentas" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="botonGestorCuentas" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gestionarCuentas" onMouseEntered="#sobreGestorCuentas" onMouseExited="#fueraGestorCuentas" style="-fx-background-color: #ff9100;" text="Gestor de Cuentas" textAlignment="CENTER" textFill="WHITE">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>
@@ -71,7 +71,7 @@
                   <Font name="Calibri Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="botonGestorMultimedia" mnemonicParsing="false" onAction="#gestionarMultimedia" style="-fx-background-color: #ff9100; -fx-border-color: #000000;" text="Gestor multimedia" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="botonGestorMultimedia" mnemonicParsing="false" onAction="#gestionarMultimedia" onMouseEntered="#sobreGestorMultimedia" onMouseExited="#fueraGestorMultimedia" style="-fx-background-color: #ff9100;" text="Gestor multimedia" textAlignment="CENTER" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>

@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import logica.UsuarioLog;
 
@@ -41,6 +42,8 @@ public class VistaAdministracionController implements Initializable {
     private Button botonGestorCuentas;
     @FXML
     private Button botonGestorMultimedia;
+    @FXML
+    private ImageView imagenRetroceso;
     
     private GestorDatos gestorDatos;
     private UsuarioLog logDatos;
@@ -94,6 +97,33 @@ public class VistaAdministracionController implements Initializable {
     @FXML
     private void gestionarMultimedia(ActionEvent event) {
         System.out.println("Gestion Multimedia");
+    }
+    
+    @FXML
+    private void sobreGestorCuentas(MouseEvent event){
+        botonGestorCuentas.setStyle("-fx-background-color: #000000");
+    }
+    @FXML
+    private void fueraGestorCuentas(MouseEvent event){
+        botonGestorCuentas.setStyle("-fx-background-color: #ff9100");
+    }
+    @FXML
+    private void sobreGestorMultimedia(MouseEvent event){
+        botonGestorMultimedia.setStyle("-fx-background-color: #000000");
+        
+    }
+    @FXML
+    private void fueraGestorMultimedia(MouseEvent event){
+        botonGestorMultimedia.setStyle("-fx-background-color: #ff9100");
+    }    
+    @FXML
+    private void sobreRetroceso(MouseEvent event){
+        imagenRetroceso.setImage(new Image("file:src/recursos/Imagenes/Iconos/back-arrow-orange.png"));
+        
+    }
+    @FXML
+    private void fueraRetroceso(MouseEvent event){
+        imagenRetroceso.setImage(new Image("file:src/recursos/Imagenes/Iconos/back-arrow.png"));        
     }
     
     private void setImagenUsuario() {
