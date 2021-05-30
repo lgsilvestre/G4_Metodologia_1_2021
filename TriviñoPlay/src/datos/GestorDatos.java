@@ -11,7 +11,7 @@ import java.io.*;
  * @author Sudaii
  */
 public class GestorDatos {
-    private final ArrayList<Cuenta> cuentas;
+    private ArrayList<Cuenta> cuentas;
     private final ArrayList<Serie> series;
     private final ArrayList<Pelicula> peliculas;
     private final ArrayList<Musica> musica;
@@ -26,6 +26,10 @@ public class GestorDatos {
         musica = new ArrayList<>();
         leerCuentas();
         leerMultimedia();
+    }
+    
+    public void setCuentas(ArrayList<Cuenta> cuentas){
+        this.cuentas = cuentas;
     }
     
     public ArrayList<Cuenta> getCuentas(){
