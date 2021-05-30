@@ -1,4 +1,4 @@
 Elías Ocque,test123,test@gmail.com,true,file:src/recursos/Imagenes/Perfil/imagendefecto.jpg
 Matias Vergara,test231,test1@gmail.com,false,file:src/recursos/Imagenes/Perfil/imagendefecto.jpg
 Juanin Juan Harry,jjh,j,true,file:src/recursos/Imagenes/Perfil/Juanin.png
-a,a,a,false,file:src/recursos/Imagenes/Perfil/Guaripolo.png
+Luis Silvestre,123,lsilvestre@utalca.cl,true,file:src/recursos/Imagenes/Perfil/Calcetin.png

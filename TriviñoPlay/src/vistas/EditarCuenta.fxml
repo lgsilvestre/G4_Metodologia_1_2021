@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vistas.EditarCuentaController">
+   <center>
+      <VBox prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="100.0" prefWidth="400.0">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="166.0">
+                           <children>
+                              <Label text="Nombre usuario actual:">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="233.0">
+                           <children>
+                              <TextField fx:id="campoNombreActual" editable="false" prefHeight="25.0" prefWidth="223.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="166.0">
+                           <children>
+                              <Label text="Nombre usuario nuevo:">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="233.0">
+                           <children>
+                              <TextField fx:id="campoNombreNuevo" prefHeight="25.0" prefWidth="223.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Line endX="378.0" stroke="#ff9100" strokeWidth="2.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Line>
+            <VBox prefHeight="100.0" prefWidth="400.0">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="166.0">
+                           <children>
+                              <Label text="Email actual:">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="233.0">
+                           <children>
+                              <TextField fx:id="campoEmailActual" editable="false" prefHeight="25.0" prefWidth="223.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="166.0">
+                           <children>
+                              <Label text="Email nuevo:">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="233.0">
+                           <children>
+                              <TextField fx:id="campoEmailNuevo" prefHeight="25.0" prefWidth="223.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Line endX="378.0" stroke="#ff9100" strokeWidth="2.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Line>
+            <VBox prefHeight="100.0" prefWidth="400.0">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="166.0">
+                           <children>
+                              <Label text="Contraseña actual:">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="233.0">
+                           <children>
+                              <TextField fx:id="campoContrasenaActual" editable="false" prefHeight="25.0" prefWidth="223.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="166.0">
+                           <children>
+                              <Label text="Contraseña nueva:">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="233.0">
+                           <children>
+                              <TextField fx:id="campoContrasenaNueva" prefHeight="25.0" prefWidth="223.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Line endX="378.0" layoutX="21.0" layoutY="213.0" stroke="#ff9100" strokeWidth="2.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Line>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="133.0">
+                     <children>
+                        <Label text="Imagen perfil actual:">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="imagenActual" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" layoutX="144.0" layoutY="10.0" prefHeight="100.0" prefWidth="133.0">
+                     <children>
+                        <Label text="Imagen perfil nueva:">
+                           <VBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="imagenNueva" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="100.0" prefWidth="133.0">
+                     <children>
+                        <Button fx:id="botonElegirImagen" mnemonicParsing="false" onAction="#elegirImagen" onMouseEntered="#sobreElegirImagen" onMouseExited="#fueraElegirImagen" style="-fx-background-color: #ff9100;" text="Elegir" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="labelTextoImagen" text="default">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Line endX="378.0" layoutX="21.0" layoutY="315.0" stroke="#ff9100" strokeWidth="2.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Line>
+            <VBox prefHeight="100.0" prefWidth="400.0">
+               <children>
+                  <HBox prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="166.0">
+                           <children>
+                              <Label text="Atributos actuales:">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="233.0">
+                           <children>
+                              <CheckBox fx:id="checkAdministradorActual" disable="true" mnemonicParsing="false" text="Administrador">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </CheckBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="50.0" prefWidth="400.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="166.0">
+                           <children>
+                              <Label text="Atributos nuevos:">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="233.0">
+                           <children>
+                              <CheckBox fx:id="checkAdministradorNuevo" mnemonicParsing="false" text="Administrador">
+                                 <font>
+                                    <Font name="Calibri" size="14.0" />
+                                 </font>
+                              </CheckBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Line endX="378.0" layoutX="21.0" layoutY="417.0" stroke="#ff9100" strokeWidth="2.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Line>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="botonModificar" mnemonicParsing="false" onAction="#modificarCuenta" onMouseEntered="#sobreModificar" onMouseExited="#fueraModificar" style="-fx-background-color: #ff9100;" text="Modificar" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../recursos/Imagenes/Iconos/check.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="botonCancelar" mnemonicParsing="false" onAction="#cancelarModificacion" onMouseEntered="#sobreCancelar" onMouseExited="#fueraCancelar" style="-fx-background-color: #ff9100;" text="Cancelar" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../recursos/Imagenes/Iconos/cancel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logica.Cuenta;
 import logica.UsuarioLog;
+import vistas.EditarCuentaController;
 
 /**
  * FXML Controller class
@@ -116,6 +117,7 @@ public class GestionCuentasController implements Initializable {
 
     @FXML
     private void retroceder(ActionEvent event) {
+        
     }
 
     @FXML
@@ -141,8 +143,8 @@ public class GestionCuentasController implements Initializable {
             Scene escena = new Scene(raiz);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(true);
-            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setResizable(false);
+            stage.setTitle("Agregar Cuenta");
             stage.setScene(escena);
                         
             stage.showAndWait();              
@@ -151,11 +153,8 @@ public class GestionCuentasController implements Initializable {
             if (cuentaAgregada!=null){
                 this.cuentas.add(cuentaAgregada);
                 this.tablaCuentas.refresh();
-                castObservableAArray();
-                
-            }
-            
-            
+                actualizarBaseDatosCuentas();               
+            }            
         }catch(IOException e){}
         
     }
@@ -180,6 +179,37 @@ public class GestionCuentasController implements Initializable {
             alert.setTitle("Error!");
             alert.setContentText("Debe seleccionar un elemento a editar");
             alert.showAndWait();
+        }else{
+            try{
+                loaderEmergente = new FXMLLoader(getClass().getResource("/vistas/EditarCuenta.fxml"));
+
+                Parent raiz = loaderEmergente.load();
+
+                EditarCuentaController controlador = loaderEmergente.getController();
+                controlador.iniciarAtributos(this.cuentas, this.cuentaSeleccionada);            
+
+                Scene escena = new Scene(raiz);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setResizable(false);
+                stage.setTitle("Modificar Cuenta");
+                
+                stage.setScene(escena);
+
+                stage.showAndWait();               
+                
+                Cuenta cuentaModificada = controlador.getCuentaModificada();
+                
+                if (cuentaModificada != null){
+                    this.cuentas.remove(this.cuentaSeleccionada);
+                    this.cuentas.add(cuentaModificada);
+                    this.tablaCuentas.refresh();
+                    actualizarBaseDatosCuentas();                    
+                }
+                
+                            
+            }catch(IOException e){
+            }
         }
         
     }
@@ -213,6 +243,7 @@ public class GestionCuentasController implements Initializable {
             
             this.cuentas.remove(this.cuentaSeleccionada);
             this.tablaCuentas.refresh();
+            actualizarBaseDatosCuentas();
         }
     }
 
@@ -233,6 +264,12 @@ public class GestionCuentasController implements Initializable {
             arrayList.add(this.cuentas.get(i));
         }
         
+    }
+    
+    private void actualizarBaseDatosCuentas(){
+        castObservableAArray();
+        this.gestorDatos.setCuentas(arrayList);
+        this.gestorDatos.almacenarCuentas();
     }
     
     
