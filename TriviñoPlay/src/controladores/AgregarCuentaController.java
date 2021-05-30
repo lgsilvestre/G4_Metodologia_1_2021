@@ -176,7 +176,7 @@ public class AgregarCuentaController implements Initializable {
     private boolean comprobarExistencia(Cuenta cuenta) {
         if(cuenta.getNombre().equalsIgnoreCase("") ||
                 cuenta.getEmail().equalsIgnoreCase("") ||
-                cuenta.getContrasena().equalsIgnoreCase("") ||
+                cuenta.getContraseña().equalsIgnoreCase("") ||
                 cuenta.getDireccionImagenPerfil().equalsIgnoreCase("")){
                 
                 return false;
