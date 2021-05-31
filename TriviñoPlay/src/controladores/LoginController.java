@@ -21,6 +21,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -54,7 +56,17 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         gestorDatos = new GestorDatos();
         logDatos = new UsuarioLog(gestorDatos);        
-    }    
+    }
+    
+    @FXML
+    private void sobreLog(MouseEvent event){
+        botonLogin.setStyle("-fx-background-color: #000000");
+    }
+    
+    @FXML
+    private void fueraLog(MouseEvent event){
+        botonLogin.setStyle("-fx-background-color: #ff9100");
+    }
 
     @FXML
     private void entrar(ActionEvent event) {
@@ -68,7 +80,7 @@ public class LoginController implements Initializable {
                 try {
                     Parent raiz = loaderAdministracion.load();
                     VistaAdministracionController controlador = loaderAdministracion.getController();
-                    controlador.iniciarAtributos(gestorDatos, logDatos);
+                    controlador.iniciarAtributos(gestorDatos, logDatos, botonLogin);
                     
                     Scene escenaAdministracion = new Scene(raiz);
                     
@@ -77,15 +89,14 @@ public class LoginController implements Initializable {
                     stage.setResizable(true);                    
                     stage.setScene(escenaAdministracion);           
                     stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setTitle("Administracion");
+                    stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
                     
                     Stage loginVentana = (Stage) this.botonLogin.getScene().getWindow();                    
                     
                     loginVentana.hide();                    
-                    
                     stage.show();
-                    /*logDatos.salirCuenta();
                     
-                    loginVentana.show();*/
                     
                 } catch (IOException ex) {
                 }                

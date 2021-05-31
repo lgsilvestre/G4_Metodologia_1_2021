@@ -48,6 +48,8 @@ public class VistaAdministracionController implements Initializable {
     private GestorDatos gestorDatos;
     private UsuarioLog logDatos;
     
+    private Button heredado;
+       
     FXMLLoader loaderGestion;
 
    
@@ -56,16 +58,22 @@ public class VistaAdministracionController implements Initializable {
         // TODO
     }
     
-    public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos){
+    public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada){
         this.gestorDatos=gestorDatos;
-        this.logDatos=logDatos;
+        this.logDatos=logDatos;        
         setImagenUsuario();
+        
+        this.heredado=elementoVentanaHeredada;
     }
 
     @FXML
     private void retroceder(ActionEvent event) {
         Stage stageAdministracion = (Stage)this.botonRetroceso.getScene().getWindow();
+        this.logDatos.salirCuenta();
         stageAdministracion.close();
+        
+        Stage retorno = (Stage) this.heredado.getScene().getWindow();
+        retorno.show();
     }
 
     @FXML
@@ -75,18 +83,18 @@ public class VistaAdministracionController implements Initializable {
         try {
             Parent raiz = loaderGestion.load();            
             GestionCuentasController controlador = loaderGestion.getController();
-            controlador.iniciarAtributos(gestorDatos, logDatos);
+            controlador.iniciarAtributos(gestorDatos, logDatos, botonGestorCuentas);
             
             Scene escenaGestionCuentas = new Scene(raiz);
             Stage stage = new Stage();
+            stage.setTitle("Gestion Cuentas");
+            stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
             
             Stage ventanaAdministracion = (Stage)this.botonGestorCuentas.getScene().getWindow();
             ventanaAdministracion.hide();
             
             stage.setScene(escenaGestionCuentas);
-            stage.show();
-            //ventanaAdministracion.show();
-            
+            stage.show();            
             
         } catch (IOException ex) {
             Logger.getLogger(VistaAdministracionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,4 +139,5 @@ public class VistaAdministracionController implements Initializable {
         imagenPerfil.setImage(imagen);
         labelNombreUsuario.setText(this.logDatos.getCuentaActiva().getNombre());
     }
+    
 }

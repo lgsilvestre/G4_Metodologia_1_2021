@@ -84,7 +84,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="botonLogin" mnemonicParsing="false" onAction="#entrar" style="-fx-background-color: #ff9100;" text="Entrar" textAlignment="CENTER" textFill="WHITE">
+                              <Button fx:id="botonLogin" mnemonicParsing="false" onAction="#entrar" onMouseEntered="#sobreLog" onMouseExited="#fueraLog" style="-fx-background-color: #ff9100;" text="Entrar" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Calibri Bold" size="22.0" />
                                  </font>

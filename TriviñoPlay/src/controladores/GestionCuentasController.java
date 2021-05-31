@@ -28,7 +28,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import logica.Cuenta;
 import logica.UsuarioLog;
-import vistas.EditarCuentaController;
 
 /**
  * FXML Controller class
@@ -73,6 +72,8 @@ public class GestionCuentasController implements Initializable {
     private UsuarioLog logDatos;
     
     private ArrayList<Cuenta> arrayList;
+    
+    private Button heredado;
 
    
     @Override
@@ -90,12 +91,14 @@ public class GestionCuentasController implements Initializable {
         tablaCuentas.refresh();
     }   
     
-    public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos){
+    public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada){
         this.gestorDatos=gestorDatos;
         this.logDatos=logDatos;
         setImagenUsuario();
         castArrayAObservable();
         tablaCuentas.refresh();
+        
+        this.heredado=elementoVentanaHeredada;
     }
     
     private void setImagenUsuario() {
@@ -117,7 +120,11 @@ public class GestionCuentasController implements Initializable {
 
     @FXML
     private void retroceder(ActionEvent event) {
+        Stage stageGestionCuentas = (Stage) this.botonRetroceso.getScene().getWindow();
+        stageGestionCuentas.close();
         
+        Stage retorno = (Stage) this.heredado.getScene().getWindow();
+        retorno.show();
     }
 
     @FXML
@@ -145,7 +152,9 @@ public class GestionCuentasController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
             stage.setTitle("Agregar Cuenta");
+            stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
             stage.setScene(escena);
+            
                         
             stage.showAndWait();              
             
@@ -193,6 +202,7 @@ public class GestionCuentasController implements Initializable {
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setResizable(false);
                 stage.setTitle("Modificar Cuenta");
+                stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
                 
                 stage.setScene(escena);
 
