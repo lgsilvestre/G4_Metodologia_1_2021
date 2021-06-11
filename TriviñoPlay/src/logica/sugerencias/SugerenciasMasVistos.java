@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica;
+package logica.sugerencias;
 
 import datos.GestorDatos;
 
@@ -11,11 +11,14 @@ import datos.GestorDatos;
  *
  * @author Sudaii
  */
-public class LogicaMultimedia {
-    private final GestorDatos gestorDatos;
-    
-    LogicaMultimedia(GestorDatos gestorDatos){
-        this.gestorDatos = gestorDatos;
+public class SugerenciasMasVistos extends Sugerencias{
+    public SugerenciasMasVistos(GestorDatos datos){
+        super(datos);
     }
+    
+    @Override
+    void ordenar(){
         
+    }
+    
 }

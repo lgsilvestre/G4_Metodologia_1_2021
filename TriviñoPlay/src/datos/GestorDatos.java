@@ -1,6 +1,9 @@
 package datos;
+import logica.media.Episodio;
+import logica.media.Serie;
+import logica.media.Musica;
+import logica.media.Pelicula;
 import logica.Cuenta;
-import logica.Media.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -40,7 +43,7 @@ public class GestorDatos {
         return series;
     }
     
-    public ArrayList<Pelicula> getPelicula(){
+    public ArrayList<Pelicula> getPeliculas(){
         return peliculas;
     }
     

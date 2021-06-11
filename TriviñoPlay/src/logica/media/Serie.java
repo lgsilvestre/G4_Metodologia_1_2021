@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica.Media;
+package logica.media;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -95,6 +95,8 @@ public class Serie {
         boolean removido = false;
         if(existeEpisodio(numEpisodio)){
             episodios.remove(numEpisodio);
+                actualizarFechas();
+                actualizarReproducciones();
         }
         return removido;
     }
