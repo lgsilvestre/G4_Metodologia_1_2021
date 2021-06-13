@@ -30,12 +30,12 @@ public class UsuarioLog {
         return ingresado;
     }
     
-    public boolean ingresarCuenta(String email, String contraseña){
+    public boolean ingresarCuenta(String email, String contrasenna){
         boolean emailExiste = false;
         for(int index = 0; index < gestorDatos.getCuentas().size() && !emailExiste && !ingresado; index++){
             if(email.equalsIgnoreCase(gestorDatos.getCuentas().get(index).getEmail())){                
                 emailExiste = true;
-                if(gestorDatos.getCuentas().get(index).esContraseñaActual(contraseña)){
+                if(gestorDatos.getCuentas().get(index).esContrasennaActual(contrasenna)){
                     cuentaActiva = gestorDatos.getCuentas().get(index);
                     ingresado = true;
                     return true;

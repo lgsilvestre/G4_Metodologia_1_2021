@@ -9,6 +9,9 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
+import java.text.DateFormat;  
+import java.text.SimpleDateFormat;  
 
 /**
  *
@@ -65,7 +68,10 @@ public abstract class Multimedia {
     }
     
     public String getFechaLanzamientoString(){
-        return fechaLanzamiento.toString();
+        Date fecha = fechaLanzamiento.getTime();
+        DateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
+        String fechaString = formato.format(fecha);
+        return fechaString;
     }
     
     public Image getPortada(){

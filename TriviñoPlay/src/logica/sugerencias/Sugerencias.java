@@ -17,9 +17,9 @@ import java.util.ArrayList;
  * @author Sudaii
  */
 public abstract class Sugerencias {
-    private ArrayList<Serie> series;
-    private ArrayList<Pelicula> peliculas;
-    private ArrayList<Musica> musica;
+    protected ArrayList<Serie> series;
+    protected ArrayList<Pelicula> peliculas;
+    protected ArrayList<Musica> musica;
     
     protected Sugerencias(GestorDatos datos){
         this.series = datos.getSeries();
@@ -37,8 +37,5 @@ public abstract class Sugerencias {
     
     public ArrayList<Musica>  getMusica(){
         return musica;
-    }
-    
-    abstract void ordenar();
-    
+    }    
 }
