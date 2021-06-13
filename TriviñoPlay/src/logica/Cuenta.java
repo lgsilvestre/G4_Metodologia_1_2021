@@ -6,14 +6,14 @@ package logica;
  */
 public class Cuenta {
     private String nombre;
-    private String contraseña;
+    private String contrasenna;
     private String email;
     private boolean admin;
     private String direccionImagenPerfil;
     
-    public Cuenta(String nombre, String contraseña, String email, boolean admin, String direccionImagenPerfil){
+    public Cuenta(String nombre, String contrasenna, String email, boolean admin, String direccionImagenPerfil){
         this.nombre = nombre;
-        this.contraseña = contraseña;
+        this.contrasenna = contrasenna;
         this.email = email;
         this.admin = admin;
         this.direccionImagenPerfil = direccionImagenPerfil;
@@ -23,8 +23,8 @@ public class Cuenta {
         this.nombre = nombre;
     }
     
-    public void setContraseña(String contraseña){
-        this.contraseña = contraseña;
+    public void setContrasenna(String contrasenna){
+        this.contrasenna = contrasenna;
     }
     
     public void setEmail(String email){
@@ -43,8 +43,8 @@ public class Cuenta {
         return nombre;
     }
     
-    public String getContraseña(){
-        return contraseña;
+    public String getContrasenna(){
+        return contrasenna;
     }
     
     public String getEmail(){
@@ -60,17 +60,17 @@ public class Cuenta {
     }
     
     /**
-     * Retorna si la contraseña ingresada es igual a la contraseña actual del usuario.
-     * @param contraseña la contraseña ingresada
-     * @return           si la contraseña ingresada es igual a la contraseña actual del usuario
+     * Retorna si la contrasenna ingresada es igual a la contrasenna actual del usuario.
+     * @param contrasenna la contrasenna ingresada
+     * @return           si la contrasenna ingresada es igual a la contrasenna actual del usuario
      */
-    public boolean esContraseñaActual(String contraseña){
-        return contraseña.equals(this.contraseña);
+    public boolean esContrasennaActual(String contrasenna){
+        return contrasenna.equals(this.contrasenna);
     }
     
-    public boolean cambiarContrasena(String contraseñaActual, String contraseñaNueva){
-        if(esContraseñaActual(contraseñaActual)){
-            contraseña = contraseñaNueva;
+    public boolean cambiarContrasena(String contrasennaActual, String contrasennaNueva){
+        if(esContrasennaActual(contrasennaActual)){
+            contrasenna = contrasennaNueva;
             return true;
         }
         else{
@@ -83,7 +83,7 @@ public class Cuenta {
         if(admin){
             adminString = "true";
         }
-        String datos = nombre+","+contraseña+","+email+","+adminString+","+direccionImagenPerfil;
+        String datos = nombre+","+contrasenna+","+email+","+adminString+","+direccionImagenPerfil;
         return datos;
     }
 }
