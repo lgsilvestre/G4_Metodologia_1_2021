@@ -55,6 +55,8 @@ public class Cuenta {
         return admin;
     }
     
+    
+    
     public String getDireccionImagenPerfil(){
         return direccionImagenPerfil;
     }
