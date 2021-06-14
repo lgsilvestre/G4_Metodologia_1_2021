@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 
@@ -38,6 +40,8 @@ public class ReproductorController implements Initializable {
     private Slider slider;
     @FXML
     private MediaView media;
+    
+ 
 
     /**
      * Initializes the controller class.
@@ -46,7 +50,15 @@ public class ReproductorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    
+    public void iniciarMultimedia(){
+        String url = "https://www.youtube.com/watch?v=ppiuQuD15wQ";
+        Media multimedia = new Media(url);
+        MediaPlayer player = new MediaPlayer(multimedia);
+        media = new MediaView(player);
+        
+    }
+    
     @FXML
     private void next(MouseEvent event) {
     }

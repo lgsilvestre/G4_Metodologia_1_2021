@@ -17,14 +17,15 @@ public class TriviñoPlay extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/Reproductor.fxml"));
+            
             Parent root = loader.load();
             
             Scene scene = new Scene(root);
 
             stage.setScene(scene);
             stage.setTitle("TriviñoPlay - Bienvenido");
-            stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
+            //stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
             
             stage.show();
         }catch(Exception e){

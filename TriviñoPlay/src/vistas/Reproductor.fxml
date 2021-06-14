@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.web.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.ReproductorController">
+   <children>
+      <MediaView fx:id="media" fitHeight="460.0" fitWidth="800.0" layoutY="1.0" />
+      <Pane layoutY="470.0" prefHeight="131.0" prefWidth="800.0" style="-fx-background-color: #000000;">
+         <children>
+            <Slider fx:id="slider" layoutX="53.0" layoutY="34.0" prefHeight="16.0" prefWidth="684.0" />
+            <Button fx:id="botonStop" layoutX="454.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#stop" prefHeight="37.0" prefWidth="57.0" style="-fx-background-color: #ff9100;" text="Stop" textFill="WHITE" />
+            <Button fx:id="botonNext" layoutX="671.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#next" prefHeight="37.0" prefWidth="66.0" style="-fx-background-color: #ff9100;" text="Next" textFill="WHITE" />
+            <Button fx:id="botonPlay" layoutX="367.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#play" prefHeight="37.0" prefWidth="77.0" style="-fx-background-color: #ff9100;" text="Play" textFill="WHITE" />
+            <Button fx:id="botonReset" layoutX="50.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#reset" prefHeight="37.0" prefWidth="66.0" style="-fx-background-color: #ff9100;" text="Reset" textFill="WHITE" />
+            <Button fx:id="botonPause" layoutX="299.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#pause" prefHeight="37.0" prefWidth="57.0" style="-fx-background-color: #ff9100;" text="Pause" textFill="WHITE" />
+            <Button fx:id="botonPrev" layoutX="598.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#prev" prefHeight="37.0" prefWidth="66.0" style="-fx-background-color: #ff9100;" text="Prev" textFill="WHITE" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
