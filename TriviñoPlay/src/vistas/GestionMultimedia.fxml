@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.GestionMultimediaController">
+   <top>
+      <BorderPane prefHeight="110.0" prefWidth="800.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+         <left>
+            <ImageView fitHeight="90.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../recursos/Imagenes/Iconos/LogoGrupoTriviño.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </left>
+         <right>
+            <HBox alignment="CENTER_RIGHT" prefHeight="110.0" prefWidth="266.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="labelNombreUsuario" text="nombreUsuario" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imagenPerfil" fitHeight="58.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </right>
+      </BorderPane>
+   </top>
+   <left>
+      <VBox prefHeight="490.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="botonRetroceso" mnemonicParsing="false" onAction="#retroceder" onMouseEntered="#sobreBotonRetroceso" onMouseExited="#fueraBotonRetroceso" style="-fx-background-color: #ffffff;">
+               <graphic>
+                  <ImageView fx:id="imagenRetroceso" fitHeight="50.0" fitWidth="50.0">
+                     <image>
+                        <Image url="@../recursos/Imagenes/Iconos/back-arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <VBox prefHeight="490.0" prefWidth="66.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <bottom>
+            <HBox alignment="CENTER_RIGHT" prefHeight="72.0" prefWidth="668.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="botonEditarCuenta" mnemonicParsing="false" onAction="#editarCuenta" onMouseEntered="#sobreBotonEditar" onMouseExited="#fueraBotonEditar" style="-fx-background-color: #ff9100;" text="Editar" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../recursos/Imagenes/Iconos/edit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="botonEliminarCuenta" mnemonicParsing="false" onAction="#eliminarCuenta" onMouseEntered="#sobreBotonEliminar" onMouseExited="#fueraBotonEliminar" style="-fx-background-color: #ff9100;" text="Eliminar" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../recursos/Imagenes/Iconos/delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></HBox>
+         </bottom>
+         <center>
+            <TableView fx:id="TablaMultimedia" onMouseClicked="#seleccion" prefHeight="210.0" prefWidth="668.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="colTitulo" prefWidth="334.0" text="Título" />
+                <TableColumn fx:id="colDirArchivo" prefWidth="126.0" text="Dirección Archivo" />
+                  <TableColumn fx:id="colDirPortada" prefWidth="109.0" text="Direccion Portada" />
+                  <TableColumn fx:id="colNumeroReproduccion" prefWidth="98.0" text="Reproducciones" />
+              </columns>
+            </TableView>
+         </center>
+         <top>
+            <VBox prefHeight="86.0" prefWidth="668.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="668.0">
+                     <children>
+                        <Label prefHeight="50.0" prefWidth="52.0" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="33.0" />
+                           </font>
+                        </Label>
+                        <Label text="Tipo de multimedia:">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="comboBoxMultimedia" onAction="#cambio" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="botonAgregarCuenta" mnemonicParsing="false" onAction="#agregarCuenta" onMouseEntered="#sobreBotonAgregar" onMouseExited="#fueraBotonAgregar" style="-fx-background-color: #ff9100;" text="Agregar" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../recursos/Imagenes/Iconos/add.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </top>
+      </BorderPane>
+   </center>
+</BorderPane>
