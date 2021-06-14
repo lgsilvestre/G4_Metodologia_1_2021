@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica.Media;
+package logica.media;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,7 +16,7 @@ import javafx.scene.image.Image;
 public class Serie {
     private ArrayList<Episodio> episodios;
     private String titulo, generoSerie, descripcion, direccionPortada;
-    private Calendar primerLanzamiento, ultimoLanzamiento;
+    private Calendar fechaPrimerLanzamiento, fechaUltimoLanzamiento;
     private int reproducciones;
     private Image portada;
     
@@ -26,8 +26,8 @@ public class Serie {
         this.descripcion = descripcion;
         this.direccionPortada = direccionPortada;
         portada = new Image(direccionPortada);
-        primerLanzamiento.set(0, 0, 0, 0, 0, 0);
-        ultimoLanzamiento.set(0, 0, 0, 0, 0, 0);
+        fechaPrimerLanzamiento.set(0, 0, 0, 0, 0, 0);
+        fechaUltimoLanzamiento.set(0, 0, 0, 0, 0, 0);
         reproducciones = 0;
     }
     
@@ -67,6 +67,14 @@ public class Serie {
         return descripcion;
     }
     
+    public Calendar getFechaPrimerLanzamiento(){
+        return fechaPrimerLanzamiento;
+    }
+    
+    public Calendar getFechaUltimoLanzamiento(){
+        return fechaUltimoLanzamiento;
+    }
+    
     public int getReproducciones(){
         return reproducciones;
     }
@@ -95,6 +103,8 @@ public class Serie {
         boolean removido = false;
         if(existeEpisodio(numEpisodio)){
             episodios.remove(numEpisodio);
+                actualizarFechas();
+                actualizarReproducciones();
         }
         return removido;
     }
@@ -123,11 +133,11 @@ public class Serie {
     
     private void actualizarFechas(){
         for (Episodio episodio : episodios) {
-            if(primerLanzamiento.after(episodio.getFechaLanzamiento())){
-                primerLanzamiento = episodio.getFechaLanzamiento();
+            if(fechaPrimerLanzamiento.after(episodio.getFechaLanzamiento())){
+                fechaPrimerLanzamiento = episodio.getFechaLanzamiento();
             }
-            if(episodio.getFechaLanzamiento().after(ultimoLanzamiento)){
-                ultimoLanzamiento = episodio.getFechaLanzamiento();
+            if(episodio.getFechaLanzamiento().after(fechaUltimoLanzamiento)){
+                fechaUltimoLanzamiento = episodio.getFechaLanzamiento();
             }
         }
     }
