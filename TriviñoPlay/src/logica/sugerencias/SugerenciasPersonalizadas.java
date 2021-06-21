@@ -10,18 +10,23 @@ import logica.Cuenta;
 import logica.media.Multimedia;
 import logica.media.Serie;
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  *
  * @author Sudaii
  */
 public class SugerenciasPersonalizadas extends Sugerencias{
+    ArrayList<String> generos;
+    ArrayList<Integer> cantidad;
     
     public SugerenciasPersonalizadas (GestorDatos datos, Cuenta usuario){
         super(datos);
+        generos = new ArrayList<>();
+        cantidad = new ArrayList<>();
     }
     
-    private void determinarGenerosMasVistos()
+    private void determinarGenerosMasVistos(){
+        
+    }
     
 }
