@@ -3,9 +3,9 @@ package logica;
 import datos.GestorDatos;
 import java.util.ArrayList;
 import java.util.List;
-import logica.Media.Musica;
-import logica.Media.Pelicula;
-import logica.Media.Serie;
+import logica.media.Musica;
+import logica.media.Pelicula;
+import logica.media.Serie;
 
 /**
  *
@@ -34,9 +34,9 @@ public class Buscador {
         List<Musica> listaFiltradaMusica = new ArrayList<>();
         List<Serie> listaFiltradaSeries = new ArrayList<>();
         List<List> listaDeListas = new ArrayList<>();
-        for (int i = 0; i < gestorDatos.getPelicula().size(); i++) {
-            if (nombre.equals(gestorDatos.getPelicula().get(i).getTitulo().substring(0, nombre.length()))) {
-                listaFiltradaPeliculas.add(gestorDatos.getPelicula().get(i));
+        for (int i = 0; i < gestorDatos.getPeliculas().size(); i++) {
+            if (nombre.equals(gestorDatos.getPeliculas().get(i).getTitulo().substring(0, nombre.length()))) {
+                listaFiltradaPeliculas.add(gestorDatos.getPeliculas().get(i));
             }
         }
         for (int i = 0; i < gestorDatos.getSeries().size(); i++) {

@@ -1,5 +1,8 @@
 package logica;
 
+import logica.media.*;
+import java.util.ArrayList;
+        
 /**
  *
  * @author Sudaii
@@ -10,6 +13,9 @@ public class Cuenta {
     private String email;
     private boolean admin;
     private String direccionImagenPerfil;
+    private final ArrayList<Serie> historialSeries;
+    private final ArrayList<Pelicula> historialPeliculas;
+    private final ArrayList<Musica> historialMusica;    
     
     public Cuenta(String nombre, String contrasenna, String email, boolean admin, String direccionImagenPerfil){
         this.nombre = nombre;
@@ -17,6 +23,9 @@ public class Cuenta {
         this.email = email;
         this.admin = admin;
         this.direccionImagenPerfil = direccionImagenPerfil;
+        historialSeries = new ArrayList<>();        
+        historialPeliculas = new ArrayList<>();
+        historialMusica = new ArrayList<>();
     }
     
     public void setNombre(String nombre){
@@ -55,10 +64,20 @@ public class Cuenta {
         return admin;
     }
     
-    
-    
     public String getDireccionImagenPerfil(){
         return direccionImagenPerfil;
+    }
+    
+    public void agregarSerie(Serie serie){
+        historialSeries.add(serie);  
+    }
+    
+    public void agregarPelicula(Pelicula pelicula){
+        historialPeliculas.add(pelicula);        
+    }
+    
+    public void agregarMusica(Musica musica){
+        historialMusica.add(musica);  
     }
     
     /**
