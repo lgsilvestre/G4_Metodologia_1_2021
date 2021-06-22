@@ -73,6 +73,9 @@ public class GestionCuentasController implements Initializable {
     private ArrayList<Cuenta> arrayList;
     
     private Button heredado;
+    
+    private final String colorSobre = "-fx-background-color: #000000";
+    private final String colorFuera = "-fx-background-color: #ff9100";
 
    
     @Override
@@ -108,8 +111,7 @@ public class GestionCuentasController implements Initializable {
 
     @FXML
     private void fueraBotonRetroceso(MouseEvent event) {
-        imagenRetroceso.setImage(new Image("file:src/recursos/Imagenes/Iconos/back-arrow.png"));
-        
+        imagenRetroceso.setImage(new Image("file:src/recursos/Imagenes/Iconos/back-arrow.png"));        
     }
 
     @FXML
@@ -128,12 +130,12 @@ public class GestionCuentasController implements Initializable {
 
     @FXML
     private void fueraBotonAgregar(MouseEvent event) {
-        botonAgregarCuenta.setStyle("-fx-background-color: #ff9100");
+        botonAgregarCuenta.setStyle(colorFuera);
     }
 
     @FXML
     private void sobreBotonAgregar(MouseEvent event) {
-        botonAgregarCuenta.setStyle("-fx-background-color: #000000");
+        botonAgregarCuenta.setStyle(colorSobre);
     }
 
     @FXML
@@ -169,12 +171,12 @@ public class GestionCuentasController implements Initializable {
 
     @FXML
     private void fueraBotonEditar(MouseEvent event) {
-        botonEditarCuenta.setStyle("-fx-background-color: #ff9100");
+        botonEditarCuenta.setStyle(colorFuera);
     }
 
     @FXML
     private void sobreBotonEditar(MouseEvent event) {
-        botonEditarCuenta.setStyle("-fx-background-color: #000000");
+        botonEditarCuenta.setStyle(colorSobre);
     }
 
     @FXML
@@ -225,12 +227,12 @@ public class GestionCuentasController implements Initializable {
 
     @FXML
     private void fueraBotonEliminar(MouseEvent event) {
-        botonEliminarCuenta.setStyle("-fx-background-color: #ff9100");
+        botonEliminarCuenta.setStyle(colorFuera);
     }
 
     @FXML
     private void sobreBotonEliminar(MouseEvent event) {
-        botonEliminarCuenta.setStyle("-fx-background-color: #000000");
+        botonEliminarCuenta.setStyle(colorSobre);
     }
 
     @FXML
