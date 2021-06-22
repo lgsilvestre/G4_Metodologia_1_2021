@@ -6,10 +6,12 @@
 package triviñoplay;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class TriviñoPlay extends Application {
@@ -26,7 +28,6 @@ public class TriviñoPlay extends Application {
             stage.setScene(scene);
             stage.setTitle("TriviñoPlay - Bienvenido");
             //stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
-            
             stage.show();
         }catch(Exception e){
             System.out.println("Error carga de vista principal");
