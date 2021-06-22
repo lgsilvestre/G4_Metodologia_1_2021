@@ -52,12 +52,12 @@
                               <Insets right="20.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="timeCurrent" text="TimeCurrent" textFill="WHITE">
+                        <Label fx:id="timeCurrent" prefHeight="19.0" prefWidth="87.0" text="TimeCurrent" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
                            <GridPane.margin>
-                              <Insets left="15.0" />
+                              <Insets left="10.0" />
                            </GridPane.margin>
                         </Label>
                      </children>
