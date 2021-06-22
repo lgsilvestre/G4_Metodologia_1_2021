@@ -10,7 +10,7 @@ package logica.media;
  * @author Sudaii
  */
 public class Musica extends Multimedia{
-    String album, artista, generoMusica;
+    private String album, artista, generoMusica;
     
     public Musica(String direccionArchivo, String titulo, 
             String fechaString, String direccionPortada, int reproducciones, 
@@ -42,7 +42,7 @@ public class Musica extends Multimedia{
         return artista;
     }
     
-    public String generoMusica(){
+    public String getGeneroMusica(){
         return generoMusica;
     }
     

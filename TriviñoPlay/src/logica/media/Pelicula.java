@@ -10,7 +10,7 @@ package logica.media;
  * @author Sudaii
  */
 public class Pelicula extends Multimedia{
-    String director, descripcion, generoPelicula;
+    private String director, descripcion, generoPelicula;
     
     public Pelicula(String direccionArchivo, String titulo, 
             String fechaString, String direccionPortada, int reproducciones, 
