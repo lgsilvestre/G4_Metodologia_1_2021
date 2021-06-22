@@ -22,9 +22,9 @@ public abstract class Sugerencias {
     protected ArrayList<Musica> musica;
     
     protected Sugerencias(GestorDatos datos){
-        this.series = datos.getSeries();
-        this.peliculas = datos.getPeliculas();
-        this.musica = datos.getMusica();
+        this.series = new ArrayList(datos.getSeries());
+        this.peliculas = new ArrayList(datos.getPeliculas());
+        this.musica = new ArrayList(datos.getMusica());
     }
     
     public ArrayList<Serie> getSeries(){

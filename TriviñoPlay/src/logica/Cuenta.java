@@ -68,6 +68,18 @@ public class Cuenta {
         return direccionImagenPerfil;
     }
     
+    public ArrayList<Serie> getHistorialSeries(){
+        return historialSeries;
+    }
+    
+    public ArrayList<Pelicula> getHistorialPeliculas(){
+        return historialPeliculas;
+    }
+    
+    public ArrayList<Musica> getHistorialMusica(){
+        return historialMusica;
+    }
+    
     public void agregarSerie(Serie serie){
         historialSeries.add(serie);  
     }
