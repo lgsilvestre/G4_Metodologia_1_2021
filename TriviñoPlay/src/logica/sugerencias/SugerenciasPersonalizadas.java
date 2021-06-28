@@ -26,6 +26,7 @@ public class SugerenciasPersonalizadas extends Sugerencias{
         cantidad = new ArrayList<>();
         this.usuario = usuario;
         determinarGenerosMasVistos();
+        determinarSugerencias();
     }
     
     private void determinarGenerosMasVistos(){
@@ -34,8 +35,13 @@ public class SugerenciasPersonalizadas extends Sugerencias{
         determinarGenerosMusicaMasVistos();
         for(int i = 0; i < cantidad.size(); i++){
             insertionSort(i);
+            if(generos.get(i).size() > 3){
+                generos.get(i).subList(3, generos.get(0).size()).clear();
+                cantidad.get(i).subList(3, generos.get(0).size()).clear();
+                generos.get(i).trimToSize();
+                cantidad.get(i).trimToSize();
+            }
         }
-
     }
     
     private void determinarGenerosSerieMasVistos(){
@@ -76,6 +82,51 @@ public class SugerenciasPersonalizadas extends Sugerencias{
             else{
                 generos.get(2).add(genero);
                 cantidad.get(2).add(0);
+            }
+        }
+    }
+    
+    private void determinarSugerencias(){
+        determinarSeries();
+        determinarPeliculas();
+        determinarMusica();
+    }
+    
+    private void determinarSeries(){
+        int i = 0;
+        while(i < series.size()){
+            if(!(generos.get(0).contains(series.get(i).getGeneroSerie()) 
+                    || usuario.getHistorialSeries().contains(series.get(i)))){
+                series.remove(i);
+            }
+            else{
+                i++;
+            }
+        }
+    }
+    
+    private void determinarPeliculas(){
+        int i = 0;
+        while(i < peliculas.size()){
+            if(!(generos.get(1).contains(peliculas.get(i).getGeneroPelicula()) 
+                    || usuario.getHistorialPeliculas().contains(peliculas.get(i)))){
+                peliculas.remove(i);
+            }
+            else{
+                i++;
+            }
+        }
+    }
+    
+    private void determinarMusica(){
+        int i = 0;
+        while(i < musica.size()){
+            if(!(generos.get(2).contains(musica.get(i).getGeneroMusica()) 
+                    || usuario.getHistorialMusica().contains(musica.get(i)))){
+                musica.remove(i);
+            }
+            else{
+                i++;
             }
         }
     }
