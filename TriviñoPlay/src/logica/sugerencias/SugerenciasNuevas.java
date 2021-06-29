@@ -17,22 +17,15 @@ import logica.media.Serie;
 public class SugerenciasNuevas extends Sugerencias{
     public SugerenciasNuevas(GestorDatos datos){
         super(datos);
-        peliculas.sort(new OrdenarMultimediaPorFecha());
-        musica.sort(new OrdenarMultimediaPorFecha());
-        series.sort(new OrdenarSeriePorFecha());
+        series.sort(new OrdenarPorFecha());
+        peliculas.sort(new OrdenarPorFecha());
+        musica.sort(new OrdenarPorFecha());
     }
     
-    public class OrdenarMultimediaPorFecha implements Comparator<Multimedia>{
+    public class OrdenarPorFecha implements Comparator<Multimedia>{
         @Override
         public int compare(Multimedia a, Multimedia b){
-            return b.getFechaLanzamiento().compareTo(a.getFechaLanzamiento());
-        }
-    }
-    
-    public class OrdenarSeriePorFecha implements Comparator<Serie>{
-        @Override
-        public int compare(Serie a, Serie b){
-            return b.getFechaUltimoLanzamiento().compareTo(a.getFechaUltimoLanzamiento());
+            return b.getFecha().compareTo(a.getFecha());
         }
     }
 }
