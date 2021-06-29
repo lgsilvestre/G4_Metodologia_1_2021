@@ -64,7 +64,7 @@
          <bottom>
             <HBox alignment="CENTER_RIGHT" prefHeight="72.0" prefWidth="668.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="botonEditarCuenta" mnemonicParsing="false" onAction="#editarCuenta" onMouseEntered="#sobreBotonEditar" onMouseExited="#fueraBotonEditar" style="-fx-background-color: #ff9100;" text="Editar" textFill="WHITE">
+                  <Button fx:id="botonEditarMedio" mnemonicParsing="false" onAction="#editarMedio" onMouseEntered="#sobreBotonEditar" onMouseExited="#fueraBotonEditar" style="-fx-background-color: #ff9100;" text="Editar" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </HBox.margin>
@@ -79,7 +79,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="botonEliminarCuenta" mnemonicParsing="false" onAction="#eliminarCuenta" onMouseEntered="#sobreBotonEliminar" onMouseExited="#fueraBotonEliminar" style="-fx-background-color: #ff9100;" text="Eliminar" textFill="WHITE">
+                  <Button fx:id="botonEliminarMedio" mnemonicParsing="false" onAction="#eliminarMedio" onMouseEntered="#sobreBotonEliminar" onMouseExited="#fueraBotonEliminar" style="-fx-background-color: #ff9100;" text="Eliminar" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </HBox.margin>
@@ -139,7 +139,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="botonAgregarCuenta" mnemonicParsing="false" onAction="#agregarCuenta" onMouseEntered="#sobreBotonAgregar" onMouseExited="#fueraBotonAgregar" style="-fx-background-color: #ff9100;" text="Agregar" textFill="WHITE">
+                        <Button fx:id="botonAgregarMedio" mnemonicParsing="false" onAction="#agregarMedio" onMouseEntered="#sobreBotonAgregar" onMouseExited="#fueraBotonAgregar" style="-fx-background-color: #ff9100;" text="Agregar" textFill="WHITE">
                            <HBox.margin>
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </HBox.margin>

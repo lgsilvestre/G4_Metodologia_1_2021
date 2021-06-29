@@ -9,6 +9,8 @@ import datos.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,13 +46,13 @@ public class GestionMultimediaController implements Initializable {
     @FXML
     private ImageView imagenRetroceso;
     @FXML
-    private ComboBox<?> comboBoxMultimedia;
+    private ComboBox comboBoxMultimedia;
     @FXML
-    private Button botonAgregarCuenta;
+    private Button botonAgregarMedio;
     @FXML
-    private Button botonEditarCuenta;
+    private Button botonEditarMedio;
     @FXML
-    private Button botonEliminarCuenta;
+    private Button botonEliminarMedio;
     @FXML
     private TableView<?> TablaMultimedia;
     @FXML
@@ -70,6 +72,10 @@ public class GestionMultimediaController implements Initializable {
     
     private final String colorSobre = "-fx-background-color: #000000";
     private final String colorFuera = "-fx-background-color: #ff9100";
+    
+    private final String multimedia[] = {"Peliculas","Musica","Series"};
+    
+    private ObservableList<String> itemsBox;
 
     /**
      * Initializes the controller class.
@@ -84,7 +90,15 @@ public class GestionMultimediaController implements Initializable {
         this.logDatos=logDatos;
         setImagenUsuario();               
         this.heredado=elementoVentanaHeredada;
+        
+        itemsBox = FXCollections.observableArrayList();
+        itemsBox.addAll(multimedia);
+        
+        comboBoxMultimedia.setItems(itemsBox);
+        comboBoxMultimedia.setValue(this.comboBoxMultimedia.getItems().get(0));
+        
     }
+    
     
     public void setImagenUsuario(){
         Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
@@ -112,20 +126,27 @@ public class GestionMultimediaController implements Initializable {
 
     @FXML
     private void cambio(ActionEvent event) {
+        if (this.comboBoxMultimedia.getValue().toString().equalsIgnoreCase(multimedia[0])){
+            System.out.println("lista peliculas");
+        }else if (this.comboBoxMultimedia.getValue().toString().equalsIgnoreCase(multimedia[1])){
+            System.out.println("lista musica");
+        }else if (this.comboBoxMultimedia.getValue().toString().equalsIgnoreCase(multimedia[2])){
+            System.out.println("lista series");
+        }
     }
 
     @FXML
     private void fueraBotonAgregar(MouseEvent event) {
-        botonAgregarCuenta.setStyle(colorFuera);
+        botonAgregarMedio.setStyle(colorFuera);
     }
 
     @FXML
     private void sobreBotonAgregar(MouseEvent event) {
-        botonAgregarCuenta.setStyle(colorSobre);
+        botonAgregarMedio.setStyle(colorSobre);
     }
 
     @FXML
-    private void agregarCuenta(ActionEvent event) {
+    private void agregarMedio(ActionEvent event) {
         try{
             loaderEmergente = new FXMLLoader(getClass().getResource("/vistas/AgregarPelicula.fxml"));
 
@@ -157,30 +178,57 @@ public class GestionMultimediaController implements Initializable {
 
     @FXML
     private void fueraBotonEditar(MouseEvent event) {
-        botonEditarCuenta.setStyle(colorFuera);
+        botonEditarMedio.setStyle(colorFuera);
     }
 
     @FXML
     private void sobreBotonEditar(MouseEvent event) {
-        botonEditarCuenta.setStyle(colorSobre);
+            botonEditarMedio.setStyle(colorSobre);
     }
 
     @FXML
-    private void editarCuenta(ActionEvent event) {
+    private void editarMedio(ActionEvent event) {
+        try{
+            loaderEmergente = new FXMLLoader(getClass().getResource("/vistas/EditarPelicula.fxml"));
+
+            Parent raiz = loaderEmergente.load();
+
+            EditarPeliculaController controlador = loaderEmergente.getController();
+            //controlador.iniciarAtributos(cuentas);            
+            
+            Scene escena = new Scene(raiz);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Editar Pelicula");
+            stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
+            stage.setScene(escena);
+            
+                        
+            stage.showAndWait();              
+            
+            /*Cuenta cuentaAgregada = controlador.getCuentaAgregada();
+            if (cuentaAgregada!=null){
+                this.cuentas.add(cuentaAgregada);
+                this.tablaCuentas.refresh();
+                actualizarBaseDatosCuentas();               
+            }  */          
+        }catch(IOException e){} 
+        
     }
 
     @FXML
     private void fueraBotonEliminar(MouseEvent event) {
-        botonEliminarCuenta.setStyle(colorFuera);
+        botonEliminarMedio.setStyle(colorFuera);
     }
 
     @FXML
     private void sobreBotonEliminar(MouseEvent event) {
-        botonEliminarCuenta.setStyle(colorSobre);
+        botonEliminarMedio.setStyle(colorSobre);
     }
 
     @FXML
-    private void eliminarCuenta(ActionEvent event) {
+    private void eliminarMedio(ActionEvent event) {
     }
 
     @FXML
