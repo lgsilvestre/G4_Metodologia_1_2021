@@ -20,6 +20,10 @@ public class DatoHistorial {
         this.completado = completado;
     }
     
+    public void setCompletado(boolean completado){
+        this.completado = completado;
+    }
+    
     public Multimedia getMedia(){
         return media;
     }

@@ -1,9 +1,8 @@
 package datos;
-import logica.media.Episodio;
-import logica.media.Serie;
-import logica.media.Musica;
-import logica.media.Pelicula;
+
+import logica.media.*;
 import logica.Cuenta;
+import logica.DatoHistorial;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -16,11 +15,12 @@ import java.io.*;
 public class GestorDatos {
     private ArrayList<Cuenta> cuentas;
     private ArrayList<Serie> series;
+    private ArrayList<Episodio> episodios;
     private ArrayList<Pelicula> peliculas;
     private ArrayList<Musica> musica;
     private final String direccionDatosCuentas = "src/datos/DatosCuentas.txt";
-    private final String direccionDatosSeries = "src/datos/DatosSeries.txt";
     private final String direccionDatosMultimedia = "src/datos/DatosMultimedia.txt";
+    private final String direccionDatosHistorial = "src/datos/DatosHistorial.txt";
     
     public GestorDatos(){
         cuentas = new ArrayList<>();
@@ -118,7 +118,6 @@ public class GestorDatos {
         if(datosMultimedia.exists()){
             try {
                 try (Scanner lector = new Scanner(datosMultimedia)) {
-                    ArrayList<Episodio> episodios = new ArrayList<>();
                     while(lector.hasNextLine()){
                         String datos = lector.nextLine();
                         ArrayList<String> datosSeparados = new ArrayList<>(Arrays.asList(datos.split(",")));
@@ -167,13 +166,13 @@ public class GestorDatos {
                             }
                         }
                     }
-                    vincularEpisodios(episodios);
+                    vincularEpisodios();
                 }
             } catch (FileNotFoundException ex) {}       
         }
     }
     
-    private void vincularEpisodios(ArrayList<Episodio> episodios){
+    private void vincularEpisodios(){
         while(!episodios.isEmpty()){
             Episodio episodio = episodios.remove(0);
             boolean agregado = false;
@@ -184,6 +183,81 @@ public class GestorDatos {
                 }
             }
         }
+    }
+    
+    private void leerHistorial(){
+        File datosHistorial = new File(direccionDatosHistorial);
+        if(datosHistorial.exists()){
+            try {
+                try (Scanner lector = new Scanner(datosHistorial)) {
+                    while(lector.hasNextLine()){
+                        String datos = lector.nextLine();
+                        ArrayList<String> datosSeparados = new ArrayList<>(Arrays.asList(datos.split(",")));
+                        if(datosSeparados.size() == 4){
+                            String correo = datosSeparados.get(0);
+                            String tipo = datosSeparados.get(1);
+                            String titulo = datosSeparados.get(2);
+                            String completadoString = datosSeparados.get(3);
+                            boolean completado = false;
+                            if(completadoString.equalsIgnoreCase("true")){
+                                completado = true;
+                            }
+                            agregarAHistorial(correo, tipo, titulo, completado);
+                        }
+                    }
+                }
+            } catch (FileNotFoundException ex) {}       
+        }
+    }
+    
+    private boolean agregarAHistorial(String email, String tipo, String titulo, boolean completado){
+        switch (tipo) {
+            case "Serie":
+                for(int i = 0; i < series.size(); i++){
+                    if(titulo.equals(series.get(i).getTitulo())){
+                        Multimedia media = series.get(i);
+                        return agregarAHistorial(email, media, completado);
+                    }
+                }
+                break;
+            case "Episodio":
+                for(int i = 0; i < episodios.size(); i++){
+                    if(titulo.equals(episodios.get(i).getTitulo())){
+                        Multimedia media = episodios.get(i);
+                        return agregarAHistorial(email, media, completado);
+                    }
+                }
+                break;
+            case "Pelicula":
+                for(int i = 0; i < peliculas.size(); i++){
+                    if(titulo.equals(peliculas.get(i).getTitulo())){
+                        Multimedia media = peliculas.get(i);
+                        return agregarAHistorial(email, media, completado);
+                    }
+                }
+                break;
+            case "Musica":
+                for(int i = 0; i < musica.size(); i++){
+                    if(titulo.equals(musica.get(i).getTitulo())){
+                        Multimedia media = musica.get(i);
+                        return agregarAHistorial(email, media, completado);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+    
+    private boolean agregarAHistorial(String email, Multimedia media, boolean completado){
+        for(int index = 0; index < cuentas.size(); index++){
+            if(email.equals(cuentas.get(index).getEmail())){
+                cuentas.get(index).agregarAHistorial(media, completado);
+                return true;
+            }
+        }
+        return false;
     }
     
     public void almacenarCuentas(){
@@ -213,8 +287,10 @@ public class GestorDatos {
         try {
             try (FileWriter escritor = new FileWriter(direccionDatosMultimedia)) {
                 for(Serie serie: series){
+                    String datos = serie.datosEnString();
+                    escritor.write(datos+"\n");
                     for(Episodio episodio: serie.getEpisodios()){
-                        String datos = episodio.datosEnString();
+                        datos = episodio.datosEnString();
                         escritor.write(datos+"\n");
                     }
                 }
@@ -226,25 +302,37 @@ public class GestorDatos {
                     String datos = cancion.datosEnString();
                     escritor.write(datos+"\n");
                 }
+                
             }
         } catch (IOException ex) {}
     }
     
-    public void almacenarSeries(){
-        File datosSeriesViejos = new File(direccionDatosSeries);
-        datosSeriesViejos.delete();
-        File datosSeriesNuevos = new File(direccionDatosSeries);
+    public void almacenarHistorial(){
+        File datosHistorialViejos = new File(direccionDatosHistorial);
+        datosHistorialViejos.delete();
+        File datosHistorialNuevos = new File(direccionDatosHistorial);
         try{
-            datosSeriesNuevos.createNewFile();
+            datosHistorialNuevos.createNewFile();
         }catch(IOException IOException){}
         try {
-            try (FileWriter escritor = new FileWriter(direccionDatosSeries)) {
-                for(Serie serie: series){
-                    String datos = serie.datosEnString();
-                    escritor.write(datos+"\n");
+            try (FileWriter escritor = new FileWriter(direccionDatosHistorial)) {
+                for(Cuenta usuario: cuentas){
+                    String correo = usuario.getEmail();
+                    for(DatoHistorial historia: usuario.getHistorial()){
+                        String tipo = historia.getMedia().getTipo();
+                        String titulo = historia.getMedia().getTitulo();
+                        String completado;
+                        if(historia.getCompletado()){
+                            completado = "true";
+                        }
+                        else{
+                            completado = "false";
+                        }
+                        String datos = correo+","+tipo+","+titulo+","+completado;
+                        escritor.write(datos+"\n");
+                    }
                 }
             }
         } catch (IOException ex) {}
     }
-
 }

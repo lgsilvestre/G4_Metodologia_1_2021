@@ -1,7 +1,7 @@
 package logica;
 
-import logica.media.*;
 import java.util.ArrayList;
+import logica.media.Multimedia;
         
 /**
  *
@@ -84,6 +84,25 @@ public class Cuenta {
         }
         else{
             return false;
+        }
+    }
+    
+    public void agregarAHistorial(Multimedia media, boolean completado){
+        boolean repetido = false;
+        int indice = 0;
+        while(indice < historial.size() && !repetido){
+            if(media.equals(historial.get(indice).getMedia())){
+                repetido = true;
+            }
+            else{
+                indice++;
+            }
+        }
+        if(repetido){
+            historial.get(indice).setCompletado(completado);
+        }
+        else{
+            historial.add(new DatoHistorial(media, completado));
         }
     }
     
