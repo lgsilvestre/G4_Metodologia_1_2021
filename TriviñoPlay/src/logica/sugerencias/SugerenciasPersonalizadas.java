@@ -46,7 +46,7 @@ public class SugerenciasPersonalizadas extends Sugerencias{
     
     private void determinarGenerosSerieMasVistos(){
         for(Serie serie: usuario.getHistorialSeries()){
-            String genero = serie.getGeneroSerie();
+            String genero = serie.getGenero();
             if(generos.get(0).contains(genero)){
                 int indice = generos.get(0).indexOf(genero);
                 cantidad.get(0).set(indice, cantidad.get(0).get(indice)+1);
@@ -60,7 +60,7 @@ public class SugerenciasPersonalizadas extends Sugerencias{
     
     private void determinarGenerosPeliculaMasVistos(){
         for(Pelicula pelicula: usuario.getHistorialPeliculas()){
-            String genero = pelicula.getGeneroPelicula();
+            String genero = pelicula.getGenero();
             if(generos.get(1).contains(genero)){
                 int indice = generos.get(1).indexOf(genero);
                 cantidad.get(1).set(indice, cantidad.get(1).get(indice)+1);
@@ -74,7 +74,7 @@ public class SugerenciasPersonalizadas extends Sugerencias{
     
     private void determinarGenerosMusicaMasVistos(){
         for(Musica cancion: usuario.getHistorialMusica()){
-            String genero = cancion.getGeneroMusica();
+            String genero = cancion.getGenero();
             if(generos.get(2).contains(genero)){
                 int indice = generos.get(2).indexOf(genero);
                 cantidad.get(2).set(indice, cantidad.get(2).get(indice)+1);
@@ -95,7 +95,7 @@ public class SugerenciasPersonalizadas extends Sugerencias{
     private void determinarSeries(){
         int i = 0;
         while(i < series.size()){
-            if(!(generos.get(0).contains(series.get(i).getGeneroSerie()) 
+            if(!(generos.get(0).contains(series.get(i).getGenero()) 
                     || usuario.getHistorialSeries().contains(series.get(i)))){
                 series.remove(i);
             }
@@ -108,7 +108,7 @@ public class SugerenciasPersonalizadas extends Sugerencias{
     private void determinarPeliculas(){
         int i = 0;
         while(i < peliculas.size()){
-            if(!(generos.get(1).contains(peliculas.get(i).getGeneroPelicula()) 
+            if(!(generos.get(1).contains(peliculas.get(i).getGenero()) 
                     || usuario.getHistorialPeliculas().contains(peliculas.get(i)))){
                 peliculas.remove(i);
             }
@@ -121,7 +121,7 @@ public class SugerenciasPersonalizadas extends Sugerencias{
     private void determinarMusica(){
         int i = 0;
         while(i < musica.size()){
-            if(!(generos.get(2).contains(musica.get(i).getGeneroMusica()) 
+            if(!(generos.get(2).contains(musica.get(i).getGenero()) 
                     || usuario.getHistorialMusica().contains(musica.get(i)))){
                 musica.remove(i);
             }

@@ -16,22 +16,16 @@ import java.util.Comparator;
 public class SugerenciasMasVistos extends Sugerencias{
     public SugerenciasMasVistos(GestorDatos datos){
         super(datos);
-        peliculas.sort(new OrdenarMultimediaPorReproducciones());
-        musica.sort(new OrdenarMultimediaPorReproducciones());
-        series.sort(new OrdenarSeriePorReproducciones());
+        series.sort(new OrdenarPorReproducciones());
+        peliculas.sort(new OrdenarPorReproducciones());
+        musica.sort(new OrdenarPorReproducciones());
     }
     
-    public class OrdenarMultimediaPorReproducciones implements Comparator<Multimedia>{
+    public class OrdenarPorReproducciones implements Comparator<Multimedia>{
         @Override
         public int compare(Multimedia a, Multimedia b){
             return b.getReproducciones() - a.getReproducciones();
         }
     }
-    
-    public class OrdenarSeriePorReproducciones implements Comparator<Serie>{
-        @Override
-        public int compare(Serie a, Serie b){
-            return b.getReproducciones() - a.getReproducciones();
-        }
-    }
+
 }

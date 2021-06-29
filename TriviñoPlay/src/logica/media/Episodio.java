@@ -9,13 +9,14 @@ package logica.media;
  *
  * @author Sudaii
  */
-public class Episodio extends Multimedia{
+public class Episodio extends Reproducible{
     String serie;
     int numEpisodio;
     
-    public Episodio(String direccionArchivo, String titulo, 
-            String fechaString, String direccionPortada, int reproducciones, String serie, int numEpisodio){
-        super(direccionArchivo, titulo, fechaString, direccionPortada, reproducciones);
+    public Episodio(String titulo, String genero, String fechaLanzamientoString, 
+            String direccionPortada, int reproducciones, String direccionArchivo,
+            String serie, int numEpisodio){
+        super(titulo, genero, fechaLanzamientoString, direccionPortada, reproducciones, direccionArchivo);
         tipo = "Episodio";
         this.serie = serie;
         this.numEpisodio = numEpisodio;
@@ -25,7 +26,7 @@ public class Episodio extends Multimedia{
         this.serie = serie;
     }
     
-    private void setNumEpisodio(int numEpisodio){
+    public void setNumEpisodio(int numEpisodio){
         this.numEpisodio = numEpisodio;
     }
     
@@ -45,7 +46,7 @@ public class Episodio extends Multimedia{
     
     @Override
     public String datosEnString(){
-        String datos = tipo+","+datosComunesEnString()+","+serie+","+String.valueOf(numEpisodio);
+        String datos = tipo+","+datosComunesEnString()+","+direccionArchivo+","+serie+","+String.valueOf(numEpisodio);
         return datos;
     }
     

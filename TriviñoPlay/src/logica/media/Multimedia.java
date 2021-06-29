@@ -5,7 +5,6 @@
  */
 package logica.media;
 
-import javafx.scene.image.Image;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -13,46 +12,37 @@ import java.util.Date;
 import java.text.DateFormat;  
 import java.text.SimpleDateFormat;  
 
-/**
+/**`
  *
  * @author Sudaii
  */
 public abstract class Multimedia {
-    private String direccionArchivo, direccionPortada, titulo;
+    private String direccionPortada, titulo, genero;
     protected String tipo;
-    private Calendar fechaLanzamiento;
-    private Image portada;
-    private int reproducciones;
+    private Calendar fecha;
+    protected int reproducciones;
     
-    protected Multimedia(String direccionArchivo, String titulo, 
-            String fechaLanzamientoString, String direccionPortada, int reproducciones){
-        this.direccionArchivo =  direccionArchivo;
-        this.direccionPortada = direccionPortada;
+    protected Multimedia(String titulo, String genero,
+            String fechaString, String direccionPortada, int reproducciones){
         this.titulo = titulo;
-        setFechaLanzamiento(fechaLanzamientoString);
-        portada = new Image(direccionPortada);
+        this.genero = genero;
+        setFecha(fechaString);
+        this.direccionPortada = direccionPortada;
         reproducciones = this.reproducciones;
     }
     
-    public void setDireccionArchivo(String direccionArchivo){
-        this.direccionArchivo = direccionArchivo;
-    }
+
     
     public void setTitulo(String titulo){
         this.titulo = titulo;
     }
     
-    private void setFechaLanzamiento(String fechaString){
+    private void setFecha(String fechaString){
         stringACalendario(fechaString);
     }
     
-    public void setPortada(String direccionPortada){
+    public void setDireccionPortada(String direccionPortada){
        this.direccionPortada = direccionPortada;
-       portada = new Image(direccionPortada);
-    }
-    
-    public String getDireccionArchivo(){
-        return direccionArchivo;
     }
     
     public String getTipo(){
@@ -63,19 +53,23 @@ public abstract class Multimedia {
         return titulo;
     }
     
-    public Calendar getFechaLanzamiento(){
-        return fechaLanzamiento;
+    public String getGenero(){
+        return genero;
     }
     
-    public String getFechaLanzamientoString(){
-        Date fecha = fechaLanzamiento.getTime();
+    public Calendar getFecha(){
+        return fecha;
+    }
+    
+    public String getFechaString(){
+        Date fechaDate = fecha.getTime();
         DateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
         String fechaString = formato.format(fecha);
         return fechaString;
     }
     
-    public Image getPortada(){
-        return portada;
+    public String getDireccionPortada(){
+        return direccionPortada;
     }
     
     public int getReproducciones(){
@@ -87,21 +81,14 @@ public abstract class Multimedia {
         int año = Integer.valueOf(datosSeparados.get(0));
         int mes = Integer.valueOf(datosSeparados.get(1));
         int dia = Integer.valueOf(datosSeparados.get(2));
-        fechaLanzamiento.set(año, mes, dia, 0, 0, 0);
-    }
-    
-    protected void incrementarReproducciones(){
-        reproducciones++;
+        fecha.set(año, mes, dia, 0, 0, 0);
     }
     
     protected String datosComunesEnString(){
-        String datos = titulo+","+getFechaLanzamientoString()+","
-                +String.valueOf(getReproducciones())+","+direccionArchivo
-                +","+direccionPortada;
+        String datos = titulo+","+genero+","+getFechaString()+","
+                +direccionPortada+","+String.valueOf(getReproducciones());
         return datos;
     }
-    
-    public abstract void reproducir();
-    
+        
     public abstract String datosEnString();
 }
