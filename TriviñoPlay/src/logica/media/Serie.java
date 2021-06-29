@@ -18,7 +18,7 @@ public class Serie extends Multimedia {
     public Serie(String titulo, String genero, String fechaString, 
             String direccionPortada, int reproducciones, String descripcion){
         super(titulo, genero, fechaString, direccionPortada, reproducciones);
-        tipo = Serie;
+        tipo = "Serie";
         this.descripcion = descripcion;
     }
 

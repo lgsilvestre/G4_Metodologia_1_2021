@@ -6,6 +6,7 @@
 package logica.sugerencias;
 
 import datos.GestorDatos;
+import logica.DatoHistorial;
 import logica.Cuenta;
 import logica.media.*;
 import java.util.ArrayList;
@@ -25,63 +26,51 @@ public class SugerenciasPersonalizadas extends Sugerencias{
         generos = new ArrayList<>();
         cantidad = new ArrayList<>();
         this.usuario = usuario;
-        determinarGenerosMasVistos();
+        determinarGenerosVistos();
+        ordenarGenerosMasVistos();
         determinarSugerencias();
     }
     
-    private void determinarGenerosMasVistos(){
-        determinarGenerosSerieMasVistos();
-        determinarGenerosPeliculaMasVistos();
-        determinarGenerosMusicaMasVistos();
+    private void determinarGenerosVistos(){
+        for(DatoHistorial datoHistorial: usuario.getHistorial()){
+            Multimedia media = datoHistorial.getMedia();
+            int indiceTipo;
+            switch (media.getTipo()) {
+                case "Serie":
+                    indiceTipo = 0;
+                    break;
+                case "Pelicula":
+                    indiceTipo = 1;
+                    break;
+                case "Musica":
+                    indiceTipo = 2;
+                    break;
+                default:
+                    indiceTipo = 3;
+                    break;
+            }
+            if(indiceTipo != 3){
+                String genero = media.getGenero();
+                if(generos.get(indiceTipo).contains(genero)){
+                    int indice = generos.get(indiceTipo).indexOf(genero);
+                    cantidad.get(indiceTipo).set(indice, cantidad.get(indiceTipo).get(indice)+1);
+                }
+                else{
+                    generos.get(indiceTipo).add(genero);
+                    cantidad.get(indiceTipo).add(0);
+                }                
+            }
+        }
+    }
+    
+    private void ordenarGenerosMasVistos(){
         for(int i = 0; i < cantidad.size(); i++){
             insertionSort(i);
             if(generos.get(i).size() > 3){
-                generos.get(i).subList(3, generos.get(0).size()).clear();
-                cantidad.get(i).subList(3, generos.get(0).size()).clear();
+                generos.get(i).subList(3, generos.get(i).size()).clear();
+                cantidad.get(i).subList(3, generos.get(i).size()).clear();
                 generos.get(i).trimToSize();
                 cantidad.get(i).trimToSize();
-            }
-        }
-    }
-    
-    private void determinarGenerosSerieMasVistos(){
-        for(Serie serie: usuario.getHistorialSeries()){
-            String genero = serie.getGenero();
-            if(generos.get(0).contains(genero)){
-                int indice = generos.get(0).indexOf(genero);
-                cantidad.get(0).set(indice, cantidad.get(0).get(indice)+1);
-            }
-            else{
-                generos.get(0).add(genero);
-                cantidad.get(0).add(0);
-            }
-        }
-    }
-    
-    private void determinarGenerosPeliculaMasVistos(){
-        for(Pelicula pelicula: usuario.getHistorialPeliculas()){
-            String genero = pelicula.getGenero();
-            if(generos.get(1).contains(genero)){
-                int indice = generos.get(1).indexOf(genero);
-                cantidad.get(1).set(indice, cantidad.get(1).get(indice)+1);
-            }
-            else{
-                generos.get(1).add(genero);
-                cantidad.get(1).add(0);
-            }
-        }
-    }
-    
-    private void determinarGenerosMusicaMasVistos(){
-        for(Musica cancion: usuario.getHistorialMusica()){
-            String genero = cancion.getGenero();
-            if(generos.get(2).contains(genero)){
-                int indice = generos.get(2).indexOf(genero);
-                cantidad.get(2).set(indice, cantidad.get(2).get(indice)+1);
-            }
-            else{
-                generos.get(2).add(genero);
-                cantidad.get(2).add(0);
             }
         }
     }
@@ -93,40 +82,55 @@ public class SugerenciasPersonalizadas extends Sugerencias{
     }
     
     private void determinarSeries(){
-        int i = 0;
-        while(i < series.size()){
-            if(!(generos.get(0).contains(series.get(i).getGenero()) 
-                    || usuario.getHistorialSeries().contains(series.get(i)))){
-                series.remove(i);
+        int indiceMultimedia = 0;
+        while(indiceMultimedia < series.size()){
+            boolean repetido = false;
+            for(int indiceHistorial = 0; indiceHistorial < usuario.getHistorial().size() && !repetido; indiceHistorial++){
+                if(series.get(indiceMultimedia).equals(usuario.getHistorial().get(indiceHistorial).getMedia())){
+                    repetido = true;
+                }
+            }
+            if(!generos.get(0).contains(series.get(indiceMultimedia).getGenero()) || repetido){ 
+                series.remove(indiceMultimedia);
             }
             else{
-                i++;
+                indiceMultimedia++;
             }
         }
     }
     
     private void determinarPeliculas(){
-        int i = 0;
-        while(i < peliculas.size()){
-            if(!(generos.get(1).contains(peliculas.get(i).getGenero()) 
-                    || usuario.getHistorialPeliculas().contains(peliculas.get(i)))){
-                peliculas.remove(i);
+        int indiceMultimedia = 0;
+        while(indiceMultimedia < series.size()){
+            boolean repetido = false;
+            for(int indiceHistorial = 0; indiceHistorial < usuario.getHistorial().size() && !repetido; indiceHistorial++){
+                if(peliculas.get(indiceMultimedia).equals(usuario.getHistorial().get(indiceHistorial).getMedia())){
+                    repetido = true;
+                }
+            }
+            if(!generos.get(1).contains(series.get(indiceMultimedia).getGenero()) || repetido){ 
+                peliculas.remove(indiceMultimedia);
             }
             else{
-                i++;
+                indiceMultimedia++;
             }
         }
     }
     
     private void determinarMusica(){
-        int i = 0;
-        while(i < musica.size()){
-            if(!(generos.get(2).contains(musica.get(i).getGenero()) 
-                    || usuario.getHistorialMusica().contains(musica.get(i)))){
-                musica.remove(i);
+        int indiceMultimedia = 0;
+        while(indiceMultimedia < series.size()){
+            boolean repetido = false;
+            for(int indiceHistorial = 0; indiceHistorial < usuario.getHistorial().size() && !repetido; indiceHistorial++){
+                if(musica.get(indiceMultimedia).equals(usuario.getHistorial().get(indiceHistorial).getMedia())){
+                    repetido = true;
+                }
+            }
+            if(!generos.get(2).contains(series.get(indiceMultimedia).getGenero()) || repetido){ 
+                musica.remove(indiceMultimedia);
             }
             else{
-                i++;
+                indiceMultimedia++;
             }
         }
     }

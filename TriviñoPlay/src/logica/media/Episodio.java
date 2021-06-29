@@ -13,10 +13,10 @@ public class Episodio extends Reproducible{
     String serie;
     int numEpisodio;
     
-    public Episodio(String titulo, String genero, String fechaLanzamientoString, 
+    public Episodio(String titulo, String genero, String fechaString, 
             String direccionPortada, int reproducciones, String direccionArchivo,
             String serie, int numEpisodio){
-        super(titulo, genero, fechaLanzamientoString, direccionPortada, reproducciones, direccionArchivo);
+        super(titulo, genero, fechaString, direccionPortada, reproducciones, direccionArchivo);
         tipo = "Episodio";
         this.serie = serie;
         this.numEpisodio = numEpisodio;

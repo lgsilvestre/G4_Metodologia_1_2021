@@ -13,9 +13,7 @@ public class Cuenta {
     private String email;
     private boolean admin;
     private String direccionImagenPerfil;
-    private final ArrayList<Serie> historialSeries;
-    private final ArrayList<Pelicula> historialPeliculas;
-    private final ArrayList<Musica> historialMusica;    
+    private final ArrayList<DatoHistorial> historial; 
     
     public Cuenta(String nombre, String contrasenna, String email, boolean admin, String direccionImagenPerfil){
         this.nombre = nombre;
@@ -23,9 +21,7 @@ public class Cuenta {
         this.email = email;
         this.admin = admin;
         this.direccionImagenPerfil = direccionImagenPerfil;
-        historialSeries = new ArrayList<>();        
-        historialPeliculas = new ArrayList<>();
-        historialMusica = new ArrayList<>();
+        historial = new ArrayList<>();        
     }
     
     public void setNombre(String nombre){
@@ -68,28 +64,8 @@ public class Cuenta {
         return direccionImagenPerfil;
     }
     
-    public ArrayList<Serie> getHistorialSeries(){
-        return historialSeries;
-    }
-    
-    public ArrayList<Pelicula> getHistorialPeliculas(){
-        return historialPeliculas;
-    }
-    
-    public ArrayList<Musica> getHistorialMusica(){
-        return historialMusica;
-    }
-    
-    public void agregarSerie(Serie serie){
-        historialSeries.add(serie);  
-    }
-    
-    public void agregarPelicula(Pelicula pelicula){
-        historialPeliculas.add(pelicula);        
-    }
-    
-    public void agregarMusica(Musica musica){
-        historialMusica.add(musica);  
+    public ArrayList<DatoHistorial> getHistorial(){
+        return historial;
     }
     
     /**
