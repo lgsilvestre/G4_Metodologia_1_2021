@@ -1,10 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Controlador para el reproductor del sistema TrivinoPlay, contiene las funcionalidades
+ * para reproducir, pausar, parar, adelantar, retrasar y reiniciar el contenido.
  */
 package controladores;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
@@ -15,7 +15,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
@@ -29,8 +28,10 @@ import javafx.util.Duration;
  * FXML Controller class
  *
  * @author Fernando
+ * 
  */
 public class ReproductorController implements Initializable {
+    private File file;
     private String path;
     private MediaPlayer mediaPlayer;
     @FXML
@@ -45,18 +46,25 @@ public class ReproductorController implements Initializable {
     private Label timeCurrent;
 
     /**
-     * Initializes the controller class.
+     * Se inicializa el reproductor. 
+     * Se crea la variable media usando la ruta del archivo multimedia.
+     * Se crea la variable mediaplayer para reproducir la media.
+     * Se crea la barra de progreso de la reproduccion, junto con su interaccion
+     * con el mouse.
+     * Se activa la reproduccion del archivo automaticamente.
      */
-    @Override
     public void initialize(URL url, ResourceBundle rb) {
-        path = "File:/C:/Users/Fernando/woman.mp4"; //para testear cambiar path, se puede reproducir mp3 y mp4
+        file = new File("src/multimedia/videos/Hang.mp4");//path para los archivos
+        path = file.toURI().toString();
         if(path != null){
             Media media = new Media(path);
             mediaPlayer = new MediaPlayer(media);
             mediaView.setMediaPlayer(mediaPlayer);
             DoubleProperty widthProp = mediaView.fitWidthProperty();
             DoubleProperty heightProp = mediaView.fitHeightProperty();
-           
+            /**
+             * Se determina el ancho y alto del contenido, si es video.
+             */
             widthProp.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
             heightProp.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
             mediaPlayer.currentTimeProperty().addListener(new ChangeListener<javafx.util.Duration>() {
@@ -66,21 +74,28 @@ public class ReproductorController implements Initializable {
                 }
             }
             );
-           
+           /**
+            * Metodo para presionar sobre la barra de proceso del reproductor.
+            */
             progressBar.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     mediaPlayer.seek(javafx.util.Duration.seconds(progressBar.getValue()));
                 }
             });
-            
+            /**
+             * Metodo para arrastrar sobre la barra de proceso del reproductor.
+             */
             progressBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     mediaPlayer.seek(javafx.util.Duration.seconds(progressBar.getValue()));
                 }
             });
-            
+            /**
+             * Hilo para la reproduccion del contenido multimedia, se obtiene el tiempo actual de reproduccion
+             * y el tiempo total del contenido
+             */
             mediaPlayer.setOnReady(new Runnable() {
                 @Override
                 public void run() {
@@ -93,47 +108,73 @@ public class ReproductorController implements Initializable {
                     progressBar.setMax(total.toSeconds());
                 }
             });
-            
+            /**
+             *Permite reproducir el contenido inmediatamente.
+             */
             mediaPlayer.play();
         }
     }    
     @FXML
+    /**
+     * Metodo para parar el contenido cuando se presione el boton stop.
+     **/
     private void StopMedia(ActionEvent event) {
         mediaPlayer.stop();
     }
 
     @FXML
+    /**
+     * Metodo para reproducir el contenido cuando se presione el boton play.
+     **/
     private void playMedia(ActionEvent event) {
         mediaPlayer.play();
     }
 
     @FXML
+    /**
+     * Metodo para pausar el contenido cuando se presione el boton pause.
+     **/
     private void pauseMedia(ActionEvent event) {
         mediaPlayer.pause();
     }
 
     @FXML
+    /**
+     * Metodo para reiniciar el contenido cuando se presione el boton reset.
+     **/
     private void resetMedia(ActionEvent event) {
         mediaPlayer.seek(Duration.ZERO);
         mediaPlayer.play();
     }
 
     @FXML
+    /**
+     * Metodo para atrasar en 5 seg el contenido cuando se presione el boton prev.
+     **/
     private void prevMedia(ActionEvent event) {
         mediaPlayer.seek(mediaPlayer.getCurrentTime().add(javafx.util.Duration.seconds(-5)));
     }
 
     @FXML
+    /**
+     * Metodo para adelantar en 5 seg el contenido cuando se presione el boton next.
+     **/
     private void nextMedia(ActionEvent event) {
         mediaPlayer.seek(mediaPlayer.getCurrentTime().add(javafx.util.Duration.seconds(5)));
     }
 
     @FXML
+    /**
+     * Metodo para esconder los controles cuando el mouse esta fuera de la ventana.
+     **/
     private void hideControl(MouseEvent event) {
         VboxControl.setVisible(false);
     }
 
     @FXML
+    /**
+     * Metodo para mostrar los controles cuando el mouse esta dentro de la ventana .
+     **/
     private void showControl(MouseEvent event) {
         VboxControl.setVisible(true);
     }

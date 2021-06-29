@@ -27,7 +27,6 @@ public class TriviñoPlay extends Application {
 
             stage.setScene(scene);
             stage.setTitle("TriviñoPlay - Bienvenido");
-            //stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
             stage.show();
         }catch(Exception e){
             System.out.println("Error carga de vista principal");
