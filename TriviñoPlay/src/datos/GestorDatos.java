@@ -9,17 +9,27 @@ import java.util.Scanner;
 import java.io.*;
 
 /**
- *
+ * GestorDatos gestiona el almacenamiento y la lectura de toda la base de datos 
+ * del sistema, desde las cuentas a los archivos multimedia.
  * @author Sudaii
  */
 public class GestorDatos {
+    //cuentas: lista de todas las cuentas en el sistema.
     private ArrayList<Cuenta> cuentas;
+    //series: lista de todas las series en el sistema.
     private ArrayList<Serie> series;
+    //episodios: lista de todos los episodios en el sistema.
     private ArrayList<Episodio> episodios;
+    //peliculas: lista de todas las peliculas en el sistema.
     private ArrayList<Pelicula> peliculas;
+    //musica: lista de toda la musica en el sistema.
     private ArrayList<Musica> musica;
+    //direccionDatosCuentas: dirección donde se almacena los datos de las cuentas.
     private final String direccionDatosCuentas = "src/datos/DatosCuentas.txt";
+    //direccionDatosCuentas: dirección donde se almacena los datos de 
+    //los archivos multimedia.
     private final String direccionDatosMultimedia = "src/datos/DatosMultimedia.txt";
+    //direccionDatosHistorial: dirección donde se almacena los datos del historial.
     private final String direccionDatosHistorial = "src/datos/DatosHistorial.txt";
     
     public GestorDatos(){

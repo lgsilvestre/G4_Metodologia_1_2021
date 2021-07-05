@@ -7,10 +7,6 @@ package logica.media;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.text.DateFormat;  
-import java.text.SimpleDateFormat;  
 
 /**`
  *
@@ -19,7 +15,7 @@ import java.text.SimpleDateFormat;
 public abstract class Multimedia {
     private String direccionPortada, titulo, genero;
     protected String tipo;
-    private Calendar fecha;
+    private int[] fecha;
     protected int reproducciones;
     
     protected Multimedia(String titulo, String genero,
@@ -31,14 +27,16 @@ public abstract class Multimedia {
         reproducciones = this.reproducciones;
     }
     
-
-    
     public void setTitulo(String titulo){
         this.titulo = titulo;
     }
     
+    public void setGenero(String genero){
+        this.genero = genero;
+    }
+    
     private void setFecha(String fechaString){
-        stringACalendario(fechaString);
+        stringAFecha(fechaString);
     }
     
     public void setDireccionPortada(String direccionPortada){
@@ -57,14 +55,12 @@ public abstract class Multimedia {
         return genero;
     }
     
-    public Calendar getFecha(){
+    public int[] getFecha(){
         return fecha;
     }
     
     public String getFechaString(){
-        Date fechaDate = fecha.getTime();
-        DateFormat formato = new SimpleDateFormat("yyyy-mm-dd");
-        String fechaString = formato.format(fecha);
+        String fechaString = fecha[0]+"-"+fecha[1]+"-"+fecha[2];
         return fechaString;
     }
     
@@ -76,13 +72,11 @@ public abstract class Multimedia {
         return reproducciones;
     }
     
-    private void stringACalendario(String fechaString){
+    private void stringAFecha(String fechaString){
         ArrayList<String> datosSeparados = new ArrayList<>(Arrays.asList(fechaString.split("-")));
-        int año = Integer.valueOf(datosSeparados.get(0));
-        int mes = Integer.valueOf(datosSeparados.get(1));
-        int dia = Integer.valueOf(datosSeparados.get(2));
-        //fecha.set(año, mes, dia, 0, 0, 0);
-        fecha.set(año, mes, dia);
+        fecha[0] = Integer.valueOf(datosSeparados.get(0));
+        fecha[1] = Integer.valueOf(datosSeparados.get(1));
+        fecha[2] = Integer.valueOf(datosSeparados.get(2));
     }
     
     protected String datosComunesEnString(){
