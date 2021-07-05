@@ -3,78 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica.Media;
+package logica.media;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import javafx.scene.image.Image;
 
 /**
  *
  * @author Sudaii
  */
-public class Serie {
+public class Serie extends Multimedia {
     private ArrayList<Episodio> episodios;
-    private String titulo, generoSerie, descripcion, direccionPortada;
-    private Calendar primerLanzamiento, ultimoLanzamiento;
-    private int reproducciones;
-    private Image portada;
+    private String descripcion;
     
-    public Serie(String titulo, String generoSerie, String descripcion, String direccionPortada){
-        this.titulo = titulo;
-        this.generoSerie = generoSerie;
+    public Serie(String titulo, String genero, String fechaString, 
+            String direccionPortada, int reproducciones, String descripcion){
+        super(titulo, genero, fechaString, direccionPortada, reproducciones);
+        tipo = "Serie";
         this.descripcion = descripcion;
-        this.direccionPortada = direccionPortada;
-        portada = new Image(direccionPortada);
-        primerLanzamiento.set(0, 0, 0, 0, 0, 0);
-        ultimoLanzamiento.set(0, 0, 0, 0, 0, 0);
-        reproducciones = 0;
     }
-    
-    public void setTitulo(String titulo){
-        this.titulo = titulo;
-        episodios.forEach((episodio) -> {
-            episodio.setSerie(titulo);
-        });
-    }
-    
-    public void setGeneroSerie(String generoSerie){
-        this.generoSerie = generoSerie;
-    }
-    
+
     public void setDescripcion(String descripcion){
         this.descripcion = descripcion;
-    }
-    
-    public void setPortada(String direccionPortada){
-        this.direccionPortada = direccionPortada;
-        portada = new Image(direccionPortada);
     }
     
     public ArrayList<Episodio> getEpisodios(){
         return episodios;
     }
     
-    public String getTitulo(){
-        return titulo;
-    }
-    
-    public String getGeneroSerie(){
-        return generoSerie;
-    }
-    
     public String getDescripcion(){
         return descripcion;
     }
-    
-    public int getReproducciones(){
-        return reproducciones;
-    }
-    
-    public Image getPortada(){
-        return portada;
-    }
-    
+
     public void agregarEpisodio(Episodio episodio){
         if(existeEpisodio(episodio.getNumEpisodio())){
             episodios.remove(episodio.getNumEpisodio());
@@ -87,7 +46,6 @@ public class Serie {
                     index++){}
             episodios.add(index, episodio);
         }
-        actualizarFechas();
         actualizarReproducciones();
     }
     
@@ -95,6 +53,7 @@ public class Serie {
         boolean removido = false;
         if(existeEpisodio(numEpisodio)){
             episodios.remove(numEpisodio);
+                actualizarReproducciones();
         }
         return removido;
     }
@@ -121,19 +80,9 @@ public class Serie {
         });
     }
     
-    private void actualizarFechas(){
-        for (Episodio episodio : episodios) {
-            if(primerLanzamiento.after(episodio.getFechaLanzamiento())){
-                primerLanzamiento = episodio.getFechaLanzamiento();
-            }
-            if(episodio.getFechaLanzamiento().after(ultimoLanzamiento)){
-                ultimoLanzamiento = episodio.getFechaLanzamiento();
-            }
-        }
-    }
-    
+    @Override
     public String datosEnString(){
-        String datos = titulo+","+generoSerie+","+descripcion+","+direccionPortada;
+        String datos = tipo+","+datosComunesEnString()+","+descripcion;
         return datos;
     }
 }

@@ -1,30 +1,35 @@
 package logica;
 
+import java.util.ArrayList;
+import logica.media.Multimedia;
+        
 /**
  *
  * @author Sudaii
  */
 public class Cuenta {
     private String nombre;
-    private String contraseña;
+    private String contrasenna;
     private String email;
     private boolean admin;
     private String direccionImagenPerfil;
+    private final ArrayList<DatoHistorial> historial; 
     
-    public Cuenta(String nombre, String contraseña, String email, boolean admin, String direccionImagenPerfil){
+    public Cuenta(String nombre, String contrasenna, String email, boolean admin, String direccionImagenPerfil){
         this.nombre = nombre;
-        this.contraseña = contraseña;
+        this.contrasenna = contrasenna;
         this.email = email;
         this.admin = admin;
         this.direccionImagenPerfil = direccionImagenPerfil;
+        historial = new ArrayList<>();        
     }
     
     public void setNombre(String nombre){
         this.nombre = nombre;
     }
     
-    public void setContraseña(String contraseña){
-        this.contraseña = contraseña;
+    public void setContrasenna(String contrasenna){
+        this.contrasenna = contrasenna;
     }
     
     public void setEmail(String email){
@@ -43,8 +48,8 @@ public class Cuenta {
         return nombre;
     }
     
-    public String getContraseña(){
-        return contraseña;
+    public String getContrasenna(){
+        return contrasenna;
     }
     
     public String getEmail(){
@@ -59,22 +64,45 @@ public class Cuenta {
         return direccionImagenPerfil;
     }
     
-    /**
-     * Retorna si la contraseña ingresada es igual a la contraseña actual del usuario.
-     * @param contraseña la contraseña ingresada
-     * @return           si la contraseña ingresada es igual a la contraseña actual del usuario
-     */
-    public boolean esContraseñaActual(String contraseña){
-        return contraseña.equals(this.contraseña);
+    public ArrayList<DatoHistorial> getHistorial(){
+        return historial;
     }
     
-    public boolean cambiarContrasena(String contraseñaActual, String contraseñaNueva){
-        if(esContraseñaActual(contraseñaActual)){
-            contraseña = contraseñaNueva;
+    /**
+     * Retorna si la contrasenna ingresada es igual a la contrasenna actual del usuario.
+     * @param contrasenna la contrasenna ingresada
+     * @return           si la contrasenna ingresada es igual a la contrasenna actual del usuario
+     */
+    public boolean esContrasennaActual(String contrasenna){
+        return contrasenna.equals(this.contrasenna);
+    }
+    
+    public boolean cambiarContrasena(String contrasennaActual, String contrasennaNueva){
+        if(esContrasennaActual(contrasennaActual)){
+            contrasenna = contrasennaNueva;
             return true;
         }
         else{
             return false;
+        }
+    }
+    
+    public void agregarAHistorial(Multimedia media, boolean completado){
+        boolean repetido = false;
+        int indice = 0;
+        while(indice < historial.size() && !repetido){
+            if(media.equals(historial.get(indice).getMedia())){
+                repetido = true;
+            }
+            else{
+                indice++;
+            }
+        }
+        if(repetido){
+            historial.get(indice).setCompletado(completado);
+        }
+        else{
+            historial.add(new DatoHistorial(media, completado));
         }
     }
     
@@ -83,7 +111,7 @@ public class Cuenta {
         if(admin){
             adminString = "true";
         }
-        String datos = nombre+","+contraseña+","+email+","+adminString+","+direccionImagenPerfil;
+        String datos = nombre+","+contrasenna+","+email+","+adminString+","+direccionImagenPerfil;
         return datos;
     }
 }

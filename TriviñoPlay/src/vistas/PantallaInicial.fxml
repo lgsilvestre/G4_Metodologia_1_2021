@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.PantallaInicialController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="75.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f9c007" height="525.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+      <ImageView fitHeight="84.0" fitWidth="130.0" layoutX="-8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos/Imagenes/Iconos/LogoGrupoTriviño.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="91.0" layoutY="23.0" mnemonicParsing="false" style="-fx-background-color: #1a1a1a;" text="Inicio" textFill="#f9c007">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="148.0" layoutY="23.0" mnemonicParsing="false" onAction="#irSeries" style="-fx-background-color: #1a1a1a;" text="Serie" textFill="#f9c007">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="203.0" layoutY="23.0" mnemonicParsing="false" onAction="#irPeliculas" style="-fx-background-color: #1a1a1a;" text="Peliculas" textFill="#f9c007">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="409.0" layoutY="23.0" mnemonicParsing="false" onAction="#irMusicales" style="-fx-background-color: #1a1a1a;" text="Musicales" textFill="#f9c007">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="285.0" layoutY="23.0" mnemonicParsing="false" onAction="#irDocumentales" style="-fx-background-color: #1a1a1a;" text="Documentales" textFill="#f9c007">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="browser" layoutX="568.0" layoutY="28.0" onAction="#irResultadoBusqueda" text="Busqueda" />
+      <ImageView fx:id="imagenPerfil" fitHeight="75.0" fitWidth="75.0" layoutX="725.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../recursos/Imagenes/Perfil/MarioHugo.jpg" />
+         </image>
+      </ImageView>
+      <ScrollPane layoutY="75.0" prefHeight="525.0" prefWidth="800.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="783.0" style="-fx-background-color: #f9c007;">
+               <children>
+                  <Text layoutX="15.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lo Más Nuevo">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="15.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Continuar Viendo">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="15.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lo Mas Popular">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="15.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ultimas Series Agregadas">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="15.0" layoutY="650.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ultimas Peliculas Agregadas">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <GridPane fx:id="grid2" layoutX="15.0" layoutY="221.0" prefHeight="94.0" prefWidth="742.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+                  <GridPane fx:id="grid1" layoutX="15.0" layoutY="71.0" prefHeight="94.0" prefWidth="742.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+               </children></AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
