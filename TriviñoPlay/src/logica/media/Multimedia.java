@@ -81,7 +81,8 @@ public abstract class Multimedia {
         int año = Integer.valueOf(datosSeparados.get(0));
         int mes = Integer.valueOf(datosSeparados.get(1));
         int dia = Integer.valueOf(datosSeparados.get(2));
-        fecha.set(año, mes, dia, 0, 0, 0);
+        //fecha.set(año, mes, dia, 0, 0, 0);
+        fecha.set(año, mes, dia);
     }
     
     protected String datosComunesEnString(){

@@ -21,7 +21,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import logica.Media.Pelicula;
+import logica.media.Pelicula;
 
 /**
  * FXML Controller class

@@ -27,6 +27,7 @@ public class GestorDatos {
         series = new ArrayList<>();
         peliculas = new ArrayList<>();
         musica = new ArrayList<>();
+        episodios = new ArrayList<>();
         leerCuentas();
         leerMultimedia();
     }
