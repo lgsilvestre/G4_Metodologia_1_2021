@@ -3,23 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica.Media;
+package logica.media;
 
 /**
  *
  * @author Sudaii
  */
-public class Musica extends Multimedia{
-    String album, artista, generoMusica;
+public class Musica extends Reproducible{
+    private String album, artista;
     
-    public Musica(String direccionArchivo, String titulo, 
-            String fechaString, String direccionPortada, int reproducciones, 
-            String album, String artista, String generoMusica){
-        super(direccionArchivo, titulo, fechaString, direccionPortada, reproducciones);
+    public Musica(String titulo, String genero, String fechaString, 
+            String direccionPortada, int reproducciones, String direccionArchivo,
+            String album, String artista){
+        super(titulo, genero, fechaString, direccionPortada, reproducciones, direccionArchivo);
         tipo = "Musica";
         this.album = album;
         this.artista = artista;
-        this.generoMusica = generoMusica;
     }
     
     public void setAlbum(String album){
@@ -29,21 +28,13 @@ public class Musica extends Multimedia{
     public void setArtista(String artista){
         this.artista = artista;
     }
-    
-    public void setGeneroMusica(String generoMusica){
-        this.generoMusica = generoMusica;
-    }
-    
+
     public String getAlbum(){
         return album;
     }
     
     public String getArtista(){
         return artista;
-    }
-    
-    public String generoMusica(){
-        return generoMusica;
     }
     
     @Override
@@ -54,7 +45,8 @@ public class Musica extends Multimedia{
     
     @Override
     public String datosEnString(){
-        String datos = tipo+","+datosComunesEnString()+album+","+artista+","+generoMusica;
+        String datos = tipo+","+datosComunesEnString()+","+direccionArchivo+","
+                +album+","+artista;
         return datos;
     }
 }

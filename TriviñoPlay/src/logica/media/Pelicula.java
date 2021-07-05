@@ -3,23 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logica.Media;
+package logica.media;
 
 /**
  *
  * @author Sudaii
  */
-public class Pelicula extends Multimedia{
-    String director, descripcion, generoPelicula;
+public class Pelicula extends Reproducible{
+    private String director, descripcion;
     
-    public Pelicula(String direccionArchivo, String titulo, 
-            String fechaString, String direccionPortada, int reproducciones, 
-            String director, String descripcion, String generoPelicula){
-        super(direccionArchivo, titulo, fechaString, direccionPortada, reproducciones);
+    public Pelicula(String titulo, String genero, String fechaString, 
+            String direccionPortada, int reproducciones, String direccionArchivo,
+            String director, String descripcion){
+        super(titulo, genero, fechaString, direccionPortada, reproducciones, direccionArchivo);
         tipo = "Pelicula";
         this.director = director;
         this.descripcion = descripcion;
-        this.generoPelicula = generoPelicula;
     }
     
     public void setDirector(String director){
@@ -30,10 +29,6 @@ public class Pelicula extends Multimedia{
         this.descripcion = descripcion;      
     }
     
-    public void setGeneroPelicula(String generoPelicula){
-        this.generoPelicula = generoPelicula;
-    }
-    
     public String getDirector(){
         return director;
     }
@@ -41,11 +36,7 @@ public class Pelicula extends Multimedia{
     public String getDescripcion(){
         return descripcion;
     }
-    
-    public String getGeneroPelicula(){
-        return generoPelicula;
-    }
-    
+
     @Override
     public void reproducir() {
         incrementarReproducciones();
@@ -54,8 +45,8 @@ public class Pelicula extends Multimedia{
     
     @Override
     public String datosEnString(){
-        String datos = tipo+","+datosComunesEnString()+","+director+","
-                +descripcion+","+generoPelicula;
+        String datos = tipo+","+datosComunesEnString()+","+direccionArchivo+","
+                +director+","+descripcion;
         return datos;
     }
     
