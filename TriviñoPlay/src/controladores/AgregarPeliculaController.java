@@ -5,17 +5,23 @@
  */
 package controladores;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+import logica.Media.Pelicula;
 
 /**
  * FXML Controller class
@@ -49,13 +55,24 @@ public class AgregarPeliculaController implements Initializable {
     
     private final String colorSobre = "-fx-background-color: #000000";
     private final String colorFuera = "-fx-background-color: #ff9100";
+    
+    private File seleccionArchivo;
+    private File seleccionImagen;
+    private final ExtensionFilter all = new ExtensionFilter("Todos los archivos","*.*");
+    private final ExtensionFilter video1 = new ExtensionFilter("Archivo mp4","*mp4");
+    private final ExtensionFilter video2 = new ExtensionFilter("Archivo avi","*avi");
+    
+    private final ExtensionFilter imagen1 = new ExtensionFilter("Archivo jpg","*jpg");
+    private final ExtensionFilter imagen2 = new ExtensionFilter("Archivo jpg","*jpeg");
+    private final ExtensionFilter imagen3 = new ExtensionFilter("Archivo png","*png");
+    
+    private Pelicula nuevaPelicula;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 
     @FXML
@@ -70,6 +87,13 @@ public class AgregarPeliculaController implements Initializable {
 
     @FXML
     private void elegirArchivo(ActionEvent event) {
+        Stage emergente = new Stage();
+        FileChooser elector = new FileChooser();
+        elector.getExtensionFilters().addAll(video1,video2,all);
+        
+        seleccionArchivo = elector.showOpenDialog(emergente);
+        
+        labelArchivo.setText(seleccionArchivo.getAbsolutePath());
     }
 
     @FXML
@@ -84,6 +108,13 @@ public class AgregarPeliculaController implements Initializable {
 
     @FXML
     private void elegirImagen(ActionEvent event) {
+        Stage emergente = new Stage();
+        FileChooser elector = new FileChooser();
+        elector.getExtensionFilters().addAll(imagen1,imagen2, imagen3,all);        
+        
+        seleccionImagen = elector.showOpenDialog(emergente);        
+        
+        labelImagen.setText(seleccionImagen.getAbsolutePath());
     }
 
     @FXML
@@ -98,6 +129,36 @@ public class AgregarPeliculaController implements Initializable {
 
     @FXML
     private void agregar(ActionEvent event) {
+        String titulo = campoTitulo.getText().trim();
+        String genero = campoGenero.getText().trim();
+        String fecha = campoFecha.getValue().toString().trim();
+        String direccionPortada = labelImagen.getText().trim();
+        String direccionArchivo = labelArchivo.getText().trim();
+        String director = campoDirector.getText().trim();
+        String descripcion = campoDescripcion.getText().trim();
+        int reproduccion = 0;
+        
+        System.out.println(fecha);
+        
+        Pelicula comprobarPelicula = new Pelicula (titulo,genero,fecha,direccionPortada,reproduccion,direccionArchivo,director,descripcion);
+        
+        if (comprobarExistencia(comprobarPelicula)){
+            this.nuevaPelicula = comprobarPelicula;
+            Alert confirmacion = new Alert (Alert.AlertType.CONFIRMATION);
+            confirmacion.setHeaderText(null);
+            confirmacion.setTitle("Agregado");
+            confirmacion.setContentText("Se ha ingresado la pelicula correctamente");
+            confirmacion.showAndWait();
+            
+            Stage stage = (Stage) this.botonAgregar.getScene().getWindow();
+            stage.close();
+        }else{
+            Alert error = new Alert (Alert.AlertType.ERROR);
+            error.setHeaderText(null);
+            error.setTitle("Error!");
+            error.setContentText("Hay un campo vacio, favor rellenar todos los datos");
+            error.showAndWait();
+        }
     }
 
     @FXML
@@ -112,6 +173,12 @@ public class AgregarPeliculaController implements Initializable {
 
     @FXML
     private void cancelar(ActionEvent event) {
+       Stage stageAgregarPelicula = (Stage) botonCancelar.getScene().getWindow();
+       stageAgregarPelicula.close();
+    }
+    
+    private boolean comprobarExistencia(Pelicula pelicula) {
+        return true;
     }
     
 }

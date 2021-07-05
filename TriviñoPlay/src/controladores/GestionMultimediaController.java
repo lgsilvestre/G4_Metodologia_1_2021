@@ -126,13 +126,7 @@ public class GestionMultimediaController implements Initializable {
 
     @FXML
     private void cambio(ActionEvent event) {
-        if (this.comboBoxMultimedia.getValue().toString().equalsIgnoreCase(multimedia[0])){
-            System.out.println("lista peliculas");
-        }else if (this.comboBoxMultimedia.getValue().toString().equalsIgnoreCase(multimedia[1])){
-            System.out.println("lista musica");
-        }else if (this.comboBoxMultimedia.getValue().toString().equalsIgnoreCase(multimedia[2])){
-            System.out.println("lista series");
-        }
+        /*Completitud del evento con FXMLLoader, no es necesario codigo*/
     }
 
     @FXML
@@ -147,6 +141,18 @@ public class GestionMultimediaController implements Initializable {
 
     @FXML
     private void agregarMedio(ActionEvent event) {
+        if (this.comboBoxMultimedia.getValue().equals(multimedia[0])){
+            cargaAgregarPelicula();
+        }else if (this.comboBoxMultimedia.getValue().equals(multimedia[1])){
+            cargaAgregarMusica();
+        }
+        else if (this.comboBoxMultimedia.getValue().equals(multimedia[2])){
+            cargaAgregarSerie();
+        }
+        
+    }
+    
+    private void cargaAgregarPelicula(){
         try{
             loaderEmergente = new FXMLLoader(getClass().getResource("/vistas/AgregarPelicula.fxml"));
 
@@ -172,10 +178,16 @@ public class GestionMultimediaController implements Initializable {
                 this.tablaCuentas.refresh();
                 actualizarBaseDatosCuentas();               
             }  */          
-        }catch(IOException e){}       
-        
+        }catch(IOException e){}  
     }
-
+    
+    private void cargaAgregarMusica(){
+        System.out.println("cargaagregarmusica");        
+    }
+    
+    private void cargaAgregarSerie(){
+        System.out.println("cargaagregarserie");  
+    }
     @FXML
     private void fueraBotonEditar(MouseEvent event) {
         botonEditarMedio.setStyle(colorFuera);
