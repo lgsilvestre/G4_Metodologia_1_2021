@@ -4,3 +4,4 @@ Prueba datos,dato,dato@dato.com,false,file:src/recursos/Imagenes/Perfil/Policarp
 Fernando Ibacache,pass321,test5@gmail.com,false,file:src/recursos/Imagenes/Perfil/Huachimingo.png
 0,0,0,true,file:src/recursos/Imagenes/Perfil/imagendefecto.jpg
 Elías Ocque,test12345,test@gmail.com,true,file:src/recursos/Imagenes/Perfil/Juanin.png
+1,1,1,false,file:src/recursos/Imagenes/Perfil/imagendefecto.jpg
