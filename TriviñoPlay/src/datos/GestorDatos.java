@@ -32,6 +32,9 @@ public class GestorDatos {
     //direccionDatosHistorial: dirección donde se almacena los datos del historial.
     private final String direccionDatosHistorial = "src/datos/DatosHistorial.txt";
     
+    /**
+     * Constructor de GestorDatos. Inicializa las listas y lee la base de datos.
+     */
     public GestorDatos(){
         cuentas = new ArrayList<>();
         series = new ArrayList<>();
@@ -42,51 +45,75 @@ public class GestorDatos {
         leerMultimedia();
     }
     
+    /**
+     * Cambia la lista de cuentas a la lista ingresada.
+     * @param cuentas la nueva lista de cuentas
+     */
     public void setCuentas(ArrayList<Cuenta> cuentas){
         this.cuentas = cuentas;
     }
     
+     /**
+     * Cambia la lista de series a la lista ingresada.
+     * @param series la nueva lista de series
+     */
     public void setSeries(ArrayList<Serie> series){
         this.series = series;
     }
+    
+    /**
+     * Cambia la lista de peliculas a la lista ingresada.
+     * @param peliculas la nueva lista de peliculas
+     */
     public void setPeliculas(ArrayList<Pelicula> peliculas){
         this.peliculas = peliculas;
     }
 
+    /**
+     * Cambia la lista de musica a la lista ingresada.
+     * @param musica la nueva lista de musica
+     */
     public void setMusica(ArrayList<Musica> musica){
         this.musica = musica;
     }
 
+    /**
+     * Retorna la lista de cuentas
+     * @return la lista de cuentas
+     */
     public ArrayList<Cuenta> getCuentas(){
         return cuentas;
     }
     
+    /**
+     * Retorna la lista de series
+     * @return la lista de series
+     */
     public ArrayList<Serie> getSeries(){
         return series;
     }
     
+    /**
+     * Retorna la lista de peliculas
+     * @return la lista de peliculas
+     */
     public ArrayList<Pelicula> getPeliculas(){
         return peliculas;
     }
     
+    /**
+     * Retorna la lista de musica
+     * @return la lista de musica
+     */
     public ArrayList<Musica> getMusica(){
         return musica;
     }
-    
-    public void agregarCuenta(Cuenta cuenta){
-        cuentas.add(cuenta);
-    }
-    
-    public void eliminarCuenta(String email){
-        boolean cuentaEliminada = false;
-        for(int index = 0; index < cuentas.size() && !cuentaEliminada; index++){
-            if(email.equals(cuentas.get(index).getEmail())){
-                cuentas.remove(index);
-                cuentaEliminada = true;
-            }
-        }
-    }
 
+    /**
+     * Agrega un episodio a una serie
+     * @param episodio episodio a agregar
+     * @return  si se agrego exitosamente
+     */
     public boolean agregarEpisodio(Episodio episodio){
         boolean episodioAgregado = false;
         for(int index = 0; index < series.size() && !episodioAgregado; index++){
@@ -98,6 +125,9 @@ public class GestorDatos {
         return episodioAgregado;
     }
         
+    /**
+     * Lee la base de datos y genera una lista con las cuentas en ella
+     */
     private void leerCuentas(){
         File datosCuentas = new File(direccionDatosCuentas);
         if(datosCuentas.exists()){
@@ -124,6 +154,9 @@ public class GestorDatos {
         }
     }
     
+    /**
+     * Lee la base de datos y genera una lista con los archivos multimedia en ella
+     */
     private void leerMultimedia(){
         File datosMultimedia = new File(direccionDatosMultimedia);
         if(datosMultimedia.exists()){
@@ -183,6 +216,9 @@ public class GestorDatos {
         }
     }
     
+    /**
+     * Vincula cada episodio en la lista a su serie respectiva
+     */
     private void vincularEpisodios(){
         while(!episodios.isEmpty()){
             Episodio episodio = episodios.remove(0);
@@ -196,6 +232,9 @@ public class GestorDatos {
         }
     }
     
+    /**
+     * Lee la base de datos y genera el historial de cada usuario
+     */
     private void leerHistorial(){
         File datosHistorial = new File(direccionDatosHistorial);
         if(datosHistorial.exists()){
@@ -221,6 +260,14 @@ public class GestorDatos {
         }
     }
     
+    /**
+     * Agrega una referencia a un objeto Multimedia al historial de un usuario
+     * @param email correo del usuario
+     * @param tipo tipo del objeto Multimedia a agregar al historial
+     * @param titulo del objeto Multimedia a agregar al historial
+     * @param completado si el usuario completo su reproducción
+     * @return si se agrego exitosamente
+     */
     private boolean agregarAHistorial(String email, String tipo, String titulo, boolean completado){
         switch (tipo) {
             case "Serie":
@@ -261,6 +308,13 @@ public class GestorDatos {
         return false;
     }
     
+    /**
+     * Agrega un objeto Multimedia al historial de un usuario
+     * @param email correo del usuario
+     * @param media objeto Multimedia a agregar al historial
+     * @param completado si el usuario completo su reproducción
+     * @return si se agrego exitosamente
+     */
     private boolean agregarAHistorial(String email, Multimedia media, boolean completado){
         for(int index = 0; index < cuentas.size(); index++){
             if(email.equals(cuentas.get(index).getEmail())){
@@ -271,6 +325,9 @@ public class GestorDatos {
         return false;
     }
     
+    /**
+     * Almacena la lista de cuentas en la base de datos
+     */
     public void almacenarCuentas(){
         File datosCuentasViejos = new File(direccionDatosCuentas);
         datosCuentasViejos.delete();
@@ -288,6 +345,9 @@ public class GestorDatos {
         } catch (IOException ex) {}
     }
     
+    /**
+     * Almacena la lista de objetos Multimedia en la base de datos
+     */
     public void almacenarMultimedia(){
         File datosMultimediaViejos = new File(direccionDatosMultimedia);
         datosMultimediaViejos.delete();
@@ -318,6 +378,9 @@ public class GestorDatos {
         } catch (IOException ex) {}
     }
     
+    /**
+     * Almacena el historial de cada usuario en la base de datos
+     */
     public void almacenarHistorial(){
         File datosHistorialViejos = new File(direccionDatosHistorial);
         datosHistorialViejos.delete();
