@@ -8,7 +8,6 @@ package controladores;
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -100,7 +99,7 @@ public class EditarPeliculaController implements Initializable {
         this.campoTituloActual.setText(this.peliculaActual.getTitulo());
         this.campoGeneroActual.setText(this.peliculaActual.getGenero());
         this.campoDirectorActual.setText(this.peliculaActual.getDirector());
-        this.campoFechaActual.setValue(LocalDate.of(this.peliculaActual.getFecha()[0],this.peliculaActual.getFecha()[1]-1, this.peliculaActual.getFecha()[2]-1));
+        this.campoFechaActual.setValue(LocalDate.of(this.peliculaActual.getFecha()[0],this.peliculaActual.getFecha()[1], this.peliculaActual.getFecha()[2]));
         this.campoDescripcionActual.setText(this.peliculaActual.getDescripcion());
         
         // Elementos de la pelicula nueva modificables
