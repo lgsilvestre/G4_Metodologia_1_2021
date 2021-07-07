@@ -13,8 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import logica.UsuarioLog;
@@ -37,6 +37,8 @@ public class PantallaInicialController implements Initializable {
     private GridPane grid2;
     @FXML
     private GridPane grid1;
+    @FXML
+    private ScrollPane browserPane;
 
     private GestorDatos gestorDatos;
     private UsuarioLog logDatos;
@@ -69,6 +71,12 @@ public class PantallaInicialController implements Initializable {
 
     @FXML
     private void irResultadoBusqueda(ActionEvent event) {
+        if (browser.getText().isEmpty()) {
+            browserPane.setVisible(false);
+        }
+        else{
+            browserPane.setVisible(true);
+        }
     }
 
     /*public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada) {
