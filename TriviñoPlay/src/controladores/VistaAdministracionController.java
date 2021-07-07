@@ -103,8 +103,28 @@ public class VistaAdministracionController implements Initializable {
     }
 
     @FXML
-    private void gestionarMultimedia(ActionEvent event) {
-        System.out.println("Gestion Multimedia");
+    private void gestionarMultimedia(ActionEvent event) {               
+        loaderGestion = new FXMLLoader(getClass().getResource("/vistas/GestionMultimedia.fxml"));
+        
+        try {
+            Parent raiz = loaderGestion.load();            
+            GestionMultimediaController controlador = loaderGestion.getController();
+            controlador.iniciarAtributos(gestorDatos, logDatos, botonGestorMultimedia);
+            
+            Scene escenaGestionMultimedia = new Scene(raiz);
+            Stage stage = new Stage();
+            stage.setTitle("Gestion Multimedia");
+            stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
+            
+            Stage ventanaAdministracion = (Stage)this.botonGestorMultimedia.getScene().getWindow();
+            ventanaAdministracion.hide();
+            
+            stage.setScene(escenaGestionMultimedia);
+            stage.show();            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(VistaAdministracionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @FXML

@@ -25,6 +25,7 @@ public abstract class Multimedia {
     private int[] fecha;
     //reproducciones: numero de veces que se ha reproducido el objeto Multimedia
     protected int reproducciones;
+    private String fechaString;
     
     /**
      * Constructor Multimedia. Genera un objeto Multimedia con los datos ingresados.
@@ -39,9 +40,11 @@ public abstract class Multimedia {
             String fechaString, String direccionPortada, int reproducciones){
         this.titulo = titulo;
         this.genero = genero;
+        fecha = new int[3];
         setFecha(fechaString);
+        this.fechaString = fechaString;
         this.direccionPortada = direccionPortada;
-        reproducciones = this.reproducciones;
+        reproducciones = this.reproducciones;        
     }
     
     /**
