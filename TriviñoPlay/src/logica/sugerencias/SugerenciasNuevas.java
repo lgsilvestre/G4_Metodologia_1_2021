@@ -8,7 +8,6 @@ package logica.sugerencias;
 import datos.GestorDatos;
 import java.util.Comparator;
 import logica.media.Multimedia;
-import logica.media.Serie;
 
 /**
  *
@@ -25,7 +24,9 @@ public class SugerenciasNuevas extends Sugerencias{
     public class OrdenarPorFecha implements Comparator<Multimedia>{
         @Override
         public int compare(Multimedia a, Multimedia b){
-            return b.getFecha().compareTo(a.getFecha());
+            return 0;
+            //return b.getFecha().compareTo(a.getFecha());
         }
     }
+    
 }

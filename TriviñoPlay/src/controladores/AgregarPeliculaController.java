@@ -7,6 +7,7 @@ package controladores;
 
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,6 +74,7 @@ public class AgregarPeliculaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        campoFecha.setValue(LocalDate.now());
     }    
 
     @FXML
@@ -93,7 +95,10 @@ public class AgregarPeliculaController implements Initializable {
         
         seleccionArchivo = elector.showOpenDialog(emergente);
         
-        labelArchivo.setText(seleccionArchivo.getAbsolutePath());
+        if (seleccionArchivo != null){
+            labelArchivo.setText(seleccionArchivo.getAbsolutePath());
+        }
+        
     }
 
     @FXML
@@ -114,7 +119,10 @@ public class AgregarPeliculaController implements Initializable {
         
         seleccionImagen = elector.showOpenDialog(emergente);        
         
-        labelImagen.setText(seleccionImagen.getAbsolutePath());
+        if (seleccionImagen != null){
+            labelImagen.setText(seleccionImagen.getAbsolutePath());
+        }
+        
     }
 
     @FXML
@@ -137,9 +145,7 @@ public class AgregarPeliculaController implements Initializable {
         String director = campoDirector.getText().trim();
         String descripcion = campoDescripcion.getText().trim();
         int reproduccion = 0;
-        
-        System.out.println(fecha);
-        
+                
         Pelicula comprobarPelicula = new Pelicula (titulo,genero,fecha,direccionPortada,reproduccion,direccionArchivo,director,descripcion);
         
         if (comprobarExistencia(comprobarPelicula)){
@@ -178,7 +184,23 @@ public class AgregarPeliculaController implements Initializable {
     }
     
     private boolean comprobarExistencia(Pelicula pelicula) {
-        return true;
+        if (pelicula.getTitulo().equalsIgnoreCase("") ||
+                pelicula.getGenero().equalsIgnoreCase("") ||
+                pelicula.getFechaString().equalsIgnoreCase("") ||
+                pelicula.getDireccionPortada().equalsIgnoreCase("textoDireccion")||
+                pelicula.getDireccionArchivo().equalsIgnoreCase("textoDireccion") ||
+                pelicula.getDirector().equalsIgnoreCase("")||
+                pelicula.getDescripcion().equalsIgnoreCase("")
+                ){
+            return false;
+        }
+        else {
+            return true;
+        }        
+    }
+    
+    public Pelicula getPeliculaAgregada(){
+        return this.nuevaPelicula;
     }
     
 }

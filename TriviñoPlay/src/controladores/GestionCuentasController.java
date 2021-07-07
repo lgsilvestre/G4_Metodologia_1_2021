@@ -243,7 +243,7 @@ public class GestionCuentasController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error!");
-            alert.setContentText("Debe seleccionar un elemento a editar");
+            alert.setContentText("Debe seleccionar un elemento a Eliminar");
             alert.showAndWait();
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

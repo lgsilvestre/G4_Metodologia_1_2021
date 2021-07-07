@@ -17,14 +17,17 @@ public abstract class Multimedia {
     protected String tipo;
     private int[] fecha;
     protected int reproducciones;
+    private String fechaString;
     
     protected Multimedia(String titulo, String genero,
             String fechaString, String direccionPortada, int reproducciones){
         this.titulo = titulo;
         this.genero = genero;
+        fecha = new int[3];
         setFecha(fechaString);
+        this.fechaString = fechaString;
         this.direccionPortada = direccionPortada;
-        reproducciones = this.reproducciones;
+        reproducciones = this.reproducciones;        
     }
     
     public void setTitulo(String titulo){

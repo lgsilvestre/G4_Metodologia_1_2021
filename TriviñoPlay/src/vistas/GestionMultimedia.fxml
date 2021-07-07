@@ -99,45 +99,10 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding></HBox>
          </bottom>
-         <center>
-            <TableView fx:id="TablaMultimedia" onMouseClicked="#seleccion" prefHeight="210.0" prefWidth="668.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn fx:id="colTitulo" prefWidth="334.0" text="Título" />
-                <TableColumn fx:id="colDirArchivo" prefWidth="126.0" text="Dirección Archivo" />
-                  <TableColumn fx:id="colDirPortada" prefWidth="109.0" text="Direccion Portada" />
-                  <TableColumn fx:id="colNumeroReproduccion" prefWidth="98.0" text="Reproducciones" />
-              </columns>
-            </TableView>
-         </center>
          <top>
             <VBox prefHeight="86.0" prefWidth="668.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="668.0">
-                     <children>
-                        <Label prefHeight="50.0" prefWidth="52.0" text="Label" textFill="WHITE">
-                           <font>
-                              <Font size="33.0" />
-                           </font>
-                        </Label>
-                        <Label text="Tipo de multimedia:">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="Calibri" size="18.0" />
-                           </font>
-                        </Label>
-                        <ComboBox fx:id="comboBoxMultimedia" onAction="#cambio" prefWidth="150.0">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </ComboBox>
-                     </children>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="85.0" prefWidth="668.0">
                      <children>
                         <Button fx:id="botonAgregarMedio" mnemonicParsing="false" onAction="#agregarMedio" onMouseEntered="#sobreBotonAgregar" onMouseExited="#fueraBotonAgregar" style="-fx-background-color: #ff9100;" text="Agregar" textFill="WHITE">
                            <HBox.margin>
@@ -159,6 +124,64 @@
                </children>
             </VBox>
          </top>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TabPane fx:id="PanelTab" prefHeight="517.0" prefWidth="668.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab fx:id="tabPelicula" onSelectionChanged="#seleccionTabPelicula" text="Peliculas">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <TableView fx:id="tablaPeliculas" onMouseClicked="#seleccionPelicula" prefHeight="279.0" prefWidth="300.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn fx:id="colTituloPelicula" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="167.0" text="Título" />
+                                          <TableColumn fx:id="colFechaPelicula" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="86.0" text="Fecha Estreno" />
+                                        <TableColumn fx:id="colGeneroPelicula" minWidth="6.0" prefWidth="111.0" text="Género" />
+                                          <TableColumn fx:id="colDescripcionPelicula" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="198.0" text="Descripción" />
+                                          <TableColumn fx:id="colReproduccionesPelicula" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="104.0" text="Reproducciones" />
+                                      </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </content>
+                      </Tab>
+                      <Tab fx:id="tabMusica" onSelectionChanged="#seleccionTabMusica" text="Musica">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <TableView fx:id="tablaMusica" prefHeight="279.0" prefWidth="189.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn maxWidth="1.7976931348623157E308" prefWidth="75.0" text="C1" />
+                                        <TableColumn prefWidth="75.0" text="C2" />
+                                      </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </content>
+                      </Tab>
+                        <Tab fx:id="tabSeries" onSelectionChanged="#seleccionTabSeries" text="Series">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <TableView fx:id="tablaSeries" prefHeight="279.0" prefWidth="114.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="C1" />
+                                        <TableColumn prefWidth="75.0" text="C2" />
+                                      </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </content>
+                        </Tab>
+                    </tabs>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TabPane>
+               </children>
+            </VBox>
+         </center>
       </BorderPane>
    </center>
 </BorderPane>
