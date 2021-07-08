@@ -8,6 +8,8 @@ package controladores;
 import datos.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,6 +29,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logica.Contenido;
@@ -36,11 +42,12 @@ import logica.UsuarioLog;
  *
  * @author Admn
  */
-public class PantallaInicialController implements Initializable {
-
-    Contenido listas = new Contenido() {
-    };
-
+public class PantallaInicialSerieController implements Initializable {
+    
+    Contenido listas = new Contenido() {};
+    
+    
+    
     @FXML
     private TextField browser;
 
@@ -67,9 +74,15 @@ public class PantallaInicialController implements Initializable {
     private Button cerrarsesion;
     @FXML
     private Label correo;
+    
+    
+    
+    
 
-    FXMLLoader loaderGestion;
-
+    
+    
+    
+    
     public void cargarIconos() {
         for (int i = 1; i < 7; i++) {
             ImageView imagen = null;// Se inicializa una imageView para usarlo como miniatura
@@ -78,46 +91,58 @@ public class PantallaInicialController implements Initializable {
             imagen = new ImageView("/recursos/Imagenes/Miniaturas/Lomasnuevo/Lanana.png");
         }
     }
-
     /**
      * Initializes the controller class.
      */
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        
+        
+        
+        
         //bannersSeries();
         //Peliculaslomaspopular();
-        listas.getAutor();
-        System.out.println(listas.getAutor());
-        System.out.println("hola");
-
+        //listas.getAutor();
+        //System.out.println(listas.getAutor());
+        //System.out.println("hola");
+        
+        
     }
-
-    public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada) {
-        this.gestorDatos = gestorDatos;
-        this.logDatos = logDatos;
+    
+     public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada){
+        this.gestorDatos=gestorDatos;
+        this.logDatos=logDatos;   
+         System.out.println("IMPRIMIENDO MAIL ACTIVO");
+         if (this.logDatos == null) {
+                System.out.println("nulo");
+            } else {
+                System.out.println("datos");
+            }
+         System.out.println(this.logDatos.getCuentaActiva().getEmail());
         setCorreoUsuario();
-
-        this.heredado = elementoVentanaHeredada;
+        
+        this.heredado=elementoVentanaHeredada;
     }
-
+     
     private void setCorreoUsuario() {
         //Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
         correo.setText(this.logDatos.getCuentaActiva().getNombre());
     }
-
+    
     @FXML
     private void retroceder(ActionEvent event) {
-        Stage stageUser = (Stage) this.cerrarsesion.getScene().getWindow();
+        Stage stageUser = (Stage)this.cerrarsesion.getScene().getWindow();
         this.logDatos.salirCuenta();
         stageUser.close();
-
+        
         Stage retorno = (Stage) this.heredado.getScene().getWindow();
         retorno.show();
     }
 
+    
     /**
      * Metodo que se encarga de cambiar de una escena a otra dentro de la
      * plataforma.
@@ -125,68 +150,51 @@ public class PantallaInicialController implements Initializable {
      * @param e
      * @param vistaNueva
      */
-    /*public static void cambiarVista(ActionEvent e, Parent vistaNueva) {
+    public static void cambiarVista(ActionEvent e, Parent vistaNueva) {
         Scene nuevaEscena;
         nuevaEscena = new Scene(vistaNueva);
         Stage vistaActual;
         vistaActual = (Stage) ((Node) e.getSource()).getScene().getWindow();
         vistaActual.setScene(nuevaEscena);
-    }*/
+    }
+    
+    
     @FXML
-    private void irPeliculas(ActionEvent event) {
+    private void irPeliculas(ActionEvent event) throws IOException {
+        
+        Parent vista;
+        vista = (AnchorPane) FXMLLoader.load(getClass().getResource("/vistas/PantallaInicial.fxml"));
+        
+        
+        
+        cambiarVista(event, vista);
+        
+    
     }
 
     @FXML
-    private void irSeries(ActionEvent event) throws IOException {
-        /*Parent vista;
-        vista = (AnchorPane) FXMLLoader.load(getClass().getResource("/vistas/PantallaInicialSerie.fxml"));
-        cambiarVista(event, vista);*/
-        loaderGestion = new FXMLLoader(getClass().getResource("/vistas/PantallaInicialSerie.fxml"));
-
-        try {
-            Parent raiz = loaderGestion.load();
-            //System.out.println(logDatos.getCuentaActiva().getEmail());
-            if (this.logDatos == null) {
-                System.out.println("nulo");
-            } else {
-                System.out.println("datos");
-            }
-
-            PantallaInicialSerieController controlador = loaderGestion.getController();
-            controlador.iniciarAtributos(gestorDatos, logDatos, cerrarsesion);
-
-            Scene escenaSeries = new Scene(raiz);
-            Stage stage = new Stage();
-            stage.setTitle("Series");
-            stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
-
-            Stage ventanaInicial = (Stage) this.cerrarsesion.getScene().getWindow();
-            ventanaInicial.hide();
-
-            stage.setScene(escenaSeries);
-            stage.show();
-
-        } catch (IOException ex) {
-
-        }
-
+    private void irMusicales(ActionEvent event) throws IOException {  
+        Parent vista;
+        vista = (AnchorPane) FXMLLoader.load(getClass().getResource("/vistas/PantallaInicialMusica.fxml"));
+        cambiarVista(event, vista);
+    
     }
 
-    @FXML
-    private void irMusicales(ActionEvent event) {
-    }
 
     @FXML
     private void irResultadoBusqueda(ActionEvent event) {
     }
 
+    
+    
     int medio = 0;
     int derecho = 0;
     int izquierda = 0;
-
     /**
      * Metodo para que los banners en pantalla se vean en movimiento
      */
+    
+    
 
     public void bannersSeries() {
         long delay = 4000;
@@ -240,7 +248,7 @@ public class PantallaInicialController implements Initializable {
 
                     banner1.setImage(slide);
                     banner1.setOnMouseEntered(e -> {
-
+                        
                         banner1.setImage(i2);
                         System.out.println("Sobre");
                     }
@@ -285,48 +293,51 @@ public class PantallaInicialController implements Initializable {
     }
 
     int j = 3;
-
-    public void Peliculaslomaspopular() {
+    
+    
+    public void Peliculaslomaspopular(){
         Image im1 = null;
         Image im2 = null;
         Image im3 = null;
         Image im4 = null;
-
+        
         im1 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/lmn" + 1 + ".png");
         lmp1.setImage(im1);
 
-        lmp1.setOnMouseEntered(e -> {
-            System.out.println("Sobre1");
-        });
-
+        
+        lmp1.setOnMouseEntered(e -> {     
+                        System.out.println("Sobre1");
+                    });
+        
         im2 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/lmn" + 2 + ".png");
         lmp2.setImage(im2);
-        lmp2.setOnMouseEntered(e -> {
-            System.out.println("Sobre2");
-        });
-
+        lmp2.setOnMouseEntered(e -> {     
+                        System.out.println("Sobre2");
+                    });
+        
         im3 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/lmn" + 3 + ".png");
         lmp3.setImage(im3);
-        lmp3.setOnMouseEntered(e -> {
-            System.out.println("Sobre3");
-        });
-
+        lmp3.setOnMouseEntered(e -> {     
+                        System.out.println("Sobre3");
+                    });
+        
         im4 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/lmn" + 4 + ".png");
         lmp4.setImage(im4);
-        lmp4.setOnMouseEntered(e -> {
-            System.out.println("Sobre4");
-        });
-
+        lmp4.setOnMouseEntered(e -> {     
+                        System.out.println("Sobre4");
+                    });
+        
     }
-
-    public void cerrarsesion() {
-
+    
+    
+    public void cerrarsesion(){
+        
     }
-
-    public void usuario() {
-
+    
+    public void usuario(){
+        
     }
-
+    
     /*public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada) {
         this.gestorDatos = gestorDatos;
         this.logDatos = logDatos;
@@ -340,4 +351,5 @@ public class PantallaInicialController implements Initializable {
         imagenPerfil.setImage(imagen);
         labelNombreUsuario.setText(this.logDatos.getCuentaActiva().getNombre());
     }*/
+    
 }
