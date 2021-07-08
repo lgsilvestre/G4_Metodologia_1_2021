@@ -4,3 +4,5 @@ Matias Vergara,test231,test1@gmail.com,true,file:src/recursos/Imagenes/Perfil/Tr
 Prueba datos,dato,dato@dato.com,false,file:src/recursos/Imagenes/Perfil/Policarpo.png
 Fernando Ibacache,pass321,test5@gmail.com,false,file:src/recursos/Imagenes/Perfil/Huachimingo.png
 Elías Ocque,test12345,test@gmail.com,true,file:src/recursos/Imagenes/Perfil/Juanin.png
+Admin,1,admin,true,file:src/recursos/Imagenes/Perfil/Juanin.png
+User,1,user,false,file:src/recursos/Imagenes/Perfil/Juanin.png

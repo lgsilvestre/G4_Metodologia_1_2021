@@ -132,6 +132,11 @@ public class GestorDatos {
                     while(lector.hasNextLine()){
                         String datos = lector.nextLine();
                         ArrayList<String> datosSeparados = new ArrayList<>(Arrays.asList(datos.split(",")));
+                        System.out.println(datosSeparados.get(0));
+                        System.out.println(datosSeparados.get(1));
+                        System.out.println(datosSeparados.get(2));
+                        System.out.println(datosSeparados.get(3));
+                        System.out.println(datosSeparados.get(4));
                         if(datosSeparados.size() > 6){
                             String tipo = datosSeparados.get(0);
                             String titulo = datosSeparados.get(1);

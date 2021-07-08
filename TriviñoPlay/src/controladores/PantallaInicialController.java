@@ -74,8 +74,10 @@ public class PantallaInicialController implements Initializable {
         if (browser.getText().isEmpty()) {
             browserPane.setVisible(false);
         }
-        else{
+        else{           
             browserPane.setVisible(true);
+            System.out.println("wea");
+            GestorDatos datos = new GestorDatos();
         }
     }
 
