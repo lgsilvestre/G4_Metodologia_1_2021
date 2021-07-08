@@ -1,39 +1,56 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package logica.media;
 
 import java.util.ArrayList;
 
 /**
- *
+ * Serie implementa una serie; un recurso audiovisual que consta de una lista de
+ * episodios reproducibles vinculadas por una trama o tema, con la intención
+ * de verse en un orden especifico.
  * @author Sudaii
  */
 public class Serie extends Multimedia {
+    //episodios: lista de episodios de la serie.
     private ArrayList<Episodio> episodios;
-    private String descripcion;
+    //descripcion: de que trata la serie.
+    private final String descripcion;
     
+    /**
+     * Constructor Serie. Genera una Serie con los datos ingresados.
+     * @param titulo titulo del objeto Multimedia
+     * @param genero genero del objeto Multimedia
+     * @param fechaString fecha en la que se producio el objeto Multimedia
+     * (formato: "aaaa-mm-dd")
+     * @param direccionPortada la direccion de la portada del objeto Multimedia 
+     * @param reproducciones numero de veces que se ha reproducido el objeto Multimedia
+     * @param descripcion de que trata la serie
+     */
     public Serie(String titulo, String genero, String fechaString, 
             String direccionPortada, int reproducciones, String descripcion){
         super(titulo, genero, fechaString, direccionPortada, reproducciones);
         tipo = "Serie";
         this.descripcion = descripcion;
     }
-
-    public void setDescripcion(String descripcion){
-        this.descripcion = descripcion;
-    }
     
+    /**
+     * Retorna la lista de episodios de la serie.
+     * @return la lista de episodios de la serie
+     */
     public ArrayList<Episodio> getEpisodios(){
         return episodios;
     }
     
+    /**
+     * Retorna de que trata la serie.
+     * @return de que trata la serie
+     */
     public String getDescripcion(){
         return descripcion;
     }
 
+    /**
+     * Agrega un episodio a la lista de episodios de la serie.
+     * @param episodio episodio a agregar a la lista
+     */
     public void agregarEpisodio(Episodio episodio){
         if(existeEpisodio(episodio.getNumEpisodio())){
             episodios.remove(episodio.getNumEpisodio());
@@ -49,6 +66,11 @@ public class Serie extends Multimedia {
         actualizarReproducciones();
     }
     
+    /**
+     * Remueve un episodio de la lista de episodios de la serie.
+     * @param numEpisodio númer del episodio a remover de la lista
+     * @return si el episodio se removio exitosamente
+     */
     public boolean removerEpisodio(int numEpisodio){
         boolean removido = false;
         if(existeEpisodio(numEpisodio)){
@@ -68,11 +90,19 @@ public class Serie extends Multimedia {
         return existeEpisodio;        
     }
     
+    /**
+     * Reproduce el episodio de número ingresado.
+     * @param numEpisodio el número del episodio a reproducir
+     */
     public void reproducirEpisodio(int numEpisodio){
         episodios.get(numEpisodio).reproducir();
         actualizarReproducciones();
     }
     
+    /**
+     * Actualiza la cantidad de veces que se ha reproducido la serie en base
+     * a sus episodios.
+     */
     private void actualizarReproducciones(){
         reproducciones = 0;
         episodios.forEach((episodio) -> {
@@ -80,6 +110,10 @@ public class Serie extends Multimedia {
         });
     }
     
+    /**
+     * Retorna los datos de la Serie, separados por comas, en forma de String.
+     * @return los datos de la Serie, separados por comas, en forma de String
+     */
     @Override
     public String datosEnString(){
         String datos = tipo+","+datosComunesEnString()+","+descripcion;
