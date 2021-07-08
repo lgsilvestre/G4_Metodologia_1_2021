@@ -108,7 +108,7 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <ScrollPane fx:id="browserPane" layoutY="75.0" prefHeight="525.0" prefWidth="800.0" visible="false">
+      <ScrollPane fx:id="browserPane" layoutY="75.0" prefHeight="525.0" prefWidth="800.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="783.0" style="-fx-background-color: #f9c007;">
                <children>
@@ -127,6 +127,39 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
+                  <GridPane fx:id="gridPelis" layoutX="20.0" layoutY="70.0" prefHeight="90.0" prefWidth="257.0">
+                    <columnConstraints>
+                      <ColumnConstraints fx:id="gridPane" halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="200.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="200.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+                  <GridPane fx:id="gridSeries" layoutX="20.0" layoutY="220.0" prefHeight="90.0" prefWidth="257.0">
+                     <columnConstraints>
+                        <ColumnConstraints fx:id="gridPane1" halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="200.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="200.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
+                  <GridPane fx:id="gridCanciones" layoutX="20.0" layoutY="370.0" prefHeight="90.0" prefWidth="257.0">
+                     <columnConstraints>
+                        <ColumnConstraints fx:id="gridPane11" halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="200.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="200.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="90.0" minHeight="0.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                  </GridPane>
                </children></AnchorPane>
         </content>
       </ScrollPane>

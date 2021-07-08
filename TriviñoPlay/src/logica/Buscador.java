@@ -12,13 +12,13 @@ import logica.media.Serie;
  * @author Gama
  */
 public class Buscador {
-    private final GestorDatos gestorDatos;
+    public GestorDatos gestorDatos;
  
     /**
      * Este metodo trae toda la informacion de
      * el contenido multimedia a esta clase
     **/
-    Buscador(GestorDatos gestorDatos){
+    public Buscador(GestorDatos gestorDatos){
         this.gestorDatos = gestorDatos;
     }
     
@@ -35,17 +35,17 @@ public class Buscador {
         List<Serie> listaFiltradaSeries = new ArrayList<>();
         List<List> listaDeListas = new ArrayList<>();
         for (int i = 0; i < gestorDatos.getPeliculas().size(); i++) {
-            if (nombre.equals(gestorDatos.getPeliculas().get(i).getTitulo().substring(0, nombre.length()))) {
+            if (nombre.toLowerCase().equals(gestorDatos.getPeliculas().get(i).getTitulo().substring(0, nombre.length()).toLowerCase())) {
                 listaFiltradaPeliculas.add(gestorDatos.getPeliculas().get(i));
             }
         }
         for (int i = 0; i < gestorDatos.getSeries().size(); i++) {
-            if (nombre.equals(gestorDatos.getSeries().get(i).getTitulo().substring(0, nombre.length()))) {
+            if (nombre.toLowerCase().equals(gestorDatos.getSeries().get(i).getTitulo().substring(0, nombre.length()).toLowerCase())) {
                 listaFiltradaSeries.add(gestorDatos.getSeries().get(i));
             }
         }
         for (int i = 0; i < gestorDatos.getMusica().size(); i++) {
-            if (nombre.equals(gestorDatos.getMusica().get(i).getTitulo().substring(0, nombre.length()))) {
+            if (nombre.toLowerCase().equals(gestorDatos.getMusica().get(i).getTitulo().substring(0, nombre.length()).toLowerCase())) {
                 listaFiltradaMusica.add(gestorDatos.getMusica().get(i));
             }
         }
