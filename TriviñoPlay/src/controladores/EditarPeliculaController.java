@@ -171,14 +171,14 @@ public class EditarPeliculaController implements Initializable {
 
     @FXML
     private void modificar(ActionEvent event) {
-         String titulo = campoTituloNuevo.getText().trim();
+        String titulo = campoTituloNuevo.getText().trim();
         String genero = campoGeneroNuevo.getText().trim();
         String fecha = campoFechaNuevo.getValue().toString().trim();
         String direccionPortada = labelImagenNuevo.getText().trim();
         String direccionArchivo = labelArchivoNuevo.getText().trim();
         String director = campoDirectorNuevo.getText().trim();
         String descripcion = campoDescripcionNueva.getText().trim();
-        int reproduccion = 0;
+        int reproduccion = this.peliculaActual.getReproducciones();
                 
         Pelicula comprobarPelicula = new Pelicula (titulo,genero,fecha,direccionPortada,reproduccion,direccionArchivo,director,descripcion);
         

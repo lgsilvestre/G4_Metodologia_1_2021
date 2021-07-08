@@ -120,6 +120,22 @@ public class GestionMultimediaController implements Initializable {
     private TableColumn<?, ?> colReproduccionesMusica;
     @FXML
     private TableView<?> tablaEpisodios;
+    @FXML
+    private TableColumn<?, ?> colTituloEpisodio;
+    @FXML
+    private TableColumn<?, ?> colNumeroEpisodio;
+    @FXML
+    private TableColumn<?, ?> colFechaEpisodio;
+    @FXML
+    private TableColumn<?, ?> colReproduccionesEpisodio;
+    @FXML
+    private TableColumn<?, ?> colTituloSerie;
+    @FXML
+    private TableColumn<?, ?> colGeneroSerie;
+    @FXML
+    private TableColumn<?, ?> colFechaSerie;
+    @FXML
+    private TableColumn<?, ?> colReproduccionesSerie;
 
     /**
      * Initializes the controller class.
@@ -153,19 +169,15 @@ public class GestionMultimediaController implements Initializable {
         this.logDatos=logDatos;
         setImagenUsuario();               
         this.heredado=elementoVentanaHeredada;       
-        
+                
         castArrayAObservablePelicula();
         castArrayAObservableMusica();
         
         tablaPeliculas.setItems(peliculas);
         tablaPeliculas.refresh();
-        System.out.print(this.logDatos.toString());
         
-        if (this.logDatos == null){
-            System.out.println("nulo");
-        }else{
-            System.out.println("datos");
-        }
+        tablaMusica.setItems(musicas);
+        tablaMusica.refresh();
         
         
     }
@@ -211,7 +223,7 @@ public class GestionMultimediaController implements Initializable {
         if (tabPelicula.isSelected()){
             cargaAgregarPelicula();
         }else if (tabMusica.isSelected()){
-            System.out.println("musica carga");
+            cargaAgregarMusica();
         }
         
     }
@@ -245,7 +257,31 @@ public class GestionMultimediaController implements Initializable {
     }
     
     private void cargaAgregarMusica(){
-        System.out.println("cargaagregarmusica");        
+        try{
+            loaderEmergente = new FXMLLoader(getClass().getResource("/vistas/AgregarMusica.fxml"));
+
+            Parent raiz = loaderEmergente.load();
+
+            AgregarMusicaController controlador = loaderEmergente.getController();            
+            
+            Scene escena = new Scene(raiz);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.setTitle("Agregar Musica");
+            stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
+            stage.setScene(escena);
+            
+                        
+            stage.showAndWait();              
+            
+            Musica musicaAgregada = controlador.getMusicaAgregada();
+            if (musicaAgregada!=null){
+                musicas.add(musicaAgregada);
+                tablaMusica.refresh();
+                actualizarBaseDatosMusica();
+            }    
+        }catch(IOException e){}        
     }
     
     private void cargaAgregarSerie(){
@@ -266,6 +302,8 @@ public class GestionMultimediaController implements Initializable {
     private void editarMedio(ActionEvent event) {
         if (tabPelicula.isSelected()){
             cargaEditarPelicula();
+        }else if(tabMusica.isSelected()){
+            cargaEditarMusica();
         }
         
     }
@@ -308,6 +346,46 @@ public class GestionMultimediaController implements Initializable {
         }
          
     }
+    
+    private void cargaEditarMusica(){
+        if (this.musicaSeleccionada == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error!");
+            alert.setContentText("Debe seleccionar un elemento a editar");
+            alert.showAndWait();
+        }else{
+            try{
+                loaderEmergente = new FXMLLoader(getClass().getResource("/vistas/EditarMusica.fxml"));
+
+                Parent raiz = loaderEmergente.load();
+
+                EditarMusicaController controlador = loaderEmergente.getController();
+                controlador.iniciarAtributos(this.musicaSeleccionada);            
+
+                Scene escena = new Scene(raiz);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setResizable(false);
+                stage.setTitle("Editar Musica");
+                stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
+                stage.setScene(escena);
+
+                stage.showAndWait(); 
+
+                Musica musicaModificada = controlador.getMusicaModificada();
+                if (musicaModificada!=null){
+                    this.musicas.remove(this.musicaSeleccionada);
+                    musicas.add(musicaModificada);
+                    tablaMusica.refresh();
+                    actualizarBaseDatosMusica();
+                }                   
+            }catch(IOException e){}
+            
+        }
+         
+    }
+    
 
     @FXML
     private void fueraBotonEliminar(MouseEvent event) {
@@ -323,6 +401,8 @@ public class GestionMultimediaController implements Initializable {
     private void eliminarMedio(ActionEvent event) {
         if (tabPelicula.isSelected()){
             cargaEliminarPelicula();
+        }else if(tabMusica.isSelected()){
+            cargaEliminarMusica();
         }
     }
     
@@ -343,6 +423,28 @@ public class GestionMultimediaController implements Initializable {
             this.peliculas.remove(this.peliculaSeleccionada);
             this.tablaPeliculas.refresh();
             actualizarBaseDatosPeliculas();
+            this.peliculaSeleccionada=null;
+        }
+    }
+    
+    private void cargaEliminarMusica(){
+        if (musicaSeleccionada == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error!");
+            alert.setContentText("Debe seleccionar un elemento a Eliminar");
+            alert.showAndWait();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Información");
+            alert.setContentText("Se eliminará el elemento seleccionado");
+            alert.showAndWait();
+            
+            this.musicas.remove(this.musicaSeleccionada);
+            this.tablaMusica.refresh();
+            actualizarBaseDatosMusica();
+            this.musicaSeleccionada=null;
         }
     }
 
@@ -379,6 +481,11 @@ public class GestionMultimediaController implements Initializable {
     private void seleccionPelicula(MouseEvent event) {
         peliculaSeleccionada = tablaPeliculas.getSelectionModel().getSelectedItem();
     }
+    
+    @FXML
+    private void seleccionMusica(MouseEvent event) {
+        musicaSeleccionada = tablaMusica.getSelectionModel().getSelectedItem();
+    }
 
     @FXML
     private void seleccionTabPelicula(Event event) {
@@ -397,4 +504,20 @@ public class GestionMultimediaController implements Initializable {
         this.gestorDatos.setPeliculas(arrayListPeliculas);
         this.gestorDatos.almacenarMultimedia();
     }
+    
+    private void actualizarBaseDatosMusica() {
+        castObservableAArrayMusica();
+        this.gestorDatos.setMusica(arrayListMusica);
+        this.gestorDatos.almacenarMultimedia();
+    }
+
+    @FXML
+    private void seleccionEpisodio(MouseEvent event) {
+    }
+
+    @FXML
+    private void seleccionSerie(MouseEvent event) {
+    }
+
+    
 }

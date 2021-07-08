@@ -8,8 +8,6 @@ package controladores;
 import datos.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,9 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logica.Contenido;
@@ -116,13 +112,8 @@ public class PantallaInicialSerieController implements Initializable {
         this.gestorDatos=gestorDatos;
         this.logDatos=logDatos;   
          System.out.println("IMPRIMIENDO MAIL ACTIVO");
-         if (this.logDatos == null) {
-                System.out.println("nulo");
-            } else {
-                System.out.println("datos");
-            }
-         System.out.println(this.logDatos.getCuentaActiva().getEmail());
-        setCorreoUsuario();
+         System.out.println(this.logDatos);
+         setCorreoUsuario();
         
         this.heredado=elementoVentanaHeredada;
     }

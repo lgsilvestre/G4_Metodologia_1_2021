@@ -194,7 +194,7 @@ public class GestorDatos {
                                     case "Musica":
                                         String album = datosSeparados.get(7);
                                         String artista = datosSeparados.get(8);
-                                        peliculas.add(new Pelicula(titulo, genero,
+                                        musica.add(new Musica(titulo, genero,
                                                 fechaString, direccionPortada,
                                                 reproducciones, direccionArchivo,
                                                 album, artista));

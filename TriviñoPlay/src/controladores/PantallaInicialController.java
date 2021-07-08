@@ -69,6 +69,12 @@ public class PantallaInicialController implements Initializable {
     private Label correo;
 
     FXMLLoader loaderGestion;
+    @FXML
+    private Button botonSerie;
+    @FXML
+    private Button botonPeliculas;
+    @FXML
+    private Button botonMusica;
 
     public void cargarIconos() {
         for (int i = 1; i < 7; i++) {
@@ -99,19 +105,19 @@ public class PantallaInicialController implements Initializable {
         this.gestorDatos = gestorDatos;
         this.logDatos = logDatos;
         setCorreoUsuario();
-
         this.heredado = elementoVentanaHeredada;
+        
     }
 
     private void setCorreoUsuario() {
         //Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
-        correo.setText(this.logDatos.getCuentaActiva().getNombre());
+        correo.setText(this.logDatos.getCuentaActiva().getNombre());  
     }
 
     @FXML
     private void retroceder(ActionEvent event) {
         Stage stageUser = (Stage) this.cerrarsesion.getScene().getWindow();
-        this.logDatos.salirCuenta();
+        //this.logDatos.salirCuenta();
         stageUser.close();
 
         Stage retorno = (Stage) this.heredado.getScene().getWindow();
@@ -134,6 +140,7 @@ public class PantallaInicialController implements Initializable {
     }*/
     @FXML
     private void irPeliculas(ActionEvent event) {
+        System.out.println("LOGDATOS");
     }
 
     @FXML
@@ -141,19 +148,15 @@ public class PantallaInicialController implements Initializable {
         /*Parent vista;
         vista = (AnchorPane) FXMLLoader.load(getClass().getResource("/vistas/PantallaInicialSerie.fxml"));
         cambiarVista(event, vista);*/
+        
+        System.out.println(this.logDatos.getCuentaActiva().getNombre());
         loaderGestion = new FXMLLoader(getClass().getResource("/vistas/PantallaInicialSerie.fxml"));
-
+        
         try {
             Parent raiz = loaderGestion.load();
-            //System.out.println(logDatos.getCuentaActiva().getEmail());
-            if (this.logDatos == null) {
-                System.out.println("nulo");
-            } else {
-                System.out.println("datos");
-            }
 
             PantallaInicialSerieController controlador = loaderGestion.getController();
-            controlador.iniciarAtributos(gestorDatos, logDatos, cerrarsesion);
+            controlador.iniciarAtributos(this.gestorDatos, this.logDatos, this.botonSerie);
 
             Scene escenaSeries = new Scene(raiz);
             Stage stage = new Stage();
@@ -188,7 +191,7 @@ public class PantallaInicialController implements Initializable {
      * Metodo para que los banners en pantalla se vean en movimiento
      */
 
-    public void bannersSeries() {
+    /*public void bannersSeries() {
         long delay = 4000;
         movimiento.schedule(new TimerTask() {
             @Override
@@ -281,10 +284,11 @@ public class PantallaInicialController implements Initializable {
                 }
             }
         }, 0, delay);
-
+        
     }
 
-    int j = 3;
+    int j = 3;*/
+    
 
     public void Peliculaslomaspopular() {
         Image im1 = null;
@@ -326,18 +330,4 @@ public class PantallaInicialController implements Initializable {
     public void usuario() {
 
     }
-
-    /*public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada) {
-        this.gestorDatos = gestorDatos;
-        this.logDatos = logDatos;
-        setImagenUsuario();
-
-        this.heredado = elementoVentanaHeredada;
-    }
-    
-    private void setImagenUsuario() {
-        Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
-        imagenPerfil.setImage(imagen);
-        labelNombreUsuario.setText(this.logDatos.getCuentaActiva().getNombre());
-    }*/
 }
