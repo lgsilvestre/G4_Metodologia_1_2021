@@ -152,8 +152,12 @@
                                  <center>
                                     <TableView fx:id="tablaMusica" prefHeight="279.0" prefWidth="189.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
                                       <columns>
-                                        <TableColumn maxWidth="1.7976931348623157E308" prefWidth="75.0" text="C1" />
-                                        <TableColumn prefWidth="75.0" text="C2" />
+                                        <TableColumn fx:id="colTituloMusica" maxWidth="1.7976931348623157E308" prefWidth="169.0" text="Titulo" />
+                                        <TableColumn fx:id="colFechaMusica" prefWidth="107.0" text="Fecha Estreno" />
+                                          <TableColumn fx:id="colGeneroMusica" minWidth="0.0" prefWidth="87.0" text="Género" />
+                                          <TableColumn fx:id="colAlbumMusica" minWidth="3.0" prefWidth="88.0" text="Álbum" />
+                                          <TableColumn fx:id="colArtistaMusica" prefWidth="120.0" text="Artista" />
+                                          <TableColumn fx:id="colReproduccionesMusica" prefWidth="95.0" text="Reproducciones" />
                                       </columns>
                                     </TableView>
                                  </center>
@@ -171,6 +175,14 @@
                                       </columns>
                                     </TableView>
                                  </center>
+                                 <bottom>
+                                    <TableView fx:id="tablaEpisodios" prefHeight="148.0" prefWidth="668.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="C1" />
+                                        <TableColumn prefWidth="75.0" text="C2" />
+                                      </columns>
+                                    </TableView>
+                                 </bottom>
                               </BorderPane>
                            </content>
                         </Tab>

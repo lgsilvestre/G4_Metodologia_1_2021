@@ -105,6 +105,21 @@ public class GestionMultimediaController implements Initializable {
     
     private Pelicula peliculaSeleccionada;
     private Musica musicaSeleccionada;
+    
+    @FXML
+    private TableColumn<?, ?> colTituloMusica;
+    @FXML
+    private TableColumn<?, ?> colFechaMusica;
+    @FXML
+    private TableColumn<?, ?> colGeneroMusica;
+    @FXML
+    private TableColumn<?, ?> colAlbumMusica;
+    @FXML
+    private TableColumn<?, ?> colArtistaMusica;
+    @FXML
+    private TableColumn<?, ?> colReproduccionesMusica;
+    @FXML
+    private TableView<?> tablaEpisodios;
 
     /**
      * Initializes the controller class.
@@ -121,9 +136,15 @@ public class GestionMultimediaController implements Initializable {
         this.colReproduccionesPelicula.setCellValueFactory(new PropertyValueFactory("reproducciones"));
         this.colDescripcionPelicula.setCellValueFactory(new PropertyValueFactory("descripcion"));
         
-        //TablaMultimedia.setItems(peliculas);                       
+        this.colTituloMusica.setCellValueFactory(new PropertyValueFactory("titulo"));
+        this.colGeneroMusica.setCellValueFactory(new PropertyValueFactory("genero"));
+        this.colFechaMusica.setCellValueFactory(new PropertyValueFactory("fechaString"));
+        this.colArtistaMusica.setCellValueFactory(new PropertyValueFactory("artista"));
+        this.colAlbumMusica.setCellValueFactory(new PropertyValueFactory("album"));
+        this.colReproduccionesMusica.setCellValueFactory(new PropertyValueFactory("reproducciones"));
         
-        //TablaMultimedia.refresh();
+        
+        
     }
     
     public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada){
@@ -138,6 +159,13 @@ public class GestionMultimediaController implements Initializable {
         
         tablaPeliculas.setItems(peliculas);
         tablaPeliculas.refresh();
+        System.out.print(this.logDatos.toString());
+        
+        if (this.logDatos == null){
+            System.out.println("nulo");
+        }else{
+            System.out.println("datos");
+        }
         
         
     }

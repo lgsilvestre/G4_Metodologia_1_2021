@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.AgregarPeliculaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.AgregarMusicaController">
    <center>
       <VBox prefHeight="600.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
@@ -75,7 +75,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="400.0">
                <children>
-                  <Label text="Director:">
+                  <Label text="Artista:">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
@@ -83,7 +83,7 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="campoDirector" prefHeight="25.0" prefWidth="313.0" />
+                  <TextField fx:id="campoArtista" prefHeight="25.0" prefWidth="321.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
@@ -91,7 +91,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="800.0">
                <children>
-                  <Label text="Genero:">
+                  <Label text="Álbum:">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
@@ -99,7 +99,23 @@
                         <Font name="Calibri" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="campoGenero" prefHeight="25.0" prefWidth="317.0" />
+                  <TextField fx:id="campoAlbum" prefHeight="25.0" prefWidth="322.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="361.0">
+               <children>
+                  <Label text="Género:">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="campoGenero" prefHeight="25.0" prefWidth="312.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
@@ -116,22 +132,6 @@
                      </font>
                   </Label>
                   <DatePicker fx:id="campoFecha" prefHeight="25.0" prefWidth="130.0" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="15.0" top="15.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="361.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="87.0" text="Descripción:">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font name="Calibri" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextArea fx:id="campoDescripcion" prefHeight="66.0" prefWidth="269.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
