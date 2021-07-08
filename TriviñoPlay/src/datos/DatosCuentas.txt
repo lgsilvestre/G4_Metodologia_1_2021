@@ -1,6 +1,7 @@
 Juanin Juan Harry,jjh,juanin@triviño.cl,true,file:src/recursos/Imagenes/Perfil/Juanin.png
 Profesor Luis Silvestre,123,lsilvestre@utalca.cl,true,file:src/recursos/Imagenes/Perfil/Bodoque.jpg
-Matias Vergara,test231,test1@gmail.com,true,file:src/recursos/Imagenes/Perfil/Tramoyas.png
 Prueba datos,dato,dato@dato.com,false,file:src/recursos/Imagenes/Perfil/Policarpo.png
-Elías Ocque,test12345,test@gmail.com,true,file:src/recursos/Imagenes/Perfil/Juanin.png
 Fernando Ibacache,pass321,test5@gmail.com,false,file:src/recursos/Imagenes/Perfil/Huachimingo.png
+0,0,0,true,file:src/recursos/Imagenes/Perfil/imagendefecto.jpg
+Elías Ocque,test12345,test@gmail.com,true,file:src/recursos/Imagenes/Perfil/Juanin.png
+1,1,1,false,file:src/recursos/Imagenes/Perfil/imagendefecto.jpg

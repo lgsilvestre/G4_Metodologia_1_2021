@@ -77,7 +77,7 @@ public class EditarCuentaController implements Initializable {
         /*Parametros actuales no modificables*/
         this.campoNombreActual.setText(this.cuentaActual.getNombre());
         this.campoEmailActual.setText(this.cuentaActual.getEmail());
-        this.campoContrasenaActual.setText(this.cuentaActual.getContraseña());
+        this.campoContrasenaActual.setText(this.cuentaActual.getContrasenna());
         this.checkAdministradorActual.setSelected(this.cuentaActual.getAdmin());
         this.labelTextoImagen.setText(this.cuentaActual.getDireccionImagenPerfil());
         this.imagenActual.setImage(new Image(cuentaActual.getDireccionImagenPerfil()));
@@ -85,7 +85,7 @@ public class EditarCuentaController implements Initializable {
         /*Parametros nuevos modificables*/
         this.campoNombreNuevo.setText(this.cuentaActual.getNombre());
         this.campoEmailNuevo.setText(this.cuentaActual.getEmail());
-        this.campoContrasenaNueva.setText(this.cuentaActual.getContraseña());
+        this.campoContrasenaNueva.setText(this.cuentaActual.getContrasenna());
         this.checkAdministradorNuevo.setSelected(this.cuentaActual.getAdmin());
         this.labelTextoImagen.setText(this.cuentaActual.getDireccionImagenPerfil());
         this.imagenNueva.setImage(new Image(cuentaActual.getDireccionImagenPerfil()));       
@@ -190,7 +190,7 @@ public class EditarCuentaController implements Initializable {
     private boolean comprobarExistencia(Cuenta cuenta) {
         if(cuenta.getNombre().equalsIgnoreCase("") ||
                 cuenta.getEmail().equalsIgnoreCase("") ||
-                cuenta.getContraseña().equalsIgnoreCase("") ||
+                cuenta.getContrasenna().equalsIgnoreCase("") ||
                 cuenta.getDireccionImagenPerfil().equalsIgnoreCase("")){
                 
                 return false;
