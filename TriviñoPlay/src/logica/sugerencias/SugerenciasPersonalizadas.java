@@ -12,15 +12,29 @@ import logica.media.*;
 import java.util.ArrayList;
 
 /**
- *
+ * SugerenciasPersonalizadas implementa un algoritmo de Sugerencias que selecciona
+ * objetos Multimedia a sugerir en base a sus generos y los generos que el usuario.
+ * reproduce con mas frecuencia.
  * @author Sudaii
  */
 public class SugerenciasPersonalizadas extends Sugerencias{
-    //0 = Series, 1 = Peliculas, 2 = Musica
+    //generos: generos de los objetos Multimedia.
+    //0 = Series, 1 = Peliculas, 2 = Musica.
     private final ArrayList<ArrayList<String>> generos;
+    //cantidad: cantidad de veces que el usuario ha visto el genero en el mismo
+    //indice en la lista generos.
     private final ArrayList<ArrayList<Integer>> cantidad;
+    //usuario: usuario para el cual se personaliza la sugerencia.
     private final Cuenta usuario;
     
+     /**
+     * Constructor de SugerenciasPersonalizadas. Inicializa la lista de generos
+     * mas vistos por el usuario y luego determina cuales son los objetos multimedia
+     * que le podrian gustar al usuario en base a la lista.
+     * @param datos gestor de datos con las listas de objetos Multimedia en la
+     * base de datos
+     * @param usuario usuario para el cual se personaliza la sugerencia
+     */
     public SugerenciasPersonalizadas (GestorDatos datos, Cuenta usuario){
         super(datos);
         generos = new ArrayList<>();
@@ -31,6 +45,11 @@ public class SugerenciasPersonalizadas extends Sugerencias{
         determinarSugerencias();
     }
     
+    /**
+     * Determina cuales son los generos mas vistos por el usuario.
+     * Almacena los generos en la lista generos y la cantidad de veces que ha
+     * reproducido un objeto Multimedia de ese genero en cantidad.
+     */
     private void determinarGenerosVistos(){
         for(DatoHistorial datoHistorial: usuario.getHistorial()){
             Multimedia media = datoHistorial.getMedia();
@@ -63,6 +82,9 @@ public class SugerenciasPersonalizadas extends Sugerencias{
         }
     }
     
+    /**
+     * Ordena los generos en base a cuales son los mas vistos.
+     */
     private void ordenarGenerosMasVistos(){
         for(int i = 0; i < cantidad.size(); i++){
             insertionSort(i);
@@ -75,12 +97,18 @@ public class SugerenciasPersonalizadas extends Sugerencias{
         }
     }
     
+    /**
+     * Determina que objetos multimedia sugerirle al usuario, separado por tipo.
+     */
     private void determinarSugerencias(){
         determinarSeries();
         determinarPeliculas();
         determinarMusica();
     }
     
+    /**
+     * Determina las series a recomendar al usuario en base a su genero.
+     */
     private void determinarSeries(){
         int indiceMultimedia = 0;
         while(indiceMultimedia < series.size()){
@@ -99,6 +127,9 @@ public class SugerenciasPersonalizadas extends Sugerencias{
         }
     }
     
+    /**
+     * Determina las peliculas a recomendar al usuario en base a su genero.
+     */
     private void determinarPeliculas(){
         int indiceMultimedia = 0;
         while(indiceMultimedia < series.size()){
@@ -117,6 +148,9 @@ public class SugerenciasPersonalizadas extends Sugerencias{
         }
     }
     
+     /**
+     * Determina la música a recomendar al usuario en base a su genero.
+     */
     private void determinarMusica(){
         int indiceMultimedia = 0;
         while(indiceMultimedia < series.size()){
@@ -135,6 +169,10 @@ public class SugerenciasPersonalizadas extends Sugerencias{
         }
     }
     
+    /**
+     * Un insertionSort basico utilizado para ordenar genero y cantidad.
+     * @param numLista la lista a ordenar.
+     */
     private void insertionSort(int numLista){
         for(int i = 1; i < cantidad.get(numLista).size(); i++){
             int j;

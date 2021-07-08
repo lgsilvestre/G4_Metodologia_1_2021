@@ -28,6 +28,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import logica.Cuenta;
 import logica.UsuarioLog;
 
 /**
@@ -51,6 +52,7 @@ public class LoginController implements Initializable {
 
     private FXMLLoader loaderAdministracion;
     private FXMLLoader loaderUser;
+    public static String nombreusuario = "";
 
     /**
      * Initializes the controller class.
@@ -103,23 +105,29 @@ public class LoginController implements Initializable {
                 } catch (IOException ex) {
                 }
             } else {
-                loaderAdministracion = new FXMLLoader(getClass().getResource("/vistas/PantallaInicial.fxml"));
+                loaderUser = new FXMLLoader(getClass().getResource("/vistas/PantallaInicial.fxml"));
 
                 try {
+                    /*for (int i = 0; i < LoginController.; i++) {
+                        if (AgregarCuentaController.listaCuentas.get(i).getEmail().equals(usuario)) {
+                            nombreusuario = usuario;
+                            System.out.println(nombreusuario);
+                        }
+                    }*/
                     System.out.println("pasó 1");
-                    Parent raiz = loaderAdministracion.load();
+                    Parent raiz = loaderUser.load();
                     System.out.println("pasó 2");
-                    PantallaInicialController controlador = loaderAdministracion.getController();
-                    //controlador.iniciarAtributos(gestorDatos, logDatos, botonLogin);
+                    PantallaInicialController controlador = loaderUser.getController();
+                   controlador.iniciarAtributos(gestorDatos, logDatos, botonLogin);
 
-                    Scene escenaAdministracion = new Scene(raiz);
+                    Scene escenaUsuario = new Scene(raiz);
 
                     Stage stage = new Stage();
 
                     stage.setResizable(true);
-                    stage.setScene(escenaAdministracion);
+                    stage.setScene(escenaUsuario);
                     stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.setTitle("Administracion");
+                    stage.setTitle("Usuario");
                     stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
 
                     Stage loginVentana = (Stage) this.botonLogin.getScene().getWindow();
