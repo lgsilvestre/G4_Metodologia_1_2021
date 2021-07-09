@@ -71,4 +71,8 @@ public class Episodio extends Reproducible{
         return datos;
     }
     
+    public void setSerie(String tituloSerie){
+        this.serie = tituloSerie;
+    }
+    
 }

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="800.0" style="-fx-background-color: ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.EditarEpisodioController">
+   <center>
+      <VBox prefHeight="600.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="800.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Dirección Archivo Actual:">
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Dirección Archivo Nuevo:">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="800.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                     <children>
+                        <Label fx:id="labelArchivoActual" text="textoDireccion">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                     <children>
+                        <Button fx:id="botonArchivo" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#elegirArchivo" onMouseEntered="#sobreArchivo" onMouseExited="#fueraArchivo" prefHeight="25.0" prefWidth="46.0" style="-fx-background-color: ff9100;" text="Elegir" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Label fx:id="labelArchivoNuevo" text="textoDireccion" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <Line endX="780.0" stroke="#ff9100" strokeWidth="2.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Line>
+            <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="400.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Título Actual:">
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="campoTituloActual" editable="false" prefHeight="25.0" prefWidth="283.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Título Nuevo:">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="campoTituloNuevo" prefHeight="25.0" prefWidth="283.0" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <Line endX="780.0" layoutX="11.0" layoutY="246.0" stroke="#ff9100" strokeWidth="2.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Line>
+            <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="800.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Numero Episodio Actual:">
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="campoNumeroActual" editable="false" prefHeight="25.0" prefWidth="214.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="147.0" text="Número Episodio Nuevo:">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="campoNumeroNuevo" prefHeight="25.0" prefWidth="212.0" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <Line endX="780.0" layoutX="11.0" layoutY="315.0" stroke="#ff9100" strokeWidth="2.0">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Line>
+            <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="800.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Fecha estreno Actual:">
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <DatePicker fx:id="campoFechaActual" disable="true" editable="false" prefHeight="25.0" prefWidth="130.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Fecha estreno Nuevo:">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Calibri" size="14.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="campoFechaNuevo" prefHeight="25.0" prefWidth="130.0" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" top="15.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="botonModificar" mnemonicParsing="false" onAction="#modificar" onMouseEntered="#sobreModificar" onMouseExited="#fueraModificar" style="-fx-background-color: ff9100;" text="Modificar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../recursos/Imagenes/Iconos/check.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="botonCancelar" mnemonicParsing="false" onAction="#cancelar" onMouseEntered="#sobreCancelar" onMouseExited="#fueraCancelar" style="-fx-background-color: ff9100;" text="Cancelar" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../recursos/Imagenes/Iconos/cancel.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>

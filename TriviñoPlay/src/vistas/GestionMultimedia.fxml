@@ -150,10 +150,14 @@
                            <content>
                               <BorderPane prefHeight="200.0" prefWidth="200.0">
                                  <center>
-                                    <TableView fx:id="tablaMusica" prefHeight="279.0" prefWidth="189.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+                                    <TableView fx:id="tablaMusica" onMouseClicked="#seleccionMusica" prefHeight="279.0" prefWidth="189.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
                                       <columns>
-                                        <TableColumn maxWidth="1.7976931348623157E308" prefWidth="75.0" text="C1" />
-                                        <TableColumn prefWidth="75.0" text="C2" />
+                                        <TableColumn fx:id="colTituloMusica" maxWidth="1.7976931348623157E308" prefWidth="169.0" text="Título" />
+                                        <TableColumn fx:id="colFechaMusica" prefWidth="107.0" text="Fecha Estreno" />
+                                          <TableColumn fx:id="colGeneroMusica" minWidth="0.0" prefWidth="87.0" text="Género" />
+                                          <TableColumn fx:id="colAlbumMusica" minWidth="3.0" prefWidth="88.0" text="Álbum" />
+                                          <TableColumn fx:id="colArtistaMusica" prefWidth="120.0" text="Artista" />
+                                          <TableColumn fx:id="colReproduccionesMusica" prefWidth="95.0" text="Reproducciones" />
                                       </columns>
                                     </TableView>
                                  </center>
@@ -164,13 +168,25 @@
                            <content>
                               <BorderPane prefHeight="200.0" prefWidth="200.0">
                                  <center>
-                                    <TableView fx:id="tablaSeries" prefHeight="279.0" prefWidth="114.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+                                    <TableView fx:id="tablaSeries" onMouseClicked="#seleccionSerie" prefHeight="279.0" prefWidth="114.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="C1" />
-                                        <TableColumn prefWidth="75.0" text="C2" />
+                                        <TableColumn fx:id="colTituloSerie" prefWidth="261.0" text="Titulo Serie" />
+                                        <TableColumn fx:id="colGeneroSerie" prefWidth="158.0" text="Género" />
+                                          <TableColumn fx:id="colFechaSerie" prefWidth="118.0" text="Fecha Estreno" />
+                                          <TableColumn fx:id="colReproduccionesSerie" prefWidth="128.0" text="Reproducciones" />
                                       </columns>
                                     </TableView>
                                  </center>
+                                 <bottom>
+                                    <TableView fx:id="tablaEpisodios" onMouseClicked="#seleccionEpisodio" prefHeight="148.0" prefWidth="668.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn fx:id="colTituloEpisodio" prefWidth="284.0" text="Título Episodio" />
+                                          <TableColumn fx:id="colNumeroEpisodio" prefWidth="126.0" text="Número del Episodio" />
+                                        <TableColumn fx:id="colFechaEpisodio" prefWidth="152.0" text="Fecha Estreno" />
+                                          <TableColumn fx:id="colReproduccionesEpisodio" prefWidth="104.0" text="Reproducciones" />
+                                      </columns>
+                                    </TableView>
+                                 </bottom>
                               </BorderPane>
                            </content>
                         </Tab>

@@ -29,6 +29,7 @@ public class Serie extends Multimedia {
         super(titulo, genero, fechaString, direccionPortada, reproducciones);
         tipo = "Serie";
         this.descripcion = descripcion;
+        this.episodios = new ArrayList<>();
     }
     
     /**
@@ -118,5 +119,9 @@ public class Serie extends Multimedia {
     public String datosEnString(){
         String datos = tipo+","+datosComunesEnString()+","+descripcion;
         return datos;
+    }
+    
+    public void setEpisodios(ArrayList<Episodio> nuevosEpisodios){
+        this.episodios = nuevosEpisodios;        
     }
 }
