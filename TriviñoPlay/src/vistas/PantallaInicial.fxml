@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -25,7 +24,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="188.0" layoutY="23.0" mnemonicParsing="false" onAction="#irPeliculas" style="-fx-background-color: #ff9100;" text="Peliculas">
+      <Button layoutX="188.0" layoutY="23.0" mnemonicParsing="false" onAction="#irPeliculas" style="-fx-background-color: #ff9100;" text="Peliculas" textFill="#1a1a1a">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -91,19 +90,50 @@
                         <Image url="@../recursos/Imagenes/Miniaturas/Lomasnuevo/lmn4.png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="15.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ultimas Series Agregadas">
+                  <Text layoutX="15.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ultimas Peliculas Agregadas">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text layoutX="15.0" layoutY="650.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ultimas Peliculas Agregadas">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Text>
+                  <ImageView fx:id="UltimaPeliAgregada1" fitHeight="99.0" fitWidth="160.0" layoutX="50.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas1.png" />
+                     </image></ImageView>
+                  <ImageView fx:id="UltimaPeliAgregada2" fitHeight="96.0" fitWidth="151.0" layoutX="229.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas2.png" />
+                     </image></ImageView>
+                  <ImageView fx:id="UltimaPeliAgregada3" fitHeight="96.0" fitWidth="151.0" layoutX="404.0" layoutY="515.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas3.png" />
+                     </image></ImageView>
+                  <ImageView fx:id="UltimaPeliAgregada4" fitHeight="96.0" fitWidth="151.0" layoutX="579.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas4.png" />
+                     </image></ImageView>
+                  <ImageView fx:id="UltimaPeliAgregada5" fitHeight="99.0" fitWidth="151.0" layoutX="54.0" layoutY="648.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="UltimaPeliAgregada6" fitHeight="99.0" fitWidth="151.0" layoutX="229.0" layoutY="648.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas6.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="UltimaPeliAgregada7" fitHeight="99.0" fitWidth="151.0" layoutX="404.0" layoutY="648.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas7.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="UltimaPeliAgregada8" fitHeight="96.0" fitWidth="151.0" layoutX="579.0" layoutY="648.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas8.png" />
+                     </image>
+                  </ImageView>
                </children></AnchorPane>
         </content>
       </ScrollPane>
-      <Label fx:id="correo" layoutX="638.0" layoutY="30.0" prefHeight="25.0" prefWidth="112.0" style="-fx-text-fill: #ff9100;" />
+      <Text fx:id="nombreUser" fill="#ff9100" layoutX="638.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Usuario" wrappingWidth="105.63671875" />
    </children>
 </AnchorPane>

@@ -108,17 +108,12 @@ public class LoginController implements Initializable {
                 loaderUser = new FXMLLoader(getClass().getResource("/vistas/PantallaInicial.fxml"));
 
                 try {
-                    /*for (int i = 0; i < LoginController.; i++) {
-                        if (AgregarCuentaController.listaCuentas.get(i).getEmail().equals(usuario)) {
-                            nombreusuario = usuario;
-                            System.out.println(nombreusuario);
-                        }
-                    }*/
+                   
                     System.out.println("pasó 1");
                     Parent raiz = loaderUser.load();
                     System.out.println("pasó 2");
                     PantallaInicialController controlador = loaderUser.getController();
-                   controlador.iniciarAtributos(gestorDatos, logDatos, botonLogin);
+                    controlador.iniciarAtributos(gestorDatos, logDatos, botonLogin);
 
                     Scene escenaUsuario = new Scene(raiz);
 
@@ -146,12 +141,5 @@ public class LoginController implements Initializable {
         }
     }
 
-    private void cambiarVista(ActionEvent e, Parent vistaNueva) {
-        Scene nuevaEscena;
-        nuevaEscena = new Scene(vistaNueva);
-        Stage vistaActual;
-        vistaActual = (Stage) ((Node) e.getSource()).getScene().getWindow();
-        vistaActual.setScene(nuevaEscena);
-    }
 
 }

@@ -17,6 +17,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,9 +33,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logica.Contenido;
+import logica.Cuenta;
 import logica.UsuarioLog;
 
 /**
@@ -46,7 +49,7 @@ public class PantallaInicialSerieController implements Initializable {
     
     Contenido listas = new Contenido() {};
     
-    
+    private ObservableList<Cuenta> cuentas;
     
     @FXML
     private TextField browser;
@@ -72,8 +75,25 @@ public class PantallaInicialSerieController implements Initializable {
     private ImageView lmp2;
     @FXML
     private Button cerrarsesion;
-    @FXML
     private Label correo;
+    @FXML
+    private Text nombreUser;
+    @FXML
+    private ImageView UltimaSerieAgregada1;
+    @FXML
+    private ImageView UltimaSerieAgregada2;
+    @FXML
+    private ImageView UltimaSerieAgregada3;
+    @FXML
+    private ImageView UltimaSerieAgregada4;
+    @FXML
+    private ImageView UltimaSerieAgregada5;
+    @FXML
+    private ImageView UltimaSerieAgregada6;
+    @FXML
+    private ImageView UltimaSerieAgregada7;
+    @FXML
+    private ImageView UltimaSerieAgregada8;
     
     
     
@@ -103,8 +123,9 @@ public class PantallaInicialSerieController implements Initializable {
         
         
         
-        //bannersSeries();
-        //Peliculaslomaspopular();
+        bannersSeries();
+        SeriesAgregadasRecientemente();
+        SeriesMasPopulares();
         //listas.getAutor();
         //System.out.println(listas.getAutor());
         //System.out.println("hola");
@@ -112,32 +133,31 @@ public class PantallaInicialSerieController implements Initializable {
         
     }
     
-     public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada){
+    public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada){
         this.gestorDatos=gestorDatos;
-        this.logDatos=logDatos;   
-         System.out.println("IMPRIMIENDO MAIL ACTIVO");
-         if (this.logDatos == null) {
-                System.out.println("nulo");
-            } else {
-                System.out.println("datos");
-            }
-         System.out.println(this.logDatos.getCuentaActiva().getEmail());
-        setCorreoUsuario();
+        this.logDatos=logDatos;
+        setImagenUsuario();
+
         
         this.heredado=elementoVentanaHeredada;
     }
-     
-    private void setCorreoUsuario() {
-        //Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
-        correo.setText(this.logDatos.getCuentaActiva().getNombre());
-    }
     
+    private void setImagenUsuario() {
+        Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
+        nombreUser.setText(this.logDatos.getCuentaActiva().getNombre());
+    }
+
+    private void accionImagen() {
+        nombreUser.setText(this.logDatos.getCuentaActiva().getNombre());
+        System.out.println(logDatos.getCuentaActiva().getNombre());
+    }
+
     @FXML
     private void retroceder(ActionEvent event) {
-        Stage stageUser = (Stage)this.cerrarsesion.getScene().getWindow();
+        Stage stageUser = (Stage) this.cerrarsesion.getScene().getWindow();
         this.logDatos.salirCuenta();
         stageUser.close();
-        
+
         Stage retorno = (Stage) this.heredado.getScene().getWindow();
         retorno.show();
     }
@@ -151,6 +171,8 @@ public class PantallaInicialSerieController implements Initializable {
      * @param vistaNueva
      */
     public static void cambiarVista(ActionEvent e, Parent vistaNueva) {
+        
+        
         Scene nuevaEscena;
         nuevaEscena = new Scene(vistaNueva);
         Stage vistaActual;
@@ -164,9 +186,6 @@ public class PantallaInicialSerieController implements Initializable {
         
         Parent vista;
         vista = (AnchorPane) FXMLLoader.load(getClass().getResource("/vistas/PantallaInicial.fxml"));
-        
-        
-        
         cambiarVista(event, vista);
         
     
@@ -239,12 +258,12 @@ public class PantallaInicialSerieController implements Initializable {
                     //Cargar Banners
                     System.out.println("cargando siguiente banner");
 
-                    izq = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/banner" + izquierda + ".png");
-                    slide = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/banner" + medio + ".png");
-                    der = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/banner" + derecho + ".png");
+                    izq = new Image("/recursos/Imagenes/Miniaturas/Series/banner" + izquierda + "Series.png");
+                    slide = new Image("/recursos/Imagenes/Miniaturas/Series/banner" + medio + "Series.png");
+                    der = new Image("/recursos/Imagenes/Miniaturas/Series/banner" + derecho + "Series.png");
 
-                    Image i2 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/bannerHover" + medio + ".png");
-                    Image i3 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/banner" + medio + ".png");
+                    Image i2 = new Image("/recursos/Imagenes/Miniaturas/Series/bannerHover" + medio + "Series.png");
+                    Image i3 = new Image("/recursos/Imagenes/Miniaturas/Series/banner" + medio + "Series.png");
 
                     banner1.setImage(slide);
                     banner1.setOnMouseEntered(e -> {
@@ -295,61 +314,105 @@ public class PantallaInicialSerieController implements Initializable {
     int j = 3;
     
     
-    public void Peliculaslomaspopular(){
+    public void SeriesMasPopulares(){
+        
         Image im1 = null;
         Image im2 = null;
         Image im3 = null;
         Image im4 = null;
-        
-        im1 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/lmn" + 1 + ".png");
+
+        im1 = new Image("/recursos/Imagenes/Miniaturas/Series/lmn" + 1 + ".png");
         lmp1.setImage(im1);
 
-        
-        lmp1.setOnMouseEntered(e -> {     
-                        System.out.println("Sobre1");
-                    });
-        
-        im2 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/lmn" + 2 + ".png");
-        lmp2.setImage(im2);
-        lmp2.setOnMouseEntered(e -> {     
-                        System.out.println("Sobre2");
-                    });
-        
-        im3 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/lmn" + 3 + ".png");
-        lmp3.setImage(im3);
-        lmp3.setOnMouseEntered(e -> {     
-                        System.out.println("Sobre3");
-                    });
-        
-        im4 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/lmn" + 4 + ".png");
-        lmp4.setImage(im4);
-        lmp4.setOnMouseEntered(e -> {     
-                        System.out.println("Sobre4");
-                    });
-        
-    }
-    
-    
-    public void cerrarsesion(){
-        
-    }
-    
-    public void usuario(){
-        
-    }
-    
-    /*public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada) {
-        this.gestorDatos = gestorDatos;
-        this.logDatos = logDatos;
-        setImagenUsuario();
+        lmp1.setOnMouseEntered(e -> {
+            System.out.println("Sobre1");
+        });
 
-        this.heredado = elementoVentanaHeredada;
+        im2 = new Image("/recursos/Imagenes/Miniaturas/Series/lmn" + 2 + ".png");
+        lmp2.setImage(im2);
+        lmp2.setOnMouseEntered(e -> {
+            System.out.println("Sobre2");
+        });
+
+        im3 = new Image("/recursos/Imagenes/Miniaturas/Series/lmn" + 3 + ".png");
+        lmp3.setImage(im3);
+        lmp3.setOnMouseEntered(e -> {
+            System.out.println("Sobre3");
+        });
+
+        im4 = new Image("/recursos/Imagenes/Miniaturas/Series/lmn" + 4 + ".png");
+        lmp4.setImage(im4);
+        lmp4.setOnMouseEntered(e -> {
+            System.out.println("Sobre4");
+        });
+        
     }
     
-    private void setImagenUsuario() {
-        Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
-        imagenPerfil.setImage(imagen);
-        labelNombreUsuario.setText(this.logDatos.getCuentaActiva().getNombre());
-    }*/
+    
+    
+    
+    public void SeriesAgregadasRecientemente(){
+        Image Usa1 = null;
+        Image Usa2 = null;
+        Image Usa3 = null;
+        Image Usa4 = null;
+        Image Usa5 = null;
+        Image Usa6 = null;
+        Image Usa7 = null;
+        Image Usa8 = null;
+
+        Usa1 = new Image("/recursos/Imagenes/Miniaturas/Series/UltimasSerieAgregadas" + 1 + ".png");
+        UltimaSerieAgregada1.setImage(Usa1);
+
+        UltimaSerieAgregada1.setOnMouseEntered(e -> {
+            System.out.println("Sobre1");
+        });
+
+        Usa2 = new Image("/recursos/Imagenes/Miniaturas/Series/UltimasSerieAgregadas" + 2 + ".png");
+        UltimaSerieAgregada2.setImage(Usa2);
+        UltimaSerieAgregada2.setOnMouseEntered(e -> {
+            System.out.println("Sobre2");
+        });
+
+        Usa3 = new Image("/recursos/Imagenes/Miniaturas/Series/UltimasSerieAgregadas" + 3 + ".png");
+        UltimaSerieAgregada3.setImage(Usa3);
+        UltimaSerieAgregada3.setOnMouseEntered(e -> {
+            System.out.println("Sobre3");
+        });
+
+        Usa4 = new Image("/recursos/Imagenes/Miniaturas/Series/UltimasSerieAgregadas" + 4 + ".png");
+        UltimaSerieAgregada4.setImage(Usa4);
+        UltimaSerieAgregada4.setOnMouseEntered(e -> {
+            System.out.println("Sobre4");
+        });
+        
+        Usa5 = new Image("/recursos/Imagenes/Miniaturas/Series/UltimasSerieAgregadas" + 5 + ".png");
+        UltimaSerieAgregada5.setImage(Usa5);
+        UltimaSerieAgregada5.setOnMouseEntered(e -> {
+            System.out.println("Sobre5");
+        });
+        
+        Usa6 = new Image("/recursos/Imagenes/Miniaturas/Series/UltimasSerieAgregadas" + 6 + ".png");
+        UltimaSerieAgregada6.setImage(Usa6);
+        UltimaSerieAgregada6.setOnMouseEntered(e -> {
+            System.out.println("Sobre6");
+        });
+        
+        Usa7 = new Image("/recursos/Imagenes/Miniaturas/Series/UltimasSerieAgregadas" + 7 + ".png");
+        UltimaSerieAgregada7.setImage(Usa7);
+        UltimaSerieAgregada7.setOnMouseEntered(e -> {
+            System.out.println("Sobre7");
+        });
+        
+        Usa8 = new Image("/recursos/Imagenes/Miniaturas/Series/UltimasSerieAgregadas" + 8 + ".png");
+        UltimaSerieAgregada8.setImage(Usa8);
+        UltimaSerieAgregada8.setOnMouseEntered(e -> {
+            System.out.println("Sobre8");
+        });
+        
+    }
+    
+    
+    
     
 }

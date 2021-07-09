@@ -8,6 +8,7 @@ package controladores;
 import datos.GestorDatos;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,10 +16,12 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,9 +29,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import logica.Contenido;
+import logica.Cuenta;
 import logica.UsuarioLog;
 
 /**
@@ -40,6 +46,8 @@ public class PantallaInicialController implements Initializable {
 
     Contenido listas = new Contenido() {
     };
+    private ObservableList<Cuenta> cuentas;
+   
 
     @FXML
     private TextField browser;
@@ -65,10 +73,30 @@ public class PantallaInicialController implements Initializable {
     private ImageView lmp2;
     @FXML
     private Button cerrarsesion;
-    @FXML
     private Label correo;
 
     FXMLLoader loaderGestion;
+    @FXML
+    
+    private Text nombreUser;
+    @FXML
+    private ImageView UltimaPeliAgregada1;
+    @FXML
+    private ImageView UltimaPeliAgregada2;
+    @FXML
+    private ImageView UltimaPeliAgregada3;
+    @FXML
+    private ImageView UltimaPeliAgregada4;
+    @FXML
+    private ImageView UltimaPeliAgregada5;
+    @FXML
+    private ImageView UltimaPeliAgregada6;
+    @FXML
+    private ImageView UltimaPeliAgregada7;
+    @FXML
+    private ImageView UltimaPeliAgregada8;
+    
+
 
     public void cargarIconos() {
         for (int i = 1; i < 7; i++) {
@@ -87,25 +115,41 @@ public class PantallaInicialController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-        //bannersSeries();
-        //Peliculaslomaspopular();
+        
+        
+        //System.out.println(logDatos.getCuentaActiva());
+        //nombreUser.setText(logDatos.getCuentaActiva().getNombre());
+
+        bannersPeliculas();
+        Peliculaslomaspopular();
+        ultimasPeliculasAgregadas();
         listas.getAutor();
         System.out.println(listas.getAutor());
         System.out.println("hola");
+        
+        
 
     }
+    
+    
 
-    public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada) {
-        this.gestorDatos = gestorDatos;
-        this.logDatos = logDatos;
-        setCorreoUsuario();
+    public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada){
+        this.gestorDatos=gestorDatos;
+        this.logDatos=logDatos;
+        setImagenUsuario();
 
-        this.heredado = elementoVentanaHeredada;
+        
+        this.heredado=elementoVentanaHeredada;
+    }
+    
+    private void setImagenUsuario() {
+        Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
+        nombreUser.setText(this.logDatos.getCuentaActiva().getNombre());
     }
 
-    private void setCorreoUsuario() {
-        //Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
-        correo.setText(this.logDatos.getCuentaActiva().getNombre());
+    private void accionImagen() {
+        nombreUser.setText(this.logDatos.getCuentaActiva().getNombre());
+        System.out.println(logDatos.getCuentaActiva().getNombre());
     }
 
     @FXML
@@ -125,59 +169,76 @@ public class PantallaInicialController implements Initializable {
      * @param e
      * @param vistaNueva
      */
-    /*public static void cambiarVista(ActionEvent e, Parent vistaNueva) {
+    public static void cambiarVista(ActionEvent e, Parent vistaNueva) {
         Scene nuevaEscena;
         nuevaEscena = new Scene(vistaNueva);
         Stage vistaActual;
         vistaActual = (Stage) ((Node) e.getSource()).getScene().getWindow();
         vistaActual.setScene(nuevaEscena);
-    }*/
+    }
     @FXML
     private void irPeliculas(ActionEvent event) {
     }
 
     @FXML
     private void irSeries(ActionEvent event) throws IOException {
-        /*Parent vista;
+        
+        
+        Parent vista;
+        
         vista = (AnchorPane) FXMLLoader.load(getClass().getResource("/vistas/PantallaInicialSerie.fxml"));
-        cambiarVista(event, vista);*/
+        
+        cambiarVista(event, vista);
+        
+        
+        
+    
+        
+        /*
         loaderGestion = new FXMLLoader(getClass().getResource("/vistas/PantallaInicialSerie.fxml"));
-
+        
         try {
             Parent raiz = loaderGestion.load();
-            //System.out.println(logDatos.getCuentaActiva().getEmail());
             if (this.logDatos == null) {
                 System.out.println("nulo");
             } else {
                 System.out.println("datos");
             }
+            
+            
 
-            PantallaInicialSerieController controlador = loaderGestion.getController();
-            controlador.iniciarAtributos(gestorDatos, logDatos, cerrarsesion);
+            //PantallaInicialSerieController controlador = loaderGestion.getController();
+            //controlador.iniciarAtributos(gestorDatos, logDatos, cerrarsesion);
 
             Scene escenaSeries = new Scene(raiz);
             Stage stage = new Stage();
             stage.setTitle("Series");
             stage.getIcons().add(new Image("/recursos/Imagenes/Iconos/LogoGrupoTriviño.png"));
-
-            Stage ventanaInicial = (Stage) this.cerrarsesion.getScene().getWindow();
+            Stage ventanaInicial = (Stage) this.heredado.getScene().getWindow();
             ventanaInicial.hide();
 
             stage.setScene(escenaSeries);
+            
             stage.show();
+            
 
         } catch (IOException ex) {
 
-        }
+        }*/
 
-    }
+}
 
     @FXML
-    private void irMusicales(ActionEvent event) {
+    private void irMusicales(ActionEvent event) throws IOException{
+        
+        Parent vista;
+        vista = (AnchorPane) FXMLLoader.load(getClass().getResource("/vistas/PantallaInicialMusica.fxml"));
+        cambiarVista(event, vista);
     }
 
     @FXML
     private void irResultadoBusqueda(ActionEvent event) {
+        
     }
 
     int medio = 0;
@@ -188,7 +249,7 @@ public class PantallaInicialController implements Initializable {
      * Metodo para que los banners en pantalla se vean en movimiento
      */
 
-    public void bannersSeries() {
+    public void bannersPeliculas() {
         long delay = 4000;
         movimiento.schedule(new TimerTask() {
             @Override
@@ -318,26 +379,66 @@ public class PantallaInicialController implements Initializable {
         });
 
     }
-
-    public void cerrarsesion() {
-
-    }
-
-    public void usuario() {
-
-    }
-
-    /*public void iniciarAtributos(GestorDatos gestorDatos, UsuarioLog logDatos, Button elementoVentanaHeredada) {
-        this.gestorDatos = gestorDatos;
-        this.logDatos = logDatos;
-        setImagenUsuario();
-
-        this.heredado = elementoVentanaHeredada;
-    }
     
-    private void setImagenUsuario() {
-        Image imagen = new Image(this.logDatos.getCuentaActiva().getDireccionImagenPerfil());
-        imagenPerfil.setImage(imagen);
-        labelNombreUsuario.setText(this.logDatos.getCuentaActiva().getNombre());
-    }*/
+    public void ultimasPeliculasAgregadas(){
+        Image Upa1 = null;
+        Image Upa2 = null;
+        Image Upa3 = null;
+        Image Upa4 = null;
+        Image Upa5 = null;
+        Image Upa6 = null;
+        Image Upa7 = null;
+        Image Upa8 = null;
+
+        Upa1 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas" + 1 + ".png");
+        UltimaPeliAgregada1.setImage(Upa1);
+
+        UltimaPeliAgregada1.setOnMouseEntered(e -> {
+            System.out.println("Sobre1");
+        });
+
+        Upa2 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas" + 2 + ".png");
+        UltimaPeliAgregada2.setImage(Upa2);
+        UltimaPeliAgregada2.setOnMouseEntered(e -> {
+            System.out.println("Sobre2");
+        });
+
+        Upa3 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas" + 3 + ".png");
+        UltimaPeliAgregada3.setImage(Upa3);
+        UltimaPeliAgregada3.setOnMouseEntered(e -> {
+            System.out.println("Sobre3");
+        });
+
+        Upa4 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas" + 4 + ".png");
+        UltimaPeliAgregada4.setImage(Upa4);
+        UltimaPeliAgregada4.setOnMouseEntered(e -> {
+            System.out.println("Sobre4");
+        });
+        
+        Upa5 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas" + 5 + ".png");
+        UltimaPeliAgregada5.setImage(Upa5);
+        UltimaPeliAgregada5.setOnMouseEntered(e -> {
+            System.out.println("Sobre5");
+        });
+        
+        Upa6 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas" + 6 + ".png");
+        UltimaPeliAgregada6.setImage(Upa6);
+        UltimaPeliAgregada6.setOnMouseEntered(e -> {
+            System.out.println("Sobre6");
+        });
+        
+        Upa7 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas" + 7 + ".png");
+        UltimaPeliAgregada7.setImage(Upa7);
+        UltimaPeliAgregada7.setOnMouseEntered(e -> {
+            System.out.println("Sobre7");
+        });
+        
+        Upa8 = new Image("/recursos/Imagenes/Miniaturas/Lomasnuevo/UltimasPelisAgregadas" + 8 + ".png");
+        UltimaPeliAgregada8.setImage(Upa8);
+        UltimaPeliAgregada8.setOnMouseEntered(e -> {
+            System.out.println("Sobre8");
+        });
+        
+    }
+ 
 }
