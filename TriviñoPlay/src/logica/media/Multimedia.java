@@ -120,7 +120,7 @@ public abstract class Multimedia {
      * (formato: "aaaa-mm-dd")
      */
     public String getFechaString(){
-        String fechaString = fecha[0]+"-"+fecha[1]+"-"+fecha[2];
+        fechaString = fecha[0]+"-"+fecha[1]+"-"+fecha[2];
         return fechaString;
     }
     

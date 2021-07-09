@@ -14,6 +14,9 @@ public class UsuarioLog {
     private Cuenta cuentaActiva;
     //ingresado: si hay una sesión activa
     private boolean ingresado;
+    //cuentaMaster: cuenta de administrador maestra, para poder acceder aun si
+    //se pierde la base de datos
+    private final Cuenta cuentaMaster;
     
     /**
      * Constructor de UsuarioLog. Se inicializa sin una sesión activa.
@@ -23,6 +26,8 @@ public class UsuarioLog {
         this.gestorDatos = gestorDeDatos;
         cuentaActiva = null;
         ingresado = false;
+        cuentaMaster = new Cuenta("master", "master12345", "master@trivino.cl", 
+                true, "file:src/recursos/Imagenes/Perfil/imagendefecto.jpg");
     }
     
     /**
@@ -54,15 +59,24 @@ public class UsuarioLog {
      * @return si se inicio sesión con exito
      */
     public boolean ingresarCuenta(String email, String contrasenna){
-        boolean emailExiste = false;
-        for(int index = 0; index < gestorDatos.getCuentas().size() && !emailExiste && !ingresado; index++){
-            if(email.equalsIgnoreCase(gestorDatos.getCuentas().get(index).getEmail())){                
-                emailExiste = true;
-                if(gestorDatos.getCuentas().get(index).esContrasennaActual(contrasenna)){
-                    cuentaActiva = gestorDatos.getCuentas().get(index);
-                    ingresado = true;
-                    return true;
-               }
+        if(email.equalsIgnoreCase(cuentaMaster.getEmail())){
+            if(cuentaMaster.esContrasennaActual(contrasenna)){
+               cuentaActiva = cuentaMaster;
+               ingresado = true;
+               return true;
+            }
+        }
+        else{
+            boolean emailExiste = false;
+            for(int index = 0; index < gestorDatos.getCuentas().size() && !emailExiste && !ingresado; index++){
+                if(email.equalsIgnoreCase(gestorDatos.getCuentas().get(index).getEmail())){                
+                    emailExiste = true;
+                    if(gestorDatos.getCuentas().get(index).esContrasennaActual(contrasenna)){
+                        cuentaActiva = gestorDatos.getCuentas().get(index);
+                        ingresado = true;
+                        return true;
+                   }
+                }
             }
         }
         return false;
