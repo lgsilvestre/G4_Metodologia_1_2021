@@ -110,7 +110,7 @@ public class LoginController implements Initializable {
                     Parent raiz = loaderAdministracion.load();
                     System.out.println("pasó 2");
                     PantallaInicialController controlador = loaderAdministracion.getController();
-                    //controlador.iniciarAtributos(gestorDatos, logDatos, botonLogin);
+                    controlador.iniciarAtributos(gestorDatos, logDatos, botonLogin);
 
                     Scene escenaAdministracion = new Scene(raiz);
 

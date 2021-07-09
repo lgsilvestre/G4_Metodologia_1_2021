@@ -1,4 +1,14 @@
 package logica.media;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import controladores.ReproductorController;
+import javafx.event.EventHandler;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
 /**
  * Pelicula implementa una pelicula, un recurso audiovisual por lo general
  * hecho de forma de que se pueda consumir sin necesidad de ver "partes" anteriores.
@@ -52,7 +62,27 @@ public class Pelicula extends Reproducible{
     @Override
     public void reproducir() {
         incrementarReproducciones();
-        //TODO: el decidir como se rePRoducira
+        FXMLLoader loaderReproductor = new FXMLLoader(getClass().getResource("/vistas/Reproduccion.fxml"));
+        try{
+            Parent raiz = loaderReproductor.load();
+            ReproductorController player = loaderReproductor.getController();
+            player.reproduccion(direccionArchivo);
+            Stage stage = new Stage();
+            Scene scene = new Scene(raiz);
+            stage.setScene(scene);
+            stage.setTitle(this.getTitulo());            
+            stage.show();
+           
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                player.parar();
+                stage.close();
+            }
+            });
+        }catch(Exception e){
+            System.out.println("Error carga de reproductor");
+        };
     }
     
      /**

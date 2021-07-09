@@ -5,6 +5,14 @@
  */
 package logica.media;
 
+import controladores.ReproductorController;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+
 /**
  * Musica implementa objetos Multimedia auditivos artisticos.
  * @author Sudaii
@@ -57,7 +65,27 @@ public class Musica extends Reproducible{
     @Override
     public void reproducir() {
         incrementarReproducciones();
-        //TODO: el decidir como se reproducira
+        FXMLLoader loaderReproductor = new FXMLLoader(getClass().getResource("/vistas/Reproduccion.fxml"));
+        try{
+            Parent raiz = loaderReproductor.load();
+            ReproductorController player = loaderReproductor.getController();
+            player.reproduccion(direccionArchivo);
+            Stage stage = new Stage();
+            Scene scene = new Scene(raiz);
+            stage.setScene(scene);
+            stage.setTitle(this.getTitulo());            
+            stage.show();
+           
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                player.parar();
+                stage.close();
+            }
+            });
+        }catch(Exception e){
+            System.out.println("Error carga de reproductor");
+        };
     }
     
     /**

@@ -64,7 +64,7 @@
                   </GridPane>
                   <HBox alignment="CENTER" prefHeight="65.0" prefWidth="800.0" style="-fx-background-color: #000000;">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#resetMedia" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #ff9100;" text="Reset" textFill="WHITE">
+                        <Button fx:id="botonReset" mnemonicParsing="false" onAction="#resetMedia" onMouseEntered="#entraReset" onMouseExited="#saleReset" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #ff9100;" text="Reset" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -72,7 +72,7 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button minHeight="-Infinity" mnemonicParsing="false" onAction="#StopMedia" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #ff9100;" text="Stop" textFill="WHITE">
+                        <Button fx:id="botonStop" minHeight="-Infinity" mnemonicParsing="false" onAction="#StopMedia" onMouseEntered="#entraStop" onMouseExited="#saleStop" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #ff9100;" text="Stop" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -80,7 +80,7 @@
                               <Insets left="200.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#playMedia" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #ff9100;" text="Play" textFill="WHITE">
+                        <Button fx:id="botonPlay" mnemonicParsing="false" onAction="#playMedia" onMouseEntered="#entraPlay" onMouseExited="#salePlay" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #ff9100;" text="Play" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -88,7 +88,7 @@
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#pauseMedia" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #ff9100;" text="Pause" textFill="WHITE">
+                        <Button fx:id="botonPause" mnemonicParsing="false" onAction="#pauseMedia" onMouseEntered="#entraPause" onMouseExited="#salePause" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #ff9100;" text="Pause" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -96,12 +96,12 @@
                               <Insets right="125.0" />
                            </HBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#prevMedia" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #ff9100;" text="Prev" textFill="WHITE">
+                        <Button fx:id="botonPrev" mnemonicParsing="false" onAction="#prevMedia" onMouseEntered="#entraPrev" onMouseExited="#salePrev" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #ff9100;" text="Prev" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#nextMedia" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #ff9100;" text="Next" textFill="WHITE">
+                        <Button fx:id="botonNext" mnemonicParsing="false" onAction="#nextMedia" onMouseEntered="#entraNext" onMouseExited="#saleNext" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #ff9100;" text="Next" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>

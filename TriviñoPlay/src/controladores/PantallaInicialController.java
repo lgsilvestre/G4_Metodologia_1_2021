@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -92,12 +93,9 @@ public class PantallaInicialController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        
-        
-        
-        banners();
-        lomaspopular();
+      
+        //banners();
+        //lomaspopular();
         listas.getAutor();
         System.out.println(listas.getAutor());
         System.out.println("hola");
@@ -317,5 +315,10 @@ public class PantallaInicialController implements Initializable {
         imagenPerfil.setImage(imagen);
         labelNombreUsuario.setText(this.logDatos.getCuentaActiva().getNombre());
     }*/
+
+    @FXML
+    private void click(MouseEvent event) {
+        gestorDatos.getPeliculas().get(0).reproducir();
+    }
     
 }

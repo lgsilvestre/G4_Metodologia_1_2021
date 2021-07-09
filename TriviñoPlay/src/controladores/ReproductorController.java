@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
@@ -44,6 +45,18 @@ public class ReproductorController implements Initializable {
     private Label totalTime;
     @FXML
     private Label timeCurrent;
+    @FXML
+    private Button botonReset;
+    @FXML
+    private Button botonStop;
+    @FXML
+    private Button botonPlay;
+    @FXML
+    private Button botonPause;
+    @FXML
+    private Button botonPrev;
+    @FXML
+    private Button botonNext;
 
     /**
      * Se inicializa el reproductor. 
@@ -54,7 +67,10 @@ public class ReproductorController implements Initializable {
      * Se activa la reproduccion del archivo automaticamente.
      */
     public void initialize(URL url, ResourceBundle rb) {
-        file = new File("src/multimedia/videos/Hang.mp4");//path para los archivos
+   
+    }    
+    public void reproduccion(String direccionArchivo){
+        file = new File(direccionArchivo);//path para los archivos
         path = file.toURI().toString();
         if(path != null){
             Media media = new Media(path);
@@ -113,11 +129,12 @@ public class ReproductorController implements Initializable {
              */
             mediaPlayer.play();
         }
-    }    
-    @FXML
+        
+    }
     /**
      * Metodo para parar el contenido cuando se presione el boton stop.
      **/
+    @FXML
     private void StopMedia(ActionEvent event) {
         mediaPlayer.stop();
     }
@@ -177,6 +194,74 @@ public class ReproductorController implements Initializable {
      **/
     private void showControl(MouseEvent event) {
         VboxControl.setVisible(true);
+    }
+
+    /**
+     * Metodo para cambiar el color de los botones cuando el mouse pase por encima de ellos
+     */
+    @FXML
+    private void saleReset(MouseEvent event) {
+        botonReset.setStyle("-fx-background-color: #ff9100");
+    }
+
+    @FXML
+    private void entraReset(MouseEvent event) {
+        botonReset.setStyle("-fx-background-color: #3A50FA");
+    }
+
+    @FXML
+    private void saleStop(MouseEvent event) {
+        botonStop.setStyle("-fx-background-color: #ff9100");
+    }
+
+    @FXML
+    private void entraStop(MouseEvent event) {
+        botonStop.setStyle("-fx-background-color: #3A50FA");
+    }
+
+    @FXML
+    private void salePlay(MouseEvent event) {
+        botonPlay.setStyle("-fx-background-color: #ff9100");
+    }
+
+    @FXML
+    private void entraPlay(MouseEvent event) {
+        botonPlay.setStyle("-fx-background-color: #3A50FA");
+    }
+
+    @FXML
+    private void salePause(MouseEvent event) {
+        botonPause.setStyle("-fx-background-color: #ff9100");
+    }
+
+    @FXML
+    private void entraPause(MouseEvent event) {
+        botonPause.setStyle("-fx-background-color: #3A50FA");
+    }
+
+    @FXML
+    private void salePrev(MouseEvent event) {
+        botonPrev.setStyle("-fx-background-color: #ff9100");
+    }
+
+    @FXML
+    private void entraPrev(MouseEvent event) {
+        botonPrev.setStyle("-fx-background-color: #3A50FA");
+    }
+
+    @FXML
+    private void saleNext(MouseEvent event) {
+        botonNext.setStyle("-fx-background-color: #ff9100");
+    }
+
+    @FXML
+    private void entraNext(MouseEvent event) {
+        botonNext.setStyle("-fx-background-color: #3A50FA");
+    }
+    
+    //metodo para detener cuando se cierra la ventana
+    public void parar() {
+        mediaPlayer.stop();
     }
     
 
