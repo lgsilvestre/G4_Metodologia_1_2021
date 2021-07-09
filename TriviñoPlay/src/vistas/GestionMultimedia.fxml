@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.GestionMultimediaController">
+   <top>
+      <BorderPane prefHeight="110.0" prefWidth="800.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+         <left>
+            <ImageView fitHeight="90.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../recursos/Imagenes/Iconos/LogoGrupoTriviño.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets top="10.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </left>
+         <right>
+            <HBox alignment="CENTER_RIGHT" prefHeight="110.0" prefWidth="266.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="labelNombreUsuario" text="nombreUsuario" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="imagenPerfil" fitHeight="58.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </right>
+      </BorderPane>
+   </top>
+   <left>
+      <VBox prefHeight="490.0" prefWidth="50.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="botonRetroceso" mnemonicParsing="false" onAction="#retroceder" onMouseEntered="#sobreBotonRetroceso" onMouseExited="#fueraBotonRetroceso" style="-fx-background-color: #ffffff;">
+               <graphic>
+                  <ImageView fx:id="imagenRetroceso" fitHeight="50.0" fitWidth="50.0">
+                     <image>
+                        <Image url="@../recursos/Imagenes/Iconos/back-arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <VBox prefHeight="490.0" prefWidth="66.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <bottom>
+            <HBox alignment="CENTER_RIGHT" prefHeight="72.0" prefWidth="668.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="botonEditarMedio" mnemonicParsing="false" onAction="#editarMedio" onMouseEntered="#sobreBotonEditar" onMouseExited="#fueraBotonEditar" style="-fx-background-color: #ff9100;" text="Editar" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../recursos/Imagenes/Iconos/edit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="botonEliminarMedio" mnemonicParsing="false" onAction="#eliminarMedio" onMouseEntered="#sobreBotonEliminar" onMouseExited="#fueraBotonEliminar" style="-fx-background-color: #ff9100;" text="Eliminar" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../recursos/Imagenes/Iconos/delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></HBox>
+         </bottom>
+         <top>
+            <VBox prefHeight="86.0" prefWidth="668.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="85.0" prefWidth="668.0">
+                     <children>
+                        <Button fx:id="botonAgregarMedio" mnemonicParsing="false" onAction="#agregarMedio" onMouseEntered="#sobreBotonAgregar" onMouseExited="#fueraBotonAgregar" style="-fx-background-color: #ff9100;" text="Agregar" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Calibri" size="18.0" />
+                           </font>
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../recursos/Imagenes/Iconos/add.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TabPane fx:id="PanelTab" prefHeight="517.0" prefWidth="668.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab fx:id="tabPelicula" onSelectionChanged="#seleccionTabPelicula" text="Peliculas">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <TableView fx:id="tablaPeliculas" onMouseClicked="#seleccionPelicula" prefHeight="279.0" prefWidth="300.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn fx:id="colTituloPelicula" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="167.0" text="Título" />
+                                          <TableColumn fx:id="colFechaPelicula" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="86.0" text="Fecha Estreno" />
+                                        <TableColumn fx:id="colGeneroPelicula" minWidth="6.0" prefWidth="111.0" text="Género" />
+                                          <TableColumn fx:id="colDescripcionPelicula" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="198.0" text="Descripción" />
+                                          <TableColumn fx:id="colReproduccionesPelicula" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="104.0" text="Reproducciones" />
+                                      </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </content>
+                      </Tab>
+                      <Tab fx:id="tabMusica" onSelectionChanged="#seleccionTabMusica" text="Musica">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <TableView fx:id="tablaMusica" onMouseClicked="#seleccionMusica" prefHeight="279.0" prefWidth="189.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn fx:id="colTituloMusica" maxWidth="1.7976931348623157E308" prefWidth="169.0" text="Título" />
+                                        <TableColumn fx:id="colFechaMusica" prefWidth="107.0" text="Fecha Estreno" />
+                                          <TableColumn fx:id="colGeneroMusica" minWidth="0.0" prefWidth="87.0" text="Género" />
+                                          <TableColumn fx:id="colAlbumMusica" minWidth="3.0" prefWidth="88.0" text="Álbum" />
+                                          <TableColumn fx:id="colArtistaMusica" prefWidth="120.0" text="Artista" />
+                                          <TableColumn fx:id="colReproduccionesMusica" prefWidth="95.0" text="Reproducciones" />
+                                      </columns>
+                                    </TableView>
+                                 </center>
+                              </BorderPane>
+                           </content>
+                      </Tab>
+                        <Tab fx:id="tabSeries" onSelectionChanged="#seleccionTabSeries" text="Series">
+                           <content>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                 <center>
+                                    <TableView fx:id="tablaSeries" onMouseClicked="#seleccionSerie" prefHeight="279.0" prefWidth="114.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn fx:id="colTituloSerie" prefWidth="261.0" text="Titulo Serie" />
+                                        <TableColumn fx:id="colGeneroSerie" prefWidth="158.0" text="Género" />
+                                          <TableColumn fx:id="colFechaSerie" prefWidth="118.0" text="Fecha Estreno" />
+                                          <TableColumn fx:id="colReproduccionesSerie" prefWidth="128.0" text="Reproducciones" />
+                                      </columns>
+                                    </TableView>
+                                 </center>
+                                 <bottom>
+                                    <TableView fx:id="tablaEpisodios" onMouseClicked="#seleccionEpisodio" prefHeight="148.0" prefWidth="668.0" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
+                                      <columns>
+                                        <TableColumn fx:id="colTituloEpisodio" prefWidth="284.0" text="Título Episodio" />
+                                          <TableColumn fx:id="colNumeroEpisodio" prefWidth="126.0" text="Número del Episodio" />
+                                        <TableColumn fx:id="colFechaEpisodio" prefWidth="152.0" text="Fecha Estreno" />
+                                          <TableColumn fx:id="colReproduccionesEpisodio" prefWidth="104.0" text="Reproducciones" />
+                                      </columns>
+                                    </TableView>
+                                 </bottom>
+                              </BorderPane>
+                           </content>
+                        </Tab>
+                    </tabs>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TabPane>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

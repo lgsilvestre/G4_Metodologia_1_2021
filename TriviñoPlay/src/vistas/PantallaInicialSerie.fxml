@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -17,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.PantallaInicialController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.PantallaInicialSerieController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a1a1a" height="75.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f9c007" height="525.0" layoutY="75.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
@@ -26,17 +20,17 @@
             <Image url="@../recursos/Imagenes/Iconos/LogoGrupoTriviño.png" />
          </image>
       </ImageView>
-      <Button fx:id="botonSerie" layoutX="106.0" layoutY="23.0" mnemonicParsing="false" onAction="#irSeries" style="-fx-background-color: #1a1a1a;" text="Serie" textFill="#ff9100">
+      <Button layoutX="106.0" layoutY="23.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="74.0" style="-fx-background-color: #ff9100;" text="Serie">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="botonPeliculas" layoutX="188.0" layoutY="23.0" mnemonicParsing="false" onAction="#irPeliculas" style="-fx-background-color: #ff9100;" text="Peliculas">
+      <Button layoutX="188.0" layoutY="23.0" mnemonicParsing="false" onAction="#irPeliculas" style="-fx-background-color: #1a1a1a;" text="Peliculas" textFill="#ff9100">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="botonMusica" layoutX="289.0" layoutY="23.0" mnemonicParsing="false" onAction="#irMusicales" style="-fx-background-color: #1a1a1a;" text="Musica" textFill="#ff9100">
+      <Button layoutX="289.0" layoutY="23.0" mnemonicParsing="false" onAction="#irMusicales" style="-fx-background-color: #1a1a1a;" text="Musica" textFill="#ff9100">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -44,8 +38,8 @@
       <TextField fx:id="browser" layoutX="494.0" layoutY="29.0" onAction="#irResultadoBusqueda" prefHeight="11.0" prefWidth="70.0" text="Busqueda" />
       <Button fx:id="cerrarsesion" layoutX="762.0" layoutY="30.0" mnemonicParsing="false" onAction="#retroceder" prefHeight="25.0" prefWidth="33.0" style="-fx-background-color: #ff9100;" text="X" />
       <ScrollPane layoutY="75.0" prefHeight="525.0" prefWidth="800.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="783.0" style="-fx-background-color: #ff9100;">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="850.0" prefWidth="783.0" style="-fx-background-color: #ff9100;">
                <children>
                   <Text layoutX="15.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lo Más Nuevo">
                      <font>
@@ -107,8 +101,9 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-               </children></AnchorPane>
-        </content>
+               </children>
+            </AnchorPane>
+         </content>
       </ScrollPane>
       <Label fx:id="correo" layoutX="638.0" layoutY="30.0" prefHeight="25.0" prefWidth="112.0" style="-fx-text-fill: #ff9100;" />
    </children>
